@@ -33,3 +33,7 @@ oof_predictions.csv
 *.key
 .DS_Store
 Thumbs.db
+
+# Release build & verification staging
+release_dist/
+release_verify_tmp/
