@@ -198,3 +198,71 @@ def test_artifacts_budget_eval_metrics_and_latency(parser: AddressSlotParser) ->
         latencies.append((time.perf_counter() - t0) * 1000.0)
     p99 = float(np.percentile(latencies, 99))
     assert p99 <= 10.0, f"Single-item p99 latency too high: {p99:.2f} ms"
+
+
+def test_v31_fallback_recovers_comma_free_and_unaccented_addresses(parser: AddressSlotParser) -> None:
+    from slot_parser_v3.parser import _apply_empty_clean_fallback
+    from slot_parser_v3.tokenizer import SLOT_TYPES
+
+    # 1. Phone guard + end-to-end parse on comma-free noisy inputs
+    must_recover = [
+        ("45 Tran Phu Loc Thanh Loc Ninh Binh Phuoc", ("Loc Thanh", "Loc Ninh", "Binh Phuoc")),
+        ("12 Nguyen Trai Ben Nghe Quan 1 Ho Chi Minh", ("Ben Nghe", "Quan 1", "Ho Chi Minh")),
+        ("Ap 2 Loc Thanh Loc Ninh", ("Ap 2", "Loc Thanh", "Loc Ninh")),
+        ("so 15 thon 3 xa tan lap", ("so 15", "tan lap")),
+        ("khu cong nghiep vsip binh duong", ("vsip", "binh duong")),
+        ("so 12 duong 3 khu cong nghiep song than", ("so 12", "song than")),
+        ("Anh Nam 0912345678 45 Tran Phu Loc Thanh Loc Ninh Binh Phuoc", ("45 Tran Phu", "Loc Ninh", "Binh Phuoc")),
+    ]
+    for raw_text, expected_substrings in must_recover:
+        res_single = parser.parse(raw_text)
+        res_batch = parser.parse_batch([raw_text])[0]
+        assert res_single.clean_address_for_goong != "", f"Returned empty clean_address for: {raw_text!r}"
+        assert res_single.clean_address_for_goong == res_batch.clean_address_for_goong
+        assert res_single.used_fallback == res_batch.used_fallback
+        assert "0912345678" not in res_single.clean_address_for_goong
+        assert "Anh Nam" not in res_single.clean_address_for_goong
+        low_clean = res_single.clean_address_for_goong.lower()
+        for sub in expected_substrings:
+            assert sub.lower() in low_clean, f"Expected {sub!r} in {res_single.clean_address_for_goong!r}"
+
+    # 2. Directly exercise the all-'O' fallback path (simulating the 86 real-order empty-CRF cases)
+    forced_cases = [
+        ("Xom 4 Hai Hung Hai Hau Nam Dinh", "Xom 4, Hai Hung, Hai Hau, Nam Dinh", True),
+        ("45 Le Loi My Binh Long Xuyen An Giang", "45 Le Loi, My Binh, Long Xuyen, An Giang", True),
+        ("Khu cong nghiep VSIP Binh Duong", "Khu cong nghiep VSIP, Binh Duong", True),
+        ("so 12 duong 3 khu cong nghiep song than", "so 12 duong 3 khu cong nghiep song than", True),
+        ("bánh mì Sài Gòn", "", False),
+        ("cơm tấm sườn bì", "", False),
+        ("abc", "", False),
+        ("123456", "", False),
+        ("nha e", "", False),
+    ]
+    for raw_text, expected_clean, expected_fb in forced_cases:
+        toks = tokenize_words(raw_text)
+        tags = ["O"] * len(toks)
+        slots = {st: "" for st in SLOT_TYPES}
+        slots["clean_address_for_goong"] = ""
+        used = _apply_empty_clean_fallback(toks, tags, slots, parser._r2l_scanner)
+        assert used is expected_fb, f"Unexpected fallback flag on {raw_text!r}: got {used}, slots={slots}"
+        assert slots["clean_address_for_goong"] == expected_clean, (
+            f"Unexpected clean_address on {raw_text!r}: {slots['clean_address_for_goong']!r}"
+        )
+
+    # 3. Non-address negatives & ultra-short strings through full .parse() must stay empty
+    must_stay_empty = [
+        "abc",
+        "1234",
+        "nha e",
+        "bánh mì Sài Gòn",
+        "cơm tấm sườn bì",
+        "Cho mình 3 chai nướng BBQ",
+        "Xin giá",
+    ]
+    for neg in must_stay_empty:
+        r1 = parser.parse(neg)
+        r2 = parser.parse_batch([neg])[0]
+        assert r1.clean_address_for_goong == "", f"False positive clean_address for {neg!r}: {r1.clean_address_for_goong!r}"
+        assert r2.clean_address_for_goong == ""
+        assert r1.used_fallback is False
+

@@ -17,8 +17,8 @@ from pathlib import Path
 from typing import Dict, List, Tuple
 import zipfile
 
-VERSION = "3.0.0"
-ZIP_TIMESTAMP = (2026, 11, 22, 19, 30, 0)
+VERSION = "3.1.0"
+ZIP_TIMESTAMP = (2026, 11, 22, 20, 50, 0)
 
 ROOT = Path(__file__).resolve().parent.parent
 DIST_DIR = ROOT / "release_dist"
@@ -102,8 +102,11 @@ Bộ backend hoàn chỉnh gồm 4 mô-đun độc lập (chạy thuần CPU + O
 ```powershell
 python -m venv .venv
 .\\.venv\\Scripts\\pip.exe install -r way_c_post_goong_v3\\requirements.txt
-# Khởi chạy Post-Goong Verifier API (port 8085):
-.\\.venv\\Scripts\\uvicorn.exe app_dummy # hoặc: cd way_c_post_goong_v3 && ..\\.venv\\Scripts\\uvicorn.exe server:app --port 8085
+# 1) Huấn luyện mô hình 2A cục bộ trên đơn thật (chỉ cần numpy/pandas/scikit-learn/onnxruntime):
+python way_c_post_goong_v3\\train_local_2a.py --data dev_orders.csv --output-dir local_2a_artifacts
+# 2) Khởi chạy Post-Goong Verifier API trỏ vào mô hình cục bộ (port 8085):
+$env:LAYA_POST_GOONG_ARTIFACTS_DIR = "local_2a_artifacts"
+cd way_c_post_goong_v3 && ..\\.venv\\Scripts\\uvicorn.exe server:app --port 8085
 ```
 """.encode("utf-8")
 
@@ -112,10 +115,13 @@ python -m venv .venv
         for rel in ("__init__.py", "telex_fuzzy.py", "converter_2025.py", "requirements.txt"):
             _add_file(zf, CORE_DIR / rel, f"{prefix}/laya_v3_core/{rel}")
 
-        # 2. way_c_post_goong_v3
+        # 2. way_c_post_goong_v3 (v3.0 + v3.1 local 2A pipeline)
         for rel in (
             "__init__.py",
             "features.py",
+            "features_2a.py",
+            "onnx_export_pure.py",
+            "train_local_2a.py",
             "verifier.py",
             "server.py",
             "requirements.txt",
@@ -217,7 +223,14 @@ from laya_address_vn.core import (
     repair_telex_typos,
     strip_accents,
 )
-from laya_address_vn.post_goong import PostGoongVerifier
+from laya_address_vn.post_goong import (
+    FEATURE_NAMES_1B_24,
+    FEATURE_NAMES_2A_51,
+    FEATURE_NAMES_2A_V31,
+    FeatureExtractor2A,
+    PostGoongVerifier,
+    export_lr_hgb_ensemble_to_onnx,
+)
 from laya_address_vn.slot_parser import AddressSlotParser, BIO_TAGS, ParsedAddress, SLOT_TYPES
 
 __version__ = "{VERSION}"
@@ -226,6 +239,10 @@ __all__ = [
     "AddressSlotParser",
     "BIO_TAGS",
     "DEFAULT_ARTIFACTS_DIR",
+    "FEATURE_NAMES_1B_24",
+    "FEATURE_NAMES_2A_51",
+    "FEATURE_NAMES_2A_V31",
+    "FeatureExtractor2A",
     "GazetteerIndex",
     "LayaAddressEngine",
     "NoulDecision",
@@ -237,6 +254,7 @@ __all__ = [
     "VietnamAdminV3Index",
     "__version__",
     "evaluate_heuristic",
+    "export_lr_hgb_ensemble_to_onnx",
     "haversine_km",
     "normalize_text",
     "repair_telex_typos",
@@ -247,7 +265,7 @@ __all__ = [
     metadata = f"""Metadata-Version: 2.1
 Name: laya-address-vn
 Version: {VERSION}
-Summary: Complete Vietnamese address gate, 2025 2-tier converter, BIO-NER slot parser & post-Goong verifier (CPU ONNX)
+Summary: Complete Vietnamese address gate, 2025 2-tier converter, BIO-NER slot parser & post-Goong 2A verifier (CPU ONNX)
 Home-page: https://github.com/HTL2910/laya_address_vn
 License: MIT
 Requires-Python: >=3.9
@@ -257,6 +275,10 @@ Provides-Extra: server
 Requires-Dist: fastapi>=0.110.0; extra == "server"
 Requires-Dist: uvicorn>=0.27.0; extra == "server"
 Requires-Dist: pydantic>=2.5.0; extra == "server"
+Provides-Extra: train
+Requires-Dist: scikit-learn>=1.5.0; extra == "train"
+Requires-Dist: pandas>=2.2.0; extra == "train"
+Requires-Dist: openpyxl>=3.1.0; extra == "train"
 Description-Content-Type: text/markdown
 
 # Laya Address VN v{VERSION} (`laya_address_vn`)
@@ -306,8 +328,8 @@ Tag: py3-none-any
         conv_txt = (CORE_DIR / "converter_2025.py").read_text(encoding="utf-8")
         _add_bytes(zf, f"{dist_name}/core/converter_2025.py", _rewrite_core_converter_for_wheel(conv_txt).encode("utf-8"), records)
 
-        # 3. laya_address_vn.post_goong (Post-Goong Verifier ONNX + shared vn_admin_v3_converter.json)
-        for fname in ("__init__.py", "features.py", "verifier.py", "server.py"):
+        # 3. laya_address_vn.post_goong (Post-Goong Verifier ONNX + local 2A pipeline + shared vn_admin_v3_converter.json)
+        for fname in ("__init__.py", "features.py", "features_2a.py", "onnx_export_pure.py", "train_local_2a.py", "verifier.py", "server.py"):
             _add_file(zf, WAY_C_DIR / fname, f"{dist_name}/post_goong/{fname}", records)
         for fname in ("post_goong_verifier_v3.onnx", "calibration.json", "scaler.json", "vn_admin_v3_converter.json"):
             _add_file(zf, WAY_C_DIR / "artifacts" / fname, f"{dist_name}/post_goong/artifacts/{fname}", records)
@@ -387,25 +409,28 @@ def main() -> int:
 
     (DIST_DIR / "SHA256SUMS.txt").write_text("\n".join(sum_lines) + "\n", encoding="utf-8")
 
-    notes = f"""# Laya Address VN v{VERSION} — Full Intelligence Suite
+    notes = f"""# Laya Address VN v{VERSION} — Real-Order 2A Trainer + Robust SlotParser Fallback
 
-Bản nâng cấp lớn gồm **4 mô-đun mới hoàn chỉnh** cho cả Web lẫn Backend CPU, kết hợp bản đồ hành chính **2025 (34 tỉnh / 3.321 xã & 5 đặc khu)**, sửa gõ **Telex/VNI + SymSpell**, bóc tách trường **BIO-NER ONNX INT8**, và xác minh **Hậu-Goong ONNX + Haversine**.
+Bản nâng cấp `v{VERSION}` trực tiếp khắc phục hai điểm nghẽn phát hiện khi đánh giá trên **18.371 đơn thật** (giữ nguyên toàn bộ `v2.0` và các ONNX `v3.0`):
+
+1. **`SlotParser v3.1` (`slot_parser_v3/parser.py`):**
+   - Bổ sung **phone-guard tất định** (chặt 100% số điện thoại nằm cạnh số nhà không lọt vào `HNO` / `clean_address_for_goong`).
+   - Bổ sung **subtractive + right-to-left 2025 gazetteer fallback** khi chuỗi không có dấu phẩy / không tiền tố / không dấu khiến CRF gắn toàn nhãn `O` (`used_fallback=True`), vẫn giữ chặn cứng cụm chat/món ăn & chuỗi quá ngắn.
+2. **Local Real-Order `2A` Trainer & Pure-Stdlib ONNX Exporter (`way_c_post_goong_v3/`):**
+   - `features_2a.py`: trích xuất `24` (`1B`) / `51` (`2A`) / `56` (`2A + 2025 equiv + Haversine`) đặc trưng phi khu vực, `0` mã tỉnh, `0` từ vựng PII.
+   - `onnx_export_pure.py`: xuất thẳng ensemble `LogisticRegression + HistGradientBoostingClassifier` sang ONNX chuẩn (`ir_version=8`, `ai.onnx.ml` `TreeEnsembleRegressor`) **chỉ bằng Python stdlib** — hoàn toàn không cần `torch`, `onnx`, hay `skl2onnx` (`parity max_abs_diff < 1e-4`).
+   - `train_local_2a.py`: 1 lệnh chạy offline trên dữ liệu DEV thật (`0` PII rời máy), đánh giá kiểm chéo thời gian + kiểm chứng đóng băng ngưỡng tương lai (`calib -> future`), xuất `post_goong_verifier_2a_local.onnx` + `calibration.json` (bật `allow_missing_ward` tự động nếu DB thiếu tên xã).
+   - `verifier.py` + `server.py`: tự nhận diện schema `v3_43` lẫn `v31_2a_*` và biến môi trường `LAYA_POST_GOONG_ARTIFACTS_DIR`.
 
 ## Tệp phát hành đính kèm
 
 | Tệp | Nội dung | Dung lượng |
 |---|---|---:|
 | `laya-address-vn-widget-v{VERSION}-web.zip` | **Bản Web Widget SDK (`@laya/address-vn-widget`)** — Custom Element `<laya-address-input>`, sửa Telex + SymSpell 1-edit, gợi ý Top-3 Xã/Phường 1-chạm, tự đổi 3 cấp cũ <-> 2 cấp 2025 + ONNX WASM (`0đ` server, `0` CDN) | `{(built[0].stat().st_size / (1024 * 1024)):.2f} MB` |
-| `laya-address-vn-suite-v{VERSION}-backend.zip` | **Bản Backend Suite v3** — Đầy đủ `way_b_backend_api_v2` (Pre-Goong INT8) + `laya_v3_core` + `slot_parser_v3` (BIO-NER INT8) + `way_c_post_goong_v3` (Post-Goong ONNX `68.5 KB`) | `{(built[1].stat().st_size / (1024 * 1024)):.2f} MB` |
-| `laya_address_vn-{VERSION}-py3-none-any.whl` | **Unified Python Wheel** — Cài 1 gói `pip install` để gọi `LayaAddressEngine`, `AddressSlotParser`, `PostGoongVerifier`, `VietnamAdminV3Index`, `repair_telex_typos` | `{(built[2].stat().st_size / (1024 * 1024)):.2f} MB` |
+| `laya-address-vn-suite-v{VERSION}-backend.zip` | **Bản Backend Suite v{VERSION}** — Đầy đủ `way_b_backend_api_v2` + `laya_v3_core` + `slot_parser_v3` (có fallback + phone-guard) + `way_c_post_goong_v3` (kèm `train_local_2a.py` & pure ONNX exporter) | `{(built[1].stat().st_size / (1024 * 1024)):.2f} MB` |
+| `laya_address_vn-{VERSION}-py3-none-any.whl` | **Unified Python Wheel** — `pip install` cho runtime (`numpy`, `onnxruntime`) hoặc `[server]`, `[train]` | `{(built[2].stat().st_size / (1024 * 1024)):.2f} MB` |
 | `laya-address-vn-ceiling-audit-v{VERSION}.zip` | **Bộ đo trần offline (Bước 1–2)** — Kiểm chứng trên log đơn DEV thật, `0%` rò rỉ PII | `{(built[3].stat().st_size / 1024):.1f} KB` |
 | `SHA256SUMS.txt` | Mã kiểm tra toàn vẹn SHA-256 | — |
-
-## Kết quả kiểm chứng độc lập trên từng mô-đun v3
-- **`way_a_widget_v3` (JS/WASM):** `13/13` Node tests PASS • đánh giá trung bình **`0.1271 ms`** • `0` CDN.
-- **`laya_v3_core` (Telex + SymSpell + 2025 Converter):** `36/36` pytest PASS • **`0.1847 ms`** trung bình • 63 tỉnh cũ <-> 34 tỉnh mới + 5 đặc khu.
-- **`way_c_post_goong_v3` (Post-Goong Verifier ONNX `68.53 KB`):** Hold-out 600 ca `ROC-AUC = 1.0`, `PR-AUC = 1.0`, `ECE = 0.0044`, `legacy_2025_false_alarm = 0.0%` (`0.18%` trên 6.000 test), CPU **`p99 = 1.643 ms`** (`auto_approve` / `soft_confirm_zns` / `hard_block`).
-- **`slot_parser_v3` (BIO-NER BiGRU+Viterbi INT8 `1.523 MB`):** Hold-out 500 ca `Token Acc = 98.58%`, `Macro Entity F1 = 0.9770`, `HNO 1.00 / PHN 1.00 / PRO 0.988 / NOTE 0.986 / WAR 0.952`, CPU **`p99 = 5.171 ms`**.
 
 ## SHA-256 Checksums
 ```text

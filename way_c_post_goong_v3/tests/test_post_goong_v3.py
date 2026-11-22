@@ -363,3 +363,61 @@ def test_holdout_metrics_and_p99_latency(verifier: PostGoongVerifier) -> None:
         lats.append((time.perf_counter() - t0) * 1000.0)
     p99 = float(np.percentile(lats, 99))
     assert p99 <= 5.0, f"Runtime p99 latency too high: {p99:.3f} ms"
+
+
+def test_server_env_override_loads_v31_2a_schema(tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> None:
+    import server as srv
+    from features_2a import FEATURE_NAMES_2A_V31
+    from onnx_export_pure import export_lr_hgb_ensemble_to_onnx
+    import shutil
+
+    n_f = len(FEATURE_NAMES_2A_V31)
+    onnx_out = tmp_path / "post_goong_verifier_2a_local.onnx"
+    export_lr_hgb_ensemble_to_onnx(
+        out_path=onnx_out,
+        feature_names=FEATURE_NAMES_2A_V31,
+        lr_mean=np.zeros(n_f, dtype=np.float32),
+        lr_std=np.ones(n_f, dtype=np.float32),
+        lr_coef=np.zeros(n_f, dtype=np.float32),
+        lr_intercept=-1.5,
+        hgb_model=None,
+        w_lr=1.0,
+        w_hgb=0.0,
+    )
+    onnx.checker.check_model(onnx.load(str(onnx_out)))
+    shutil.copy2(DEFAULT_ARTIFACTS_DIR / "vn_admin_v3_converter.json", tmp_path / "vn_admin_v3_converter.json")
+    (tmp_path / "calibration.json").write_text(
+        json.dumps({
+            "version": "3.1.0",
+            "model_filename": "post_goong_verifier_2a_local.onnx",
+            "feature_schema": "v31_2a_56",
+            "feature_names": list(FEATURE_NAMES_2A_V31),
+            "output_type": "probability",
+            "temperature": 1.0,
+            "t_low": 0.40,
+            "t_high": 0.70,
+            "allow_missing_ward": True,
+        }),
+        encoding="utf-8",
+    )
+
+    monkeypatch.setenv("LAYA_POST_GOONG_ARTIFACTS_DIR", str(tmp_path))
+    monkeypatch.setattr(srv, "_VERIFIER", None)
+    with TestClient(srv.app) as c:
+        h = c.get("/health").json()
+        assert h["status"] == "ok"
+        assert h["version"] == "3.1.0"
+        assert h["feature_schema"] == "v31_2a_56"
+        assert h["allow_missing_ward"] is True
+        r = c.post(
+            "/v1/verify",
+            json={
+                "raw_text": "88 Hai Bà Trưng, Tân Định, Quận 1, TP.HCM",
+                "goong_ward": "",
+                "goong_district": "Quận 1",
+                "goong_province": "Thành phố Hồ Chí Minh",
+            },
+        )
+        assert r.status_code == 200
+        assert r.json()["action"] == "auto_approve"
+    monkeypatch.setattr(srv, "_VERIFIER", None)

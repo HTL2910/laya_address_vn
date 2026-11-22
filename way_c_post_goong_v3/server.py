@@ -1,8 +1,9 @@
-"""FastAPI HTTP server for Post-Goong V3 address fill verification on port 8085."""
+"""FastAPI HTTP server for Post-Goong V3/V3.1 address fill verification on port 8085."""
 
 from __future__ import annotations
 
 from contextlib import asynccontextmanager
+import os
 from typing import Optional
 
 from fastapi import FastAPI
@@ -17,10 +18,11 @@ _VERIFIER: PostGoongVerifier | None = None
 
 
 def get_verifier() -> PostGoongVerifier:
-    """Return cached singleton PostGoongVerifier."""
+    """Return cached singleton PostGoongVerifier (reads LAYA_POST_GOONG_ARTIFACTS_DIR if set)."""
     global _VERIFIER
     if _VERIFIER is None:
-        _VERIFIER = PostGoongVerifier()
+        custom_dir = os.environ.get("LAYA_POST_GOONG_ARTIFACTS_DIR", "").strip()
+        _VERIFIER = PostGoongVerifier(artifacts_dir=custom_dir) if custom_dir else PostGoongVerifier()
     return _VERIFIER
 
 
@@ -31,8 +33,8 @@ async def lifespan(_app: FastAPI):
 
 
 app = FastAPI(
-    title="Post-Goong V3 Address Verifier",
-    version="3.0.0",
+    title="Post-Goong V3.1 Address Verifier",
+    version="3.1.0",
     lifespan=lifespan,
 )
 
@@ -73,7 +75,9 @@ def health() -> dict[str, object]:
     v = get_verifier()
     return {
         "status": "ok",
-        "version": "3.0.0",
+        "version": "3.1.0",
+        "feature_schema": v.feature_schema,
+        "allow_missing_ward": v.allow_missing_ward,
         "provider": "CPUExecutionProvider",
         "t_low": v.t_low,
         "t_high": v.t_high,

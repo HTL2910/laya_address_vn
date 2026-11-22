@@ -1,4 +1,4 @@
-# Laya Address VN (`v2.0` + `v3.0 Suite`)
+# Laya Address VN (`v2.0` + `v3.1 Suite`)
 
 Hệ thống xử lý, chuẩn hóa & kiểm chứng địa chỉ giao hàng Việt Nam theo **cả 2 hệ hành chính (63 tỉnh cũ <-> 34 tỉnh 2 cấp 2025)** — từ **Widget trình duyệt 0đ server** (`way_a_widget_v3`, `way_a_browser_onnx_v2`) đến **Backend CPU ONNX Suite** (`laya_v3_core`, `slot_parser_v3`, `way_b_backend_api_v2`, `way_c_post_goong_v3`) và bộ công cụ **đo trần đơn thật offline 100%** ([`ceiling_audit/`](ceiling_audit/README.md)).
 
@@ -125,18 +125,41 @@ flowchart LR
 
 ---
 
-## 5. Lệnh chạy nhanh & Đóng gói phát hành
+## 5. Nâng cấp `v3.1.0` (Huấn luyện cục bộ `2A` + Vá `SlotParser`)
+
+1. **`SlotParser v3.1` (`slot_parser_v3/parser.py`):**
+   - **Phone-guard tất định:** tách sạch 100% số điện thoại đứng liền sát số nhà khỏi `HNO` / `clean_address_for_goong`.
+   - **Subtractive + Right-to-Left 2025 Fallback (`used_fallback`):** khi địa chỉ thiếu dấu phẩy/tiền tố/dấu khiến CRF gán toàn `O`, tự dò ngược 3 cấp cũ <-> 2 cấp 2025 từ cuối chuỗi (và giữ nguyên chuỗi đã bỏ SĐT/tên/ghi chú), đồng thời vẫn chặn rỗng tin nhắn món ăn/chat.
+2. **Local Real-Order `2A` Pipeline (`way_c_post_goong_v3/`):**
+   - [`features_2a.py`](way_c_post_goong_v3/features_2a.py): trích xuất `24` (`1B`), `51` (`2A`), hoặc `56` (`2A + 2025 equiv + Haversine`) đặc trưng phi khu vực (0 mã tỉnh, 0 từ vựng PII).
+   - [`onnx_export_pure.py`](way_c_post_goong_v3/onnx_export_pure.py): xuất ensemble `LogisticRegression + HistGradientBoostingClassifier` sang ONNX chuẩn (`TreeEnsembleRegressor`) **bằng Python stdlib thuần** (không cần `torch`, `onnx`, hay `skl2onnx`).
+   - [`train_local_2a.py`](way_c_post_goong_v3/train_local_2a.py): train 1 lệnh offline trên log đơn DEV thật, kiểm chứng đóng băng ngưỡng theo thời gian, tự bật `allow_missing_ward` khi DB thiếu tên xã, và nạp thẳng qua `LAYA_POST_GOONG_ARTIFACTS_DIR` trong `server.py`.
+
+---
+
+## 6. Lệnh chạy nhanh & Đóng gói phát hành
 
 ```powershell
-# 1. Cài Python SDK hợp nhất v3.0.0 (từ GitHub Releases)
-pip install laya_address_vn-3.0.0-py3-none-any.whl
-# Hoặc kèm FastAPI server:
-pip install "laya_address_vn-3.0.0-py3-none-any.whl[server]"
+# 1. Cài Python SDK hợp nhất v3.1.0 (từ GitHub Releases)
+pip install laya_address_vn-3.1.0-py3-none-any.whl
+# Hoặc kèm FastAPI server / trainer offline:
+pip install "laya_address_vn-3.1.0-py3-none-any.whl[server]"
+pip install "laya_address_vn-3.1.0-py3-none-any.whl[train]"
 
-# 2. Chạy toàn bộ test Python (61 v2+v3 tests) & Node (13 widget tests)
-.\way_b_backend_api_v2\.venv\Scripts\pytest.exe -v --basetemp=".pytest_tmp" laya_v3_core\tests\test_v3_core.py way_c_post_goong_v3\tests\test_post_goong_v3.py slot_parser_v3\tests\test_slot_parser_v3.py benchmark_v2\test_v2_acceptance.py
+# 2. Train mô hình Post-Goong 2A cục bộ trên dữ liệu thật (0 PII rời máy)
+.\ceiling_audit\.venv\Scripts\python.exe way_c_post_goong_v3\train_local_2a.py `
+  --data path\to\dev_orders.csv `
+  --output-dir local_2a_artifacts
+
+# 3. Nạp mô hình 2A vừa train vào API server (port 8085)
+$env:LAYA_POST_GOONG_ARTIFACTS_DIR = "local_2a_artifacts"
+.\way_b_backend_api_v2\.venv\Scripts\python.exe -m uvicorn way_c_post_goong_v3.server:app --port 8085
+
+# 4. Chạy toàn bộ test Python, Local 2A & Node Widget
+.\way_b_backend_api_v2\.venv\Scripts\pytest.exe -v --basetemp=".pytest_tmp_all" laya_v3_core\tests way_c_post_goong_v3\tests\test_post_goong_v3.py slot_parser_v3\tests benchmark_v2\test_v2_acceptance.py
+.\ceiling_audit\.venv\Scripts\pytest.exe -v --basetemp=".pytest_tmp_2a" way_c_post_goong_v3\tests\test_local_2a_v31.py ceiling_audit\tests
 cd way_a_widget_v3 && node --test tests\test_widget_v3.mjs
 
-# 3. Đóng gói lại toàn bộ bản Release v3.0.0
+# 5. Đóng gói lại toàn bộ bản Release v3.1.0
 .\way_b_backend_api_v2\.venv\Scripts\python.exe release\build_release_v3.py
 ```
