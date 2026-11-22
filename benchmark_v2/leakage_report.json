@@ -1,0 +1,74 @@
+{
+  "v1_way_a_literal_source_leaks": [
+    {
+      "id": "C01",
+      "text": "123 nguyen trai thanh xuan ha noi"
+    },
+    {
+      "id": "NN02",
+      "text": "0912345678"
+    },
+    {
+      "id": "NN03",
+      "text": "+84 987 654 321"
+    },
+    {
+      "id": "NN09",
+      "text": "250.000đ"
+    },
+    {
+      "id": "NN10",
+      "text": "15/08/2026"
+    }
+  ],
+  "way_a_v2": {
+    "train_manifest_lines": 71999,
+    "datasets": {
+      "old_90_benchmark": {
+        "eval_cases": 90,
+        "exact_raw_matches": 0,
+        "exact_norm_matches": 0,
+        "exact_hits": [],
+        "word_4gram_overlap_cases": 46,
+        "word_4gram_overlap_rate": 0.5111,
+        "char_15gram_overlap_cases": 61,
+        "char_15gram_overlap_rate": 0.6778
+      },
+      "independent_600_holdout": {
+        "eval_cases": 600,
+        "exact_raw_matches": 0,
+        "exact_norm_matches": 0,
+        "exact_hits": [],
+        "word_4gram_overlap_cases": 257,
+        "word_4gram_overlap_rate": 0.4283,
+        "char_15gram_overlap_cases": 275,
+        "char_15gram_overlap_rate": 0.4583
+      }
+    }
+  },
+  "way_b_v2": {
+    "train_manifest_lines": 60000,
+    "datasets": {
+      "old_90_benchmark": {
+        "eval_cases": 90,
+        "exact_raw_matches": 0,
+        "exact_norm_matches": 0,
+        "exact_hits": [],
+        "word_4gram_overlap_cases": 44,
+        "word_4gram_overlap_rate": 0.4889,
+        "char_15gram_overlap_cases": 56,
+        "char_15gram_overlap_rate": 0.6222
+      },
+      "independent_600_holdout": {
+        "eval_cases": 600,
+        "exact_raw_matches": 0,
+        "exact_norm_matches": 0,
+        "exact_hits": [],
+        "word_4gram_overlap_cases": 220,
+        "word_4gram_overlap_rate": 0.3667,
+        "char_15gram_overlap_cases": 256,
+        "char_15gram_overlap_rate": 0.4267
+      }
+    }
+  }
+}

@@ -1,0 +1,333 @@
+{
+  "benchmark_count": 90,
+  "positives": 58,
+  "negatives": 32,
+  "way_a_model_only": {
+    "total": 90,
+    "correct": 87,
+    "accuracy": 0.9667,
+    "precision": 1.0,
+    "recall": 0.9483,
+    "f1": 0.9735,
+    "ece": 0.0315,
+    "fp": 0,
+    "fn": 3,
+    "mean_latency_ms": 0.213,
+    "per_category": {
+      "happy_urban_formal": {
+        "correct": 10,
+        "total": 10
+      },
+      "happy_rural_industrial": {
+        "correct": 10,
+        "total": 10
+      },
+      "happy_apartment_office": {
+        "correct": 8,
+        "total": 8
+      },
+      "customer_unaccented_abbrev": {
+        "correct": 10,
+        "total": 12
+      },
+      "customer_deep_alley_typo": {
+        "correct": 8,
+        "total": 8
+      },
+      "customer_freetext_with_note": {
+        "correct": 9,
+        "total": 10
+      },
+      "edge_neg_location_in_chat": {
+        "correct": 12,
+        "total": 12
+      },
+      "edge_neg_vague_not_address": {
+        "correct": 8,
+        "total": 8
+      },
+      "edge_neg_non_address_customer": {
+        "correct": 12,
+        "total": 12
+      }
+    },
+    "mistakes": [
+      {
+        "id": "C03",
+        "category": "customer_unaccented_abbrev",
+        "expected": true,
+        "predicted": false,
+        "probability": 0.1695,
+        "text": "15 tran phu tp nha trang khanh hoa"
+      },
+      {
+        "id": "C08",
+        "category": "customer_unaccented_abbrev",
+        "expected": true,
+        "predicted": false,
+        "probability": 0.042,
+        "text": "x.hong duong h.thanh oai hn"
+      },
+      {
+        "id": "F04",
+        "category": "customer_freetext_with_note",
+        "expected": true,
+        "predicted": false,
+        "probability": 0.2768,
+        "text": "ship tới phòng 702 chung cư HH1C Linh Đàm gọi 0988112233"
+      }
+    ]
+  },
+  "way_a_hybrid": {
+    "total": 90,
+    "correct": 87,
+    "accuracy": 0.9667,
+    "precision": 1.0,
+    "recall": 0.9483,
+    "f1": 0.9735,
+    "ece": 0.0345,
+    "fp": 0,
+    "fn": 3,
+    "mean_latency_ms": 0.211,
+    "per_category": {
+      "happy_urban_formal": {
+        "correct": 10,
+        "total": 10
+      },
+      "happy_rural_industrial": {
+        "correct": 10,
+        "total": 10
+      },
+      "happy_apartment_office": {
+        "correct": 8,
+        "total": 8
+      },
+      "customer_unaccented_abbrev": {
+        "correct": 10,
+        "total": 12
+      },
+      "customer_deep_alley_typo": {
+        "correct": 8,
+        "total": 8
+      },
+      "customer_freetext_with_note": {
+        "correct": 9,
+        "total": 10
+      },
+      "edge_neg_location_in_chat": {
+        "correct": 12,
+        "total": 12
+      },
+      "edge_neg_vague_not_address": {
+        "correct": 8,
+        "total": 8
+      },
+      "edge_neg_non_address_customer": {
+        "correct": 12,
+        "total": 12
+      }
+    },
+    "mistakes": [
+      {
+        "id": "C03",
+        "category": "customer_unaccented_abbrev",
+        "expected": true,
+        "predicted": false,
+        "probability": 0.1695,
+        "text": "15 tran phu tp nha trang khanh hoa"
+      },
+      {
+        "id": "C08",
+        "category": "customer_unaccented_abbrev",
+        "expected": true,
+        "predicted": false,
+        "probability": 0.042,
+        "text": "x.hong duong h.thanh oai hn"
+      },
+      {
+        "id": "F04",
+        "category": "customer_freetext_with_note",
+        "expected": true,
+        "predicted": false,
+        "probability": 0.2768,
+        "text": "ship tới phòng 702 chung cư HH1C Linh Đàm gọi 0988112233"
+      }
+    ]
+  },
+  "way_b_model_only": {
+    "total": 90,
+    "correct": 85,
+    "accuracy": 0.9444,
+    "precision": 0.9492,
+    "recall": 0.9655,
+    "f1": 0.9573,
+    "ece": 0.0464,
+    "fp": 3,
+    "fn": 2,
+    "mean_latency_ms": 0.571,
+    "per_category": {
+      "happy_urban_formal": {
+        "correct": 10,
+        "total": 10
+      },
+      "happy_rural_industrial": {
+        "correct": 10,
+        "total": 10
+      },
+      "happy_apartment_office": {
+        "correct": 8,
+        "total": 8
+      },
+      "customer_unaccented_abbrev": {
+        "correct": 12,
+        "total": 12
+      },
+      "customer_deep_alley_typo": {
+        "correct": 8,
+        "total": 8
+      },
+      "customer_freetext_with_note": {
+        "correct": 8,
+        "total": 10
+      },
+      "edge_neg_location_in_chat": {
+        "correct": 10,
+        "total": 12
+      },
+      "edge_neg_vague_not_address": {
+        "correct": 7,
+        "total": 8
+      },
+      "edge_neg_non_address_customer": {
+        "correct": 12,
+        "total": 12
+      }
+    },
+    "mistakes": [
+      {
+        "id": "F01",
+        "category": "customer_freetext_with_note",
+        "expected": true,
+        "predicted": false,
+        "probability": 0.3122,
+        "text": "Nguyễn Văn Nam - 0912345678 - 45 Lê Lợi, Bến Nghé, Quận 1, TP.HCM (giao giờ hành chính)"
+      },
+      {
+        "id": "F10",
+        "category": "customer_freetext_with_note",
+        "expected": true,
+        "predicted": false,
+        "probability": 0.2776,
+        "text": "nhận tại 50 Nguyễn Chí Thanh, Đống Đa, Hà Nội - không gọi chuông"
+      },
+      {
+        "id": "NL05",
+        "category": "edge_neg_location_in_chat",
+        "expected": false,
+        "predicted": true,
+        "probability": 0.9651,
+        "text": "Nguyễn Trãi là danh nhân văn hóa thế giới của Việt Nam"
+      },
+      {
+        "id": "NL12",
+        "category": "edge_neg_location_in_chat",
+        "expected": false,
+        "predicted": true,
+        "probability": 0.9998,
+        "text": "Bánh mì Sài Gòn ăn ngon hơn bánh mì ở quê mình"
+      },
+      {
+        "id": "NV01",
+        "category": "edge_neg_vague_not_address",
+        "expected": false,
+        "predicted": true,
+        "probability": 0.7467,
+        "text": "ở chỗ cũ nhé shop"
+      }
+    ]
+  },
+  "way_b_hybrid": {
+    "total": 90,
+    "correct": 86,
+    "accuracy": 0.9556,
+    "precision": 0.9655,
+    "recall": 0.9655,
+    "f1": 0.9655,
+    "ece": 0.0346,
+    "fp": 2,
+    "fn": 2,
+    "mean_latency_ms": 0.338,
+    "per_category": {
+      "happy_urban_formal": {
+        "correct": 10,
+        "total": 10
+      },
+      "happy_rural_industrial": {
+        "correct": 10,
+        "total": 10
+      },
+      "happy_apartment_office": {
+        "correct": 8,
+        "total": 8
+      },
+      "customer_unaccented_abbrev": {
+        "correct": 12,
+        "total": 12
+      },
+      "customer_deep_alley_typo": {
+        "correct": 8,
+        "total": 8
+      },
+      "customer_freetext_with_note": {
+        "correct": 8,
+        "total": 10
+      },
+      "edge_neg_location_in_chat": {
+        "correct": 10,
+        "total": 12
+      },
+      "edge_neg_vague_not_address": {
+        "correct": 8,
+        "total": 8
+      },
+      "edge_neg_non_address_customer": {
+        "correct": 12,
+        "total": 12
+      }
+    },
+    "mistakes": [
+      {
+        "id": "F01",
+        "category": "customer_freetext_with_note",
+        "expected": true,
+        "predicted": false,
+        "probability": 0.3122,
+        "text": "Nguyễn Văn Nam - 0912345678 - 45 Lê Lợi, Bến Nghé, Quận 1, TP.HCM (giao giờ hành chính)"
+      },
+      {
+        "id": "F10",
+        "category": "customer_freetext_with_note",
+        "expected": true,
+        "predicted": false,
+        "probability": 0.2776,
+        "text": "nhận tại 50 Nguyễn Chí Thanh, Đống Đa, Hà Nội - không gọi chuông"
+      },
+      {
+        "id": "NL05",
+        "category": "edge_neg_location_in_chat",
+        "expected": false,
+        "predicted": true,
+        "probability": 0.9651,
+        "text": "Nguyễn Trãi là danh nhân văn hóa thế giới của Việt Nam"
+      },
+      {
+        "id": "NL12",
+        "category": "edge_neg_location_in_chat",
+        "expected": false,
+        "predicted": true,
+        "probability": 0.9998,
+        "text": "Bánh mì Sài Gòn ăn ngon hơn bánh mì ở quê mình"
+      }
+    ]
+  }
+}

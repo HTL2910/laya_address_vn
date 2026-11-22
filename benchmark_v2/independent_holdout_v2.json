@@ -1,0 +1,4819 @@
+{
+  "version": "2.0.0",
+  "seed": 20261122,
+  "total_cases": 600,
+  "group_counts": {
+    "full_address": 100,
+    "short_valid_address": 180,
+    "insufficient_address": 120,
+    "garbage_and_chat": 100,
+    "hard_negative": 100
+  },
+  "sufficiency_counts": {
+    "address_sufficient": 280,
+    "address_insufficient": 120,
+    "not_address": 200
+  },
+  "cases": [
+    {
+      "id": "H1_001",
+      "group": "full_address",
+      "subgroup": "full_urban",
+      "expected_sufficiency": "address_sufficient",
+      "expected_is_address": true,
+      "text": "Số 51 Đường Tố Hữu, Xã Bình Hoà, Huyện Giồng Trôm, Tỉnh Bến Tre"
+    },
+    {
+      "id": "H1_002",
+      "group": "full_address",
+      "subgroup": "full_rural_industrial",
+      "expected_sufficiency": "address_sufficient",
+      "expected_is_address": true,
+      "text": "Lô D4, KCN Sóng Thần 2, Phường 5, Thành phố Đông Hà, Tỉnh Quảng Trị"
+    },
+    {
+      "id": "H1_003",
+      "group": "full_address",
+      "subgroup": "full_apartment",
+      "expected_sufficiency": "address_sufficient",
+      "expected_is_address": true,
+      "text": "Tầng 12, Chung cư Vinhomes Smart City, 103C Tô Hiệu, Xã Mỹ Trung, Thành phố Nam Định, Tỉnh Nam Định"
+    },
+    {
+      "id": "H1_004",
+      "group": "full_address",
+      "subgroup": "full_alley_typo",
+      "expected_sufficiency": "address_sufficient",
+      "expected_is_address": true,
+      "text": "kiệt 26/16 nguyễn ái quốc, xã đại phú, sơn dương, tuyên quang"
+    },
+    {
+      "id": "H1_005",
+      "group": "full_address",
+      "subgroup": "full_delivery_freetext",
+      "expected_sufficiency": "address_sufficient",
+      "expected_is_address": true,
+      "text": "chi thao - 0905667788 - 79/26 ly tu trong, xa ma quai, sin ho, lai chau (nho bao ve nhan ho neu khong nghe may)"
+    },
+    {
+      "id": "H1_006",
+      "group": "full_address",
+      "subgroup": "full_urban",
+      "expected_sufficiency": "address_sufficient",
+      "expected_is_address": true,
+      "text": "Số 197/23 Đường Hoàng Văn Thụ, Xã Bắc Việt, Huyện Văn Lãng, Tỉnh Lạng Sơn"
+    },
+    {
+      "id": "H1_007",
+      "group": "full_address",
+      "subgroup": "full_rural_industrial",
+      "expected_sufficiency": "address_sufficient",
+      "expected_is_address": true,
+      "text": "Khóm 4, Xã Tả Phìn, Huyện Sìn Hồ, Tỉnh Lai Châu"
+    },
+    {
+      "id": "H1_008",
+      "group": "full_address",
+      "subgroup": "full_apartment",
+      "expected_sufficiency": "address_sufficient",
+      "expected_is_address": true,
+      "text": "Phòng 1098, Chung cư Vinhomes Smart City, 159/30 Tố Hữu, Xã Phú Lộc, Huyện Hậu Lộc, Tỉnh Thanh Hóa"
+    },
+    {
+      "id": "H1_009",
+      "group": "full_address",
+      "subgroup": "full_alley_typo",
+      "expected_sufficiency": "address_sufficient",
+      "expected_is_address": true,
+      "text": "Hẻm 91B Nguyễn Văn Cừ, Xã Thạch Hoà, Thạch Thất, Hà Nội"
+    },
+    {
+      "id": "H1_010",
+      "group": "full_address",
+      "subgroup": "full_delivery_freetext",
+      "expected_sufficiency": "address_sufficient",
+      "expected_is_address": true,
+      "text": "giao cho Lê Quốc Bảo (0945112299) ở 66 Phan Chu Trinh, Kim Lũ, Sóc Sơn, Hà Nội - gọi trước khi giao 15p"
+    },
+    {
+      "id": "H1_011",
+      "group": "full_address",
+      "subgroup": "full_urban",
+      "expected_sufficiency": "address_sufficient",
+      "expected_is_address": true,
+      "text": "Số 64D Đường Ngô Gia Tự, Xã Đăk Roong, Huyện KBang, Tỉnh Gia Lai"
+    },
+    {
+      "id": "H1_012",
+      "group": "full_address",
+      "subgroup": "full_rural_industrial",
+      "expected_sufficiency": "address_sufficient",
+      "expected_is_address": true,
+      "text": "Lô C12, KCN Tân Tạo, Xã Thạnh Đông, Huyện Tân Hiệp, Tỉnh Kiên Giang"
+    },
+    {
+      "id": "H1_013",
+      "group": "full_address",
+      "subgroup": "full_apartment",
+      "expected_sufficiency": "address_sufficient",
+      "expected_is_address": true,
+      "text": "Căn B414, Tòa nhà Pearl Plaza, 59D Võ Thị Sáu, Thị trấn Cao Thượng, Huyện Tân Yên, Tỉnh Bắc Giang"
+    },
+    {
+      "id": "H1_014",
+      "group": "full_address",
+      "subgroup": "full_alley_typo",
+      "expected_sufficiency": "address_sufficient",
+      "expected_is_address": true,
+      "text": "Hẻm  110/27 Khuất Duy Tiến, Phường Minh Khai, Bắc Từ Liêm, Hà Nội"
+    },
+    {
+      "id": "H1_015",
+      "group": "full_address",
+      "subgroup": "full_delivery_freetext",
+      "expected_sufficiency": "address_sufficient",
+      "expected_is_address": true,
+      "text": "nho shop ship toi 243 to hieu trung thanh dong vung liem vinh long, sdt 0905667788"
+    },
+    {
+      "id": "H1_016",
+      "group": "full_address",
+      "subgroup": "full_urban",
+      "expected_sufficiency": "address_sufficient",
+      "expected_is_address": true,
+      "text": "Số 75D Đường Nguyễn Đình Chiểu, Xã Tịnh Kỳ, Thành phố Quảng Ngãi, Tỉnh Quảng Ngãi"
+    },
+    {
+      "id": "H1_017",
+      "group": "full_address",
+      "subgroup": "full_rural_industrial",
+      "expected_sufficiency": "address_sufficient",
+      "expected_is_address": true,
+      "text": "Bản Cát, Xã Châu Kim, Huyện Quế Phong, Tỉnh Nghệ An"
+    },
+    {
+      "id": "H1_018",
+      "group": "full_address",
+      "subgroup": "full_apartment",
+      "expected_sufficiency": "address_sufficient",
+      "expected_is_address": true,
+      "text": "Phòng 604, KĐT Ecopark, 89/2/7 Nguyễn Đình Chiểu, Xã Quảng Bị, Huyện Chương Mỹ, Thành phố Hà Nội"
+    },
+    {
+      "id": "H1_019",
+      "group": "full_address",
+      "subgroup": "full_alley_typo",
+      "expected_sufficiency": "address_sufficient",
+      "expected_is_address": true,
+      "text": "kiệt 33/19 PHẠM NGŨ LÃO, xã khánh nam, khánh vĩnh, khánh hòa"
+    },
+    {
+      "id": "H1_020",
+      "group": "full_address",
+      "subgroup": "full_delivery_freetext",
+      "expected_sufficiency": "address_sufficient",
+      "expected_is_address": true,
+      "text": "nhờ shop ship tới 158/5 Nguyễn Thị Thập Chiềng Chung Mộc Châu Sơn La, sdt 0977889900"
+    },
+    {
+      "id": "H1_021",
+      "group": "full_address",
+      "subgroup": "full_urban",
+      "expected_sufficiency": "address_sufficient",
+      "expected_is_address": true,
+      "text": "Số 66 Đường Lê Quý Đôn, Xã Vĩnh Hòa, Huyện Ba Tri, Tỉnh Bến Tre"
+    },
+    {
+      "id": "H1_022",
+      "group": "full_address",
+      "subgroup": "full_rural_industrial",
+      "expected_sufficiency": "address_sufficient",
+      "expected_is_address": true,
+      "text": "Lô B9, KCN Tân Tạo, Phường Hoàng Văn Thụ, Thành phố Lạng Sơn, Tỉnh Lạng Sơn"
+    },
+    {
+      "id": "H1_023",
+      "group": "full_address",
+      "subgroup": "full_apartment",
+      "expected_sufficiency": "address_sufficient",
+      "expected_is_address": true,
+      "text": "Căn C2388, Chung cư Goldmark City, 133/16 Tô Hiệu, Xã Long Định, Huyện Cần Đước, Tỉnh Long An"
+    },
+    {
+      "id": "H1_024",
+      "group": "full_address",
+      "subgroup": "full_alley_typo",
+      "expected_sufficiency": "address_sufficient",
+      "expected_is_address": true,
+      "text": "Kiệt 36/12 Võ Văn Kiệt,Thị trấn Châu Hưng,Vĩnh Lợi,Bạc Liêu"
+    },
+    {
+      "id": "H1_025",
+      "group": "full_address",
+      "subgroup": "full_delivery_freetext",
+      "expected_sufficiency": "address_sufficient",
+      "expected_is_address": true,
+      "text": "pham thi hong - 0945112299 - 83d nguyen dinh chieu, phuong yen binh, tam diep, ninh binh (giao gio hanh chinh nha)"
+    },
+    {
+      "id": "H1_026",
+      "group": "full_address",
+      "subgroup": "full_urban",
+      "expected_sufficiency": "address_sufficient",
+      "expected_is_address": true,
+      "text": "Số 79/17/6 Đường Tô Hiệu, Xã Điền Thượng, Huyện Bá Thước, Tỉnh Thanh Hóa"
+    },
+    {
+      "id": "H1_027",
+      "group": "full_address",
+      "subgroup": "full_rural_industrial",
+      "expected_sufficiency": "address_sufficient",
+      "expected_is_address": true,
+      "text": "Khóm 1, Xã Dương Huy, Thành phố Cẩm Phả, Tỉnh Quảng Ninh"
+    },
+    {
+      "id": "H1_028",
+      "group": "full_address",
+      "subgroup": "full_apartment",
+      "expected_sufficiency": "address_sufficient",
+      "expected_is_address": true,
+      "text": "Tầng 9, Chung cư Moonlight, 30/10/3 Lý Tự Trọng, Phường Hưng Lợi, Quận Ninh Kiều, Thành phố Cần Thơ"
+    },
+    {
+      "id": "H1_029",
+      "group": "full_address",
+      "subgroup": "full_alley_typo",
+      "expected_sufficiency": "address_sufficient",
+      "expected_is_address": true,
+      "text": "Hẻm 82 Phạm Ngũ Lão, Xã Minh Tân, Nam Sách, Hải Dương"
+    },
+    {
+      "id": "H1_030",
+      "group": "full_address",
+      "subgroup": "full_delivery_freetext",
+      "expected_sufficiency": "address_sufficient",
+      "expected_is_address": true,
+      "text": "Lê Quốc Bảo - 0977889900 - 28/8/8 Cộng Hòa, Phường Mộc Lỵ, Mộc Châu, Sơn La (nhờ bảo vệ nhận hộ nếu không nghe máy)"
+    },
+    {
+      "id": "H1_031",
+      "group": "full_address",
+      "subgroup": "full_urban",
+      "expected_sufficiency": "address_sufficient",
+      "expected_is_address": true,
+      "text": "Số 74/2/4 Đường Nguyễn Xiển, Xã An Thái, Huyện Phú Giáo, Tỉnh Bình Dương"
+    },
+    {
+      "id": "H1_032",
+      "group": "full_address",
+      "subgroup": "full_rural_industrial",
+      "expected_sufficiency": "address_sufficient",
+      "expected_is_address": true,
+      "text": "Lô F3, KCN Amata, Xã Phú Long, Huyện Châu Thành, Tỉnh Đồng Tháp"
+    },
+    {
+      "id": "H1_033",
+      "group": "full_address",
+      "subgroup": "full_apartment",
+      "expected_sufficiency": "address_sufficient",
+      "expected_is_address": true,
+      "text": "Căn B2401, KĐT Sala, 22 Nguyễn Xiển, Xã Kon Chiêng, Huyện Mang Yang, Tỉnh Gia Lai"
+    },
+    {
+      "id": "H1_034",
+      "group": "full_address",
+      "subgroup": "full_alley_typo",
+      "expected_sufficiency": "address_sufficient",
+      "expected_is_address": true,
+      "text": "KIỆT  47/19 VÕ VĂN KIỆT, XÃ TIÊN PHÚ, PHÙ NINH, PHÚ THỌ"
+    },
+    {
+      "id": "H1_035",
+      "group": "full_address",
+      "subgroup": "full_delivery_freetext",
+      "expected_sufficiency": "address_sufficient",
+      "expected_is_address": true,
+      "text": "le quoc bao - 0905667788 - 11 dong khoi, phuong cam son, cam pha, quang ninh (nho bao ve nhan ho neu khong nghe may)"
+    },
+    {
+      "id": "H1_036",
+      "group": "full_address",
+      "subgroup": "full_urban",
+      "expected_sufficiency": "address_sufficient",
+      "expected_is_address": true,
+      "text": "Số 56/7/2 Đường Nguyễn Huệ, Phường Ngô Mây, Thành phố Quy Nhơn, Tỉnh Bình Định"
+    },
+    {
+      "id": "H1_037",
+      "group": "full_address",
+      "subgroup": "full_rural_industrial",
+      "expected_sufficiency": "address_sufficient",
+      "expected_is_address": true,
+      "text": "Ấp 1, Xã Kông Bơ La, Huyện KBang, Tỉnh Gia Lai"
+    },
+    {
+      "id": "H1_038",
+      "group": "full_address",
+      "subgroup": "full_apartment",
+      "expected_sufficiency": "address_sufficient",
+      "expected_is_address": true,
+      "text": "Tầng 11, Tòa A2 Chung cư An Bình, 129 Võ Thị Sáu, Xã Chiềng Cọ, Thành phố Sơn La, Tỉnh Sơn La"
+    },
+    {
+      "id": "H1_039",
+      "group": "full_address",
+      "subgroup": "full_alley_typo",
+      "expected_sufficiency": "address_sufficient",
+      "expected_is_address": true,
+      "text": "Hẻm 35/9/14 Nguyễn Huệ, Phuong Phú Thịnh, Bình Long, Bình Phước"
+    },
+    {
+      "id": "H1_040",
+      "group": "full_address",
+      "subgroup": "full_delivery_freetext",
+      "expected_sufficiency": "address_sufficient",
+      "expected_is_address": true,
+      "text": "Chú Bình - 0868223344 - 161 Huỳnh Tấn Phát, Xã Long Giang, Phước Long, Bình Phước (giao giờ hành chính nha)"
+    },
+    {
+      "id": "H1_041",
+      "group": "full_address",
+      "subgroup": "full_urban",
+      "expected_sufficiency": "address_sufficient",
+      "expected_is_address": true,
+      "text": "Số 225 Đường Nguyễn Văn Cừ, Xã Quang Lịch, Huyện Kiến Xương, Tỉnh Thái Bình"
+    },
+    {
+      "id": "H1_042",
+      "group": "full_address",
+      "subgroup": "full_rural_industrial",
+      "expected_sufficiency": "address_sufficient",
+      "expected_is_address": true,
+      "text": "Lô C11, KCN Amata, Phường Hàm Tiến, Thành phố Phan Thiết, Tỉnh Bình Thuận"
+    },
+    {
+      "id": "H1_043",
+      "group": "full_address",
+      "subgroup": "full_apartment",
+      "expected_sufficiency": "address_sufficient",
+      "expected_is_address": true,
+      "text": "Block B Lầu 2, Chung cư Saigon Pearl, 102 Lê Quý Đôn, Xã An Sơn, Thành phố Thuận An, Tỉnh Bình Dương"
+    },
+    {
+      "id": "H1_044",
+      "group": "full_address",
+      "subgroup": "full_alley_typo",
+      "expected_sufficiency": "address_sufficient",
+      "expected_is_address": true,
+      "text": "Ngõ 20/21 Nguyễn Ái Quốc, Xã Nhân Sơn, Đô Lương, Nghệ An"
+    },
+    {
+      "id": "H1_045",
+      "group": "full_address",
+      "subgroup": "full_delivery_freetext",
+      "expected_sufficiency": "address_sufficient",
+      "expected_is_address": true,
+      "text": "chu binh - 0905667788 - 88/17/14 tran quoc toan, xa vinh phu tay, phuoc long, bac lieu (nho bao ve nhan ho neu khong nghe may)"
+    },
+    {
+      "id": "H1_046",
+      "group": "full_address",
+      "subgroup": "full_urban",
+      "expected_sufficiency": "address_sufficient",
+      "expected_is_address": true,
+      "text": "Số 33/3/10 Đường Nguyễn Văn Cừ, Phường Bình Hưng Hoà B, Quận Bình Tân, Thành phố Hồ Chí Minh"
+    },
+    {
+      "id": "H1_047",
+      "group": "full_address",
+      "subgroup": "full_rural_industrial",
+      "expected_sufficiency": "address_sufficient",
+      "expected_is_address": true,
+      "text": "Ấp 1, Xã Hàm Chính, Huyện Hàm Thuận Bắc, Tỉnh Bình Thuận"
+    },
+    {
+      "id": "H1_048",
+      "group": "full_address",
+      "subgroup": "full_apartment",
+      "expected_sufficiency": "address_sufficient",
+      "expected_is_address": true,
+      "text": "Block A Lầu 5, Tòa A2 Chung cư An Bình, 256 Nguyễn Thị Thập, Xã Phước Cát 2, Huyện Đạ Huoai, Tỉnh Lâm Đồng"
+    },
+    {
+      "id": "H1_049",
+      "group": "full_address",
+      "subgroup": "full_alley_typo",
+      "expected_sufficiency": "address_sufficient",
+      "expected_is_address": true,
+      "text": "ngõ  10/3 trần quốc toản, phường quang trung, hà đông, hà nội"
+    },
+    {
+      "id": "H1_050",
+      "group": "full_address",
+      "subgroup": "full_delivery_freetext",
+      "expected_sufficiency": "address_sufficient",
+      "expected_is_address": true,
+      "text": "giao cho Anh Minh (0913445566) ở 191/30 Trần Quốc Toản, Thạnh Tân, Tân Phước, Tiền Giang - giao tận phòng giúp em"
+    },
+    {
+      "id": "H1_051",
+      "group": "full_address",
+      "subgroup": "full_urban",
+      "expected_sufficiency": "address_sufficient",
+      "expected_is_address": true,
+      "text": "Số 273 Đường Tố Hữu, Xã Hàm Cường, Huyện Hàm Thuận Nam, Tỉnh Bình Thuận"
+    },
+    {
+      "id": "H1_052",
+      "group": "full_address",
+      "subgroup": "full_rural_industrial",
+      "expected_sufficiency": "address_sufficient",
+      "expected_is_address": true,
+      "text": "Lô F10, KCN Đình Vũ, Phường Kênh Dương, Quận Lê Chân, Thành phố Hải Phòng"
+    },
+    {
+      "id": "H1_053",
+      "group": "full_address",
+      "subgroup": "full_apartment",
+      "expected_sufficiency": "address_sufficient",
+      "expected_is_address": true,
+      "text": "Block B Lầu 7, Tòa nhà Lotte, 53C Nguyễn Xiển, Xã Tuyên Bình, Huyện Vĩnh Hưng, Tỉnh Long An"
+    },
+    {
+      "id": "H1_054",
+      "group": "full_address",
+      "subgroup": "full_alley_typo",
+      "expected_sufficiency": "address_sufficient",
+      "expected_is_address": true,
+      "text": "Ngõ 70/13 Hùng Vương,Phường An Hưng,Thanh Hóa,Thanh Hóa"
+    },
+    {
+      "id": "H1_055",
+      "group": "full_address",
+      "subgroup": "full_delivery_freetext",
+      "expected_sufficiency": "address_sufficient",
+      "expected_is_address": true,
+      "text": "le quoc bao - 0905667788 - 329 hoang van thu, xa tan phong, gia rai, bac lieu (nho bao ve nhan ho neu khong nghe may)"
+    },
+    {
+      "id": "H1_056",
+      "group": "full_address",
+      "subgroup": "full_urban",
+      "expected_sufficiency": "address_sufficient",
+      "expected_is_address": true,
+      "text": "Số 81B Đường Nguyễn Đình Chiểu, Thị trấn M'Đrắk, Huyện M'Đrắk, Tỉnh Đắk Lắk"
+    },
+    {
+      "id": "H1_057",
+      "group": "full_address",
+      "subgroup": "full_rural_industrial",
+      "expected_sufficiency": "address_sufficient",
+      "expected_is_address": true,
+      "text": "Thôn 7, Phường Yên Phụ, Quận Tây Hồ, Thành phố Hà Nội"
+    },
+    {
+      "id": "H1_058",
+      "group": "full_address",
+      "subgroup": "full_apartment",
+      "expected_sufficiency": "address_sufficient",
+      "expected_is_address": true,
+      "text": "Phòng 1032, Chung cư Goldmark City, 65 Lê Hồng Phong, Phường Hắc Dịch, Thành phố Phú Mỹ, Tỉnh Bà Rịa - Vũng Tàu"
+    },
+    {
+      "id": "H1_059",
+      "group": "full_address",
+      "subgroup": "full_alley_typo",
+      "expected_sufficiency": "address_sufficient",
+      "expected_is_address": true,
+      "text": "Kiệt 9/5 Lê Đức Thọ, Xã Khánh Yên Hạ, Văn Bàn, Lào Cai"
+    },
+    {
+      "id": "H1_060",
+      "group": "full_address",
+      "subgroup": "full_delivery_freetext",
+      "expected_sufficiency": "address_sufficient",
+      "expected_is_address": true,
+      "text": "giao cho Nguyễn Minh Tuấn (0945112299) ở 89/18/12 Nguyễn Thị Thập, Phước Trà, Hiệp Đức, Quảng Nam - ship ngoài giờ giúp mình"
+    },
+    {
+      "id": "H1_061",
+      "group": "full_address",
+      "subgroup": "full_urban",
+      "expected_sufficiency": "address_sufficient",
+      "expected_is_address": true,
+      "text": "Số 150/3 Đường Võ Thị Sáu, Xã Cư Klông, Huyện Krông Năng, Tỉnh Đắk Lắk"
+    },
+    {
+      "id": "H1_062",
+      "group": "full_address",
+      "subgroup": "full_rural_industrial",
+      "expected_sufficiency": "address_sufficient",
+      "expected_is_address": true,
+      "text": "Lô F12, KCN Quế Võ, Xã Thanh Đình, Thành phố Việt Trì, Tỉnh Phú Thọ"
+    },
+    {
+      "id": "H1_063",
+      "group": "full_address",
+      "subgroup": "full_apartment",
+      "expected_sufficiency": "address_sufficient",
+      "expected_is_address": true,
+      "text": "Tầng 11, Chung cư Vinhomes Smart City, 118/17 Lê Đức Thọ, Thị trấn Ninh Cường, Huyện Trực Ninh, Tỉnh Nam Định"
+    },
+    {
+      "id": "H1_064",
+      "group": "full_address",
+      "subgroup": "full_alley_typo",
+      "expected_sufficiency": "address_sufficient",
+      "expected_is_address": true,
+      "text": "kiệt 41/10 nguyễn ÁI quốc, xã PHƯƠNG giao, võ nhai, thái NGUYÊN"
+    },
+    {
+      "id": "H1_065",
+      "group": "full_address",
+      "subgroup": "full_delivery_freetext",
+      "expected_sufficiency": "address_sufficient",
+      "expected_is_address": true,
+      "text": "chi lan - 0977889900 - 87/6 dong khoi, xa xuan linh, nghi xuan, ha tinh (ship ngoai gio giup minh)"
+    },
+    {
+      "id": "H1_066",
+      "group": "full_address",
+      "subgroup": "full_urban",
+      "expected_sufficiency": "address_sufficient",
+      "expected_is_address": true,
+      "text": "Số 262 Đường Hùng Vương, Xã Bát Tràng, Huyện Gia Lâm, Thành phố Hà Nội"
+    },
+    {
+      "id": "H1_067",
+      "group": "full_address",
+      "subgroup": "full_rural_industrial",
+      "expected_sufficiency": "address_sufficient",
+      "expected_is_address": true,
+      "text": "Thôn 7, Xã Nga Liên, Huyện Nga Sơn, Tỉnh Thanh Hóa"
+    },
+    {
+      "id": "H1_068",
+      "group": "full_address",
+      "subgroup": "full_apartment",
+      "expected_sufficiency": "address_sufficient",
+      "expected_is_address": true,
+      "text": "Block C Lầu 8, KĐT Sala, 99B Phan Xích Long, Phường Phương Liệt, Quận Thanh Xuân, Thành phố Hà Nội"
+    },
+    {
+      "id": "H1_069",
+      "group": "full_address",
+      "subgroup": "full_alley_typo",
+      "expected_sufficiency": "address_sufficient",
+      "expected_is_address": true,
+      "text": "Hẻm 43/6/8 Đồng Khởi,Xã Tân Thành,Đồng Xoài,Bình Phước"
+    },
+    {
+      "id": "H1_070",
+      "group": "full_address",
+      "subgroup": "full_delivery_freetext",
+      "expected_sufficiency": "address_sufficient",
+      "expected_is_address": true,
+      "text": "giao cho Lê Quốc Bảo (0868223344) ở 91C Nguyễn Oanh, Hồng Lý, Vũ Thư, Thái Bình - nhờ bảo vệ nhận hộ nếu không nghe máy"
+    },
+    {
+      "id": "H1_071",
+      "group": "full_address",
+      "subgroup": "full_urban",
+      "expected_sufficiency": "address_sufficient",
+      "expected_is_address": true,
+      "text": "Số 105B Đường Tố Hữu, Xã Lang Minh, Huyện Xuân Lộc, Tỉnh Đồng Nai"
+    },
+    {
+      "id": "H1_072",
+      "group": "full_address",
+      "subgroup": "full_rural_industrial",
+      "expected_sufficiency": "address_sufficient",
+      "expected_is_address": true,
+      "text": "Lô F4, KCN Quế Võ, Xã Kỳ Phú, Huyện Kỳ Anh, Tỉnh Hà Tĩnh"
+    },
+    {
+      "id": "H1_073",
+      "group": "full_address",
+      "subgroup": "full_apartment",
+      "expected_sufficiency": "address_sufficient",
+      "expected_is_address": true,
+      "text": "Căn C1350, Tòa nhà Lotte, 38C Khuất Duy Tiến, Xã Việt Đoàn, Huyện Tiên Du, Tỉnh Bắc Ninh"
+    },
+    {
+      "id": "H1_074",
+      "group": "full_address",
+      "subgroup": "full_alley_typo",
+      "expected_sufficiency": "address_sufficient",
+      "expected_is_address": true,
+      "text": "Kiệt 65/5 Lạc Long Quân, Xã Bình Long, Võ Nhai, Thái Nguyên"
+    },
+    {
+      "id": "H1_075",
+      "group": "full_address",
+      "subgroup": "full_delivery_freetext",
+      "expected_sufficiency": "address_sufficient",
+      "expected_is_address": true,
+      "text": "giao cho anh hoang (0868223344) o 10/5/4 ngo gia tu, phu thinh, tan phu, dong nai - giao tan phong giup em"
+    },
+    {
+      "id": "H1_076",
+      "group": "full_address",
+      "subgroup": "full_urban",
+      "expected_sufficiency": "address_sufficient",
+      "expected_is_address": true,
+      "text": "Số 136/5 Đường Tố Hữu, Xã Đà Loan, Huyện Đức Trọng, Tỉnh Lâm Đồng"
+    },
+    {
+      "id": "H1_077",
+      "group": "full_address",
+      "subgroup": "full_rural_industrial",
+      "expected_sufficiency": "address_sufficient",
+      "expected_is_address": true,
+      "text": "Khóm 4, Phường Vị Xuyên, Thành phố Nam Định, Tỉnh Nam Định"
+    },
+    {
+      "id": "H1_078",
+      "group": "full_address",
+      "subgroup": "full_apartment",
+      "expected_sufficiency": "address_sufficient",
+      "expected_is_address": true,
+      "text": "Căn C1199, Tòa nhà Saigon Centre, 202 Lê Đức Thọ, Xã Nguyệt Đức, Huyện Yên Lạc, Tỉnh Vĩnh Phúc"
+    },
+    {
+      "id": "H1_079",
+      "group": "full_address",
+      "subgroup": "full_alley_typo",
+      "expected_sufficiency": "address_sufficient",
+      "expected_is_address": true,
+      "text": "KIỆT 70/14 VÕ THỊ SÁU, PHUONG ĐỒNG QUANG, THÁI NGUYÊN, THÁI NGUYÊN"
+    },
+    {
+      "id": "H1_080",
+      "group": "full_address",
+      "subgroup": "full_delivery_freetext",
+      "expected_sufficiency": "address_sufficient",
+      "expected_is_address": true,
+      "text": "nhờ shop ship tới 45/13/1 Phan Chu Trinh Tượng Sơn Nông Cống Thanh Hóa, sdt 0905667788"
+    },
+    {
+      "id": "H1_081",
+      "group": "full_address",
+      "subgroup": "full_urban",
+      "expected_sufficiency": "address_sufficient",
+      "expected_is_address": true,
+      "text": "Số 183/1 Đường Trần Quốc Toản, Xã Lam Sơn, Huyện Tam Nông, Tỉnh Phú Thọ"
+    },
+    {
+      "id": "H1_082",
+      "group": "full_address",
+      "subgroup": "full_rural_industrial",
+      "expected_sufficiency": "address_sufficient",
+      "expected_is_address": true,
+      "text": "Lô A8, KCN Hòa Khánh, Xã Kim Phú, Thành phố Tuyên Quang, Tỉnh Tuyên Quang"
+    },
+    {
+      "id": "H1_083",
+      "group": "full_address",
+      "subgroup": "full_apartment",
+      "expected_sufficiency": "address_sufficient",
+      "expected_is_address": true,
+      "text": "Phòng 1106, Chung cư Goldmark City, 50/2/6 Trần Quốc Toản, Xã Hoà Mục, Huyện Chợ Mới, Tỉnh Bắc Kạn"
+    },
+    {
+      "id": "H1_084",
+      "group": "full_address",
+      "subgroup": "full_alley_typo",
+      "expected_sufficiency": "address_sufficient",
+      "expected_is_address": true,
+      "text": "Hẻm 53/7/12 Trần Quốc Toản, Xã Thạnh Bình, Tân Biên, Tây Ninh"
+    },
+    {
+      "id": "H1_085",
+      "group": "full_address",
+      "subgroup": "full_delivery_freetext",
+      "expected_sufficiency": "address_sufficient",
+      "expected_is_address": true,
+      "text": "pham thi hong - 0913445566 - 86d nguyen thi thap, xa tra son, tra bong, quang ngai (goi truoc khi giao 15p)"
+    },
+    {
+      "id": "H1_086",
+      "group": "full_address",
+      "subgroup": "full_urban",
+      "expected_sufficiency": "address_sufficient",
+      "expected_is_address": true,
+      "text": "Số 193/23 Đường Huỳnh Tấn Phát, Phường Quang Trung, Thành phố Hải Dương, Tỉnh Hải Dương"
+    },
+    {
+      "id": "H1_087",
+      "group": "full_address",
+      "subgroup": "full_rural_industrial",
+      "expected_sufficiency": "address_sufficient",
+      "expected_is_address": true,
+      "text": "Ấp 3, Xã An Minh Bắc, Huyện U Minh Thượng, Tỉnh Kiên Giang"
+    },
+    {
+      "id": "H1_088",
+      "group": "full_address",
+      "subgroup": "full_apartment",
+      "expected_sufficiency": "address_sufficient",
+      "expected_is_address": true,
+      "text": "Block B Lầu 14, Chung cư Goldmark City, 315 Lê Quý Đôn, Xã Phong Thạnh, Thị xã Phong Điền, Thành phố Huế"
+    },
+    {
+      "id": "H1_089",
+      "group": "full_address",
+      "subgroup": "full_alley_typo",
+      "expected_sufficiency": "address_sufficient",
+      "expected_is_address": true,
+      "text": "Ngõ 169/23 Võ Thị Sáu, Phuong 10, Quan 11, Hồ Chí Minh"
+    },
+    {
+      "id": "H1_090",
+      "group": "full_address",
+      "subgroup": "full_delivery_freetext",
+      "expected_sufficiency": "address_sufficient",
+      "expected_is_address": true,
+      "text": "nhờ shop ship tới 84 Tố Hữu Sán Chải Si Ma Cai Lào Cai, sdt 0388112244"
+    },
+    {
+      "id": "H1_091",
+      "group": "full_address",
+      "subgroup": "full_urban",
+      "expected_sufficiency": "address_sufficient",
+      "expected_is_address": true,
+      "text": "Số 14/16/5 Đường Hùng Vương, Xã Tích Thiện, Huyện Trà Ôn, Tỉnh Vĩnh Long"
+    },
+    {
+      "id": "H1_092",
+      "group": "full_address",
+      "subgroup": "full_rural_industrial",
+      "expected_sufficiency": "address_sufficient",
+      "expected_is_address": true,
+      "text": "Lô A7, KCN Đình Vũ, Xã Phủ Lý, Huyện Phú Lương, Tỉnh Thái Nguyên"
+    },
+    {
+      "id": "H1_093",
+      "group": "full_address",
+      "subgroup": "full_apartment",
+      "expected_sufficiency": "address_sufficient",
+      "expected_is_address": true,
+      "text": "Tầng 26, Chung cư Celadon City, 56/15/7 Nguyễn Huệ, Xã Gia Phú, Huyện Bảo Thắng, Tỉnh Lào Cai"
+    },
+    {
+      "id": "H1_094",
+      "group": "full_address",
+      "subgroup": "full_alley_typo",
+      "expected_sufficiency": "address_sufficient",
+      "expected_is_address": true,
+      "text": "hẻm 103/11 ĐỒNG khởi,phường mỹ thới,long xuyên,an GIANG"
+    },
+    {
+      "id": "H1_095",
+      "group": "full_address",
+      "subgroup": "full_delivery_freetext",
+      "expected_sufficiency": "address_sufficient",
+      "expected_is_address": true,
+      "text": "co hanh - 0388112244 - 94/17 ngo gia tu, xa cam hai tay, cam lam, khanh hoa (giao gio hanh chinh nha)"
+    },
+    {
+      "id": "H1_096",
+      "group": "full_address",
+      "subgroup": "full_urban",
+      "expected_sufficiency": "address_sufficient",
+      "expected_is_address": true,
+      "text": "Số 190/19 Đường Quang Trung, Xã Xuân Hoà, Huyện Bảo Yên, Tỉnh Lào Cai"
+    },
+    {
+      "id": "H1_097",
+      "group": "full_address",
+      "subgroup": "full_rural_industrial",
+      "expected_sufficiency": "address_sufficient",
+      "expected_is_address": true,
+      "text": "Thôn 5, Xã Xuân Phương, Thị xã Sông Cầu, Tỉnh Phú Yên"
+    },
+    {
+      "id": "H1_098",
+      "group": "full_address",
+      "subgroup": "full_apartment",
+      "expected_sufficiency": "address_sufficient",
+      "expected_is_address": true,
+      "text": "Căn B1994, Tòa A2 Chung cư An Bình, 121/16 Nguyễn Đình Chiểu, Xã Trường Giang, Huyện Lục Nam, Tỉnh Bắc Giang"
+    },
+    {
+      "id": "H1_099",
+      "group": "full_address",
+      "subgroup": "full_alley_typo",
+      "expected_sufficiency": "address_sufficient",
+      "expected_is_address": true,
+      "text": "Kiệt 59/2 Nguyễn Huệ,Phường Ea Tam,Buôn Ma Thuột,Đắk Lắk"
+    },
+    {
+      "id": "H1_100",
+      "group": "full_address",
+      "subgroup": "full_delivery_freetext",
+      "expected_sufficiency": "address_sufficient",
+      "expected_is_address": true,
+      "text": "nhờ shop ship tới 91A Lạc Long Quân Châu Phú A Châu Đốc An Giang, sdt 0905667788"
+    },
+    {
+      "id": "H2_001",
+      "group": "short_valid_address",
+      "subgroup": "short_no_prefix_comma",
+      "expected_sufficiency": "address_sufficient",
+      "expected_is_address": true,
+      "text": "Lộc Thạnh, Lộc Ninh"
+    },
+    {
+      "id": "H2_002",
+      "group": "short_valid_address",
+      "subgroup": "short_no_prefix_comma",
+      "expected_sufficiency": "address_sufficient",
+      "expected_is_address": true,
+      "text": "Bình Hoà, Giồng Trôm"
+    },
+    {
+      "id": "H2_003",
+      "group": "short_valid_address",
+      "subgroup": "short_no_prefix_comma",
+      "expected_sufficiency": "address_sufficient",
+      "expected_is_address": true,
+      "text": "Phường 5, Đông Hà"
+    },
+    {
+      "id": "H2_004",
+      "group": "short_valid_address",
+      "subgroup": "short_no_prefix_comma",
+      "expected_sufficiency": "address_sufficient",
+      "expected_is_address": true,
+      "text": "Mỹ Trung, Nam Định"
+    },
+    {
+      "id": "H2_005",
+      "group": "short_valid_address",
+      "subgroup": "short_no_prefix_comma",
+      "expected_sufficiency": "address_sufficient",
+      "expected_is_address": true,
+      "text": "Đại Phú, Sơn Dương"
+    },
+    {
+      "id": "H2_006",
+      "group": "short_valid_address",
+      "subgroup": "short_no_prefix_comma",
+      "expected_sufficiency": "address_sufficient",
+      "expected_is_address": true,
+      "text": "Ma Quai, Sìn Hồ"
+    },
+    {
+      "id": "H2_007",
+      "group": "short_valid_address",
+      "subgroup": "short_no_prefix_comma",
+      "expected_sufficiency": "address_sufficient",
+      "expected_is_address": true,
+      "text": "Bắc Việt, Văn Lãng"
+    },
+    {
+      "id": "H2_008",
+      "group": "short_valid_address",
+      "subgroup": "short_no_prefix_comma",
+      "expected_sufficiency": "address_sufficient",
+      "expected_is_address": true,
+      "text": "Tả Phìn, Sìn Hồ"
+    },
+    {
+      "id": "H2_009",
+      "group": "short_valid_address",
+      "subgroup": "short_no_prefix_comma",
+      "expected_sufficiency": "address_sufficient",
+      "expected_is_address": true,
+      "text": "Phú Lộc, Hậu Lộc"
+    },
+    {
+      "id": "H2_010",
+      "group": "short_valid_address",
+      "subgroup": "short_no_prefix_comma",
+      "expected_sufficiency": "address_sufficient",
+      "expected_is_address": true,
+      "text": "Thạch Hoà, Thạch Thất"
+    },
+    {
+      "id": "H2_011",
+      "group": "short_valid_address",
+      "subgroup": "short_no_prefix_comma",
+      "expected_sufficiency": "address_sufficient",
+      "expected_is_address": true,
+      "text": "Kim Lũ, Sóc Sơn"
+    },
+    {
+      "id": "H2_012",
+      "group": "short_valid_address",
+      "subgroup": "short_no_prefix_comma",
+      "expected_sufficiency": "address_sufficient",
+      "expected_is_address": true,
+      "text": "Đăk Roong, KBang"
+    },
+    {
+      "id": "H2_013",
+      "group": "short_valid_address",
+      "subgroup": "short_no_prefix_comma",
+      "expected_sufficiency": "address_sufficient",
+      "expected_is_address": true,
+      "text": "Thạnh Đông, Tân Hiệp"
+    },
+    {
+      "id": "H2_014",
+      "group": "short_valid_address",
+      "subgroup": "short_no_prefix_comma",
+      "expected_sufficiency": "address_sufficient",
+      "expected_is_address": true,
+      "text": "Cao Thượng, Tân Yên"
+    },
+    {
+      "id": "H2_015",
+      "group": "short_valid_address",
+      "subgroup": "short_no_prefix_comma",
+      "expected_sufficiency": "address_sufficient",
+      "expected_is_address": true,
+      "text": "Minh Khai, Bắc Từ Liêm"
+    },
+    {
+      "id": "H2_016",
+      "group": "short_valid_address",
+      "subgroup": "short_no_prefix_comma",
+      "expected_sufficiency": "address_sufficient",
+      "expected_is_address": true,
+      "text": "Trung Thành Đông, Vũng Liêm"
+    },
+    {
+      "id": "H2_017",
+      "group": "short_valid_address",
+      "subgroup": "short_no_prefix_comma",
+      "expected_sufficiency": "address_sufficient",
+      "expected_is_address": true,
+      "text": "Tịnh Kỳ, Quảng Ngãi"
+    },
+    {
+      "id": "H2_018",
+      "group": "short_valid_address",
+      "subgroup": "short_no_prefix_comma",
+      "expected_sufficiency": "address_sufficient",
+      "expected_is_address": true,
+      "text": "Châu Kim, Quế Phong"
+    },
+    {
+      "id": "H2_019",
+      "group": "short_valid_address",
+      "subgroup": "short_no_prefix_comma",
+      "expected_sufficiency": "address_sufficient",
+      "expected_is_address": true,
+      "text": "Quảng Bị, Chương Mỹ"
+    },
+    {
+      "id": "H2_020",
+      "group": "short_valid_address",
+      "subgroup": "short_no_prefix_comma",
+      "expected_sufficiency": "address_sufficient",
+      "expected_is_address": true,
+      "text": "Khánh Nam, Khánh Vĩnh"
+    },
+    {
+      "id": "H2_021",
+      "group": "short_valid_address",
+      "subgroup": "short_no_prefix_comma",
+      "expected_sufficiency": "address_sufficient",
+      "expected_is_address": true,
+      "text": "Chiềng Chung, Mộc Châu"
+    },
+    {
+      "id": "H2_022",
+      "group": "short_valid_address",
+      "subgroup": "short_no_prefix_comma",
+      "expected_sufficiency": "address_sufficient",
+      "expected_is_address": true,
+      "text": "Vĩnh Hòa, Ba Tri"
+    },
+    {
+      "id": "H2_023",
+      "group": "short_valid_address",
+      "subgroup": "short_no_prefix_comma",
+      "expected_sufficiency": "address_sufficient",
+      "expected_is_address": true,
+      "text": "Hoàng Văn Thụ, Lạng Sơn"
+    },
+    {
+      "id": "H2_024",
+      "group": "short_valid_address",
+      "subgroup": "short_no_prefix_comma",
+      "expected_sufficiency": "address_sufficient",
+      "expected_is_address": true,
+      "text": "Long Định, Cần Đước"
+    },
+    {
+      "id": "H2_025",
+      "group": "short_valid_address",
+      "subgroup": "short_no_prefix_comma",
+      "expected_sufficiency": "address_sufficient",
+      "expected_is_address": true,
+      "text": "Châu Hưng, Vĩnh Lợi"
+    },
+    {
+      "id": "H2_026",
+      "group": "short_valid_address",
+      "subgroup": "short_no_prefix_comma",
+      "expected_sufficiency": "address_sufficient",
+      "expected_is_address": true,
+      "text": "Yên Bình, Tam Điệp"
+    },
+    {
+      "id": "H2_027",
+      "group": "short_valid_address",
+      "subgroup": "short_no_prefix_comma",
+      "expected_sufficiency": "address_sufficient",
+      "expected_is_address": true,
+      "text": "Điền Thượng, Bá Thước"
+    },
+    {
+      "id": "H2_028",
+      "group": "short_valid_address",
+      "subgroup": "short_no_prefix_comma",
+      "expected_sufficiency": "address_sufficient",
+      "expected_is_address": true,
+      "text": "Dương Huy, Cẩm Phả"
+    },
+    {
+      "id": "H2_029",
+      "group": "short_valid_address",
+      "subgroup": "short_no_prefix_comma",
+      "expected_sufficiency": "address_sufficient",
+      "expected_is_address": true,
+      "text": "Hưng Lợi, Ninh Kiều"
+    },
+    {
+      "id": "H2_030",
+      "group": "short_valid_address",
+      "subgroup": "short_no_prefix_comma",
+      "expected_sufficiency": "address_sufficient",
+      "expected_is_address": true,
+      "text": "Minh Tân, Nam Sách"
+    },
+    {
+      "id": "H2_031",
+      "group": "short_valid_address",
+      "subgroup": "short_no_prefix_no_comma",
+      "expected_sufficiency": "address_sufficient",
+      "expected_is_address": true,
+      "text": "Mộc Lỵ Mộc Châu"
+    },
+    {
+      "id": "H2_032",
+      "group": "short_valid_address",
+      "subgroup": "short_no_prefix_no_comma",
+      "expected_sufficiency": "address_sufficient",
+      "expected_is_address": true,
+      "text": "An Thái Phú Giáo"
+    },
+    {
+      "id": "H2_033",
+      "group": "short_valid_address",
+      "subgroup": "short_no_prefix_no_comma",
+      "expected_sufficiency": "address_sufficient",
+      "expected_is_address": true,
+      "text": "Phú Long Châu Thành"
+    },
+    {
+      "id": "H2_034",
+      "group": "short_valid_address",
+      "subgroup": "short_no_prefix_no_comma",
+      "expected_sufficiency": "address_sufficient",
+      "expected_is_address": true,
+      "text": "Kon Chiêng Mang Yang"
+    },
+    {
+      "id": "H2_035",
+      "group": "short_valid_address",
+      "subgroup": "short_no_prefix_no_comma",
+      "expected_sufficiency": "address_sufficient",
+      "expected_is_address": true,
+      "text": "Tiên Phú Phù Ninh"
+    },
+    {
+      "id": "H2_036",
+      "group": "short_valid_address",
+      "subgroup": "short_no_prefix_no_comma",
+      "expected_sufficiency": "address_sufficient",
+      "expected_is_address": true,
+      "text": "Cẩm Sơn Cẩm Phả"
+    },
+    {
+      "id": "H2_037",
+      "group": "short_valid_address",
+      "subgroup": "short_no_prefix_no_comma",
+      "expected_sufficiency": "address_sufficient",
+      "expected_is_address": true,
+      "text": "Ngô Mây Quy Nhơn"
+    },
+    {
+      "id": "H2_038",
+      "group": "short_valid_address",
+      "subgroup": "short_no_prefix_no_comma",
+      "expected_sufficiency": "address_sufficient",
+      "expected_is_address": true,
+      "text": "Kông Bơ La KBang"
+    },
+    {
+      "id": "H2_039",
+      "group": "short_valid_address",
+      "subgroup": "short_no_prefix_no_comma",
+      "expected_sufficiency": "address_sufficient",
+      "expected_is_address": true,
+      "text": "Chiềng Cọ Sơn La"
+    },
+    {
+      "id": "H2_040",
+      "group": "short_valid_address",
+      "subgroup": "short_no_prefix_no_comma",
+      "expected_sufficiency": "address_sufficient",
+      "expected_is_address": true,
+      "text": "Phú Thịnh Bình Long"
+    },
+    {
+      "id": "H2_041",
+      "group": "short_valid_address",
+      "subgroup": "short_no_prefix_no_comma",
+      "expected_sufficiency": "address_sufficient",
+      "expected_is_address": true,
+      "text": "Long Giang Phước Long"
+    },
+    {
+      "id": "H2_042",
+      "group": "short_valid_address",
+      "subgroup": "short_no_prefix_no_comma",
+      "expected_sufficiency": "address_sufficient",
+      "expected_is_address": true,
+      "text": "Quang Lịch Kiến Xương"
+    },
+    {
+      "id": "H2_043",
+      "group": "short_valid_address",
+      "subgroup": "short_no_prefix_no_comma",
+      "expected_sufficiency": "address_sufficient",
+      "expected_is_address": true,
+      "text": "Hàm Tiến Phan Thiết"
+    },
+    {
+      "id": "H2_044",
+      "group": "short_valid_address",
+      "subgroup": "short_no_prefix_no_comma",
+      "expected_sufficiency": "address_sufficient",
+      "expected_is_address": true,
+      "text": "An Sơn Thuận An"
+    },
+    {
+      "id": "H2_045",
+      "group": "short_valid_address",
+      "subgroup": "short_no_prefix_no_comma",
+      "expected_sufficiency": "address_sufficient",
+      "expected_is_address": true,
+      "text": "Nhân Sơn Đô Lương"
+    },
+    {
+      "id": "H2_046",
+      "group": "short_valid_address",
+      "subgroup": "short_no_prefix_no_comma",
+      "expected_sufficiency": "address_sufficient",
+      "expected_is_address": true,
+      "text": "Vĩnh Phú Tây Phước Long"
+    },
+    {
+      "id": "H2_047",
+      "group": "short_valid_address",
+      "subgroup": "short_no_prefix_no_comma",
+      "expected_sufficiency": "address_sufficient",
+      "expected_is_address": true,
+      "text": "Bình Hưng Hoà B Bình Tân"
+    },
+    {
+      "id": "H2_048",
+      "group": "short_valid_address",
+      "subgroup": "short_no_prefix_no_comma",
+      "expected_sufficiency": "address_sufficient",
+      "expected_is_address": true,
+      "text": "Hàm Chính Hàm Thuận Bắc"
+    },
+    {
+      "id": "H2_049",
+      "group": "short_valid_address",
+      "subgroup": "short_no_prefix_no_comma",
+      "expected_sufficiency": "address_sufficient",
+      "expected_is_address": true,
+      "text": "Phước Cát 2 Đạ Huoai"
+    },
+    {
+      "id": "H2_050",
+      "group": "short_valid_address",
+      "subgroup": "short_no_prefix_no_comma",
+      "expected_sufficiency": "address_sufficient",
+      "expected_is_address": true,
+      "text": "Quang Trung Hà Đông"
+    },
+    {
+      "id": "H2_051",
+      "group": "short_valid_address",
+      "subgroup": "short_no_prefix_no_comma",
+      "expected_sufficiency": "address_sufficient",
+      "expected_is_address": true,
+      "text": "Thạnh Tân Tân Phước"
+    },
+    {
+      "id": "H2_052",
+      "group": "short_valid_address",
+      "subgroup": "short_no_prefix_no_comma",
+      "expected_sufficiency": "address_sufficient",
+      "expected_is_address": true,
+      "text": "Hàm Cường Hàm Thuận Nam"
+    },
+    {
+      "id": "H2_053",
+      "group": "short_valid_address",
+      "subgroup": "short_no_prefix_no_comma",
+      "expected_sufficiency": "address_sufficient",
+      "expected_is_address": true,
+      "text": "Kênh Dương Lê Chân"
+    },
+    {
+      "id": "H2_054",
+      "group": "short_valid_address",
+      "subgroup": "short_no_prefix_no_comma",
+      "expected_sufficiency": "address_sufficient",
+      "expected_is_address": true,
+      "text": "Tuyên Bình Vĩnh Hưng"
+    },
+    {
+      "id": "H2_055",
+      "group": "short_valid_address",
+      "subgroup": "short_no_prefix_no_comma",
+      "expected_sufficiency": "address_sufficient",
+      "expected_is_address": true,
+      "text": "An Hưng Thanh Hóa"
+    },
+    {
+      "id": "H2_056",
+      "group": "short_valid_address",
+      "subgroup": "short_no_prefix_no_comma",
+      "expected_sufficiency": "address_sufficient",
+      "expected_is_address": true,
+      "text": "Tân Phong Giá Rai"
+    },
+    {
+      "id": "H2_057",
+      "group": "short_valid_address",
+      "subgroup": "short_no_prefix_no_comma",
+      "expected_sufficiency": "address_sufficient",
+      "expected_is_address": true,
+      "text": "Yên Phụ Tây Hồ"
+    },
+    {
+      "id": "H2_058",
+      "group": "short_valid_address",
+      "subgroup": "short_no_prefix_no_comma",
+      "expected_sufficiency": "address_sufficient",
+      "expected_is_address": true,
+      "text": "Hắc Dịch Phú Mỹ"
+    },
+    {
+      "id": "H2_059",
+      "group": "short_valid_address",
+      "subgroup": "short_no_prefix_no_comma",
+      "expected_sufficiency": "address_sufficient",
+      "expected_is_address": true,
+      "text": "Khánh Yên Hạ Văn Bàn"
+    },
+    {
+      "id": "H2_060",
+      "group": "short_valid_address",
+      "subgroup": "short_no_prefix_no_comma",
+      "expected_sufficiency": "address_sufficient",
+      "expected_is_address": true,
+      "text": "Phước Trà Hiệp Đức"
+    },
+    {
+      "id": "H2_061",
+      "group": "short_valid_address",
+      "subgroup": "short_unaccented_lower",
+      "expected_sufficiency": "address_sufficient",
+      "expected_is_address": true,
+      "text": "cu klong krong nang dak lak"
+    },
+    {
+      "id": "H2_062",
+      "group": "short_valid_address",
+      "subgroup": "short_unaccented_lower",
+      "expected_sufficiency": "address_sufficient",
+      "expected_is_address": true,
+      "text": "thanh dinh viet tri"
+    },
+    {
+      "id": "H2_063",
+      "group": "short_valid_address",
+      "subgroup": "short_unaccented_lower",
+      "expected_sufficiency": "address_sufficient",
+      "expected_is_address": true,
+      "text": "ninh cuong truc ninh"
+    },
+    {
+      "id": "H2_064",
+      "group": "short_valid_address",
+      "subgroup": "short_unaccented_lower",
+      "expected_sufficiency": "address_sufficient",
+      "expected_is_address": true,
+      "text": "phuong giao vo nhai thai nguyen"
+    },
+    {
+      "id": "H2_065",
+      "group": "short_valid_address",
+      "subgroup": "short_unaccented_lower",
+      "expected_sufficiency": "address_sufficient",
+      "expected_is_address": true,
+      "text": "xuan linh nghi xuan"
+    },
+    {
+      "id": "H2_066",
+      "group": "short_valid_address",
+      "subgroup": "short_unaccented_lower",
+      "expected_sufficiency": "address_sufficient",
+      "expected_is_address": true,
+      "text": "bat trang gia lam"
+    },
+    {
+      "id": "H2_067",
+      "group": "short_valid_address",
+      "subgroup": "short_unaccented_lower",
+      "expected_sufficiency": "address_sufficient",
+      "expected_is_address": true,
+      "text": "nga lien nga son thanh hoa"
+    },
+    {
+      "id": "H2_068",
+      "group": "short_valid_address",
+      "subgroup": "short_unaccented_lower",
+      "expected_sufficiency": "address_sufficient",
+      "expected_is_address": true,
+      "text": "phuong liet thanh xuan"
+    },
+    {
+      "id": "H2_069",
+      "group": "short_valid_address",
+      "subgroup": "short_unaccented_lower",
+      "expected_sufficiency": "address_sufficient",
+      "expected_is_address": true,
+      "text": "tan thanh dong xoai"
+    },
+    {
+      "id": "H2_070",
+      "group": "short_valid_address",
+      "subgroup": "short_unaccented_lower",
+      "expected_sufficiency": "address_sufficient",
+      "expected_is_address": true,
+      "text": "hong ly vu thu thai binh"
+    },
+    {
+      "id": "H2_071",
+      "group": "short_valid_address",
+      "subgroup": "short_unaccented_lower",
+      "expected_sufficiency": "address_sufficient",
+      "expected_is_address": true,
+      "text": "lang minh xuan loc"
+    },
+    {
+      "id": "H2_072",
+      "group": "short_valid_address",
+      "subgroup": "short_unaccented_lower",
+      "expected_sufficiency": "address_sufficient",
+      "expected_is_address": true,
+      "text": "ky phu ky anh"
+    },
+    {
+      "id": "H2_073",
+      "group": "short_valid_address",
+      "subgroup": "short_unaccented_lower",
+      "expected_sufficiency": "address_sufficient",
+      "expected_is_address": true,
+      "text": "viet doan tien du bac ninh"
+    },
+    {
+      "id": "H2_074",
+      "group": "short_valid_address",
+      "subgroup": "short_unaccented_lower",
+      "expected_sufficiency": "address_sufficient",
+      "expected_is_address": true,
+      "text": "binh long vo nhai"
+    },
+    {
+      "id": "H2_075",
+      "group": "short_valid_address",
+      "subgroup": "short_unaccented_lower",
+      "expected_sufficiency": "address_sufficient",
+      "expected_is_address": true,
+      "text": "phu thinh tan phu"
+    },
+    {
+      "id": "H2_076",
+      "group": "short_valid_address",
+      "subgroup": "short_unaccented_lower",
+      "expected_sufficiency": "address_sufficient",
+      "expected_is_address": true,
+      "text": "da loan duc trong lam dong"
+    },
+    {
+      "id": "H2_077",
+      "group": "short_valid_address",
+      "subgroup": "short_unaccented_lower",
+      "expected_sufficiency": "address_sufficient",
+      "expected_is_address": true,
+      "text": "vi xuyen nam dinh"
+    },
+    {
+      "id": "H2_078",
+      "group": "short_valid_address",
+      "subgroup": "short_unaccented_lower",
+      "expected_sufficiency": "address_sufficient",
+      "expected_is_address": true,
+      "text": "nguyet duc yen lac"
+    },
+    {
+      "id": "H2_079",
+      "group": "short_valid_address",
+      "subgroup": "short_unaccented_lower",
+      "expected_sufficiency": "address_sufficient",
+      "expected_is_address": true,
+      "text": "dong quang thai nguyen thai nguyen"
+    },
+    {
+      "id": "H2_080",
+      "group": "short_valid_address",
+      "subgroup": "short_unaccented_lower",
+      "expected_sufficiency": "address_sufficient",
+      "expected_is_address": true,
+      "text": "tuong son nong cong"
+    },
+    {
+      "id": "H2_081",
+      "group": "short_valid_address",
+      "subgroup": "short_unaccented_lower",
+      "expected_sufficiency": "address_sufficient",
+      "expected_is_address": true,
+      "text": "lam son tam nong"
+    },
+    {
+      "id": "H2_082",
+      "group": "short_valid_address",
+      "subgroup": "short_unaccented_lower",
+      "expected_sufficiency": "address_sufficient",
+      "expected_is_address": true,
+      "text": "kim phu tuyen quang tuyen quang"
+    },
+    {
+      "id": "H2_083",
+      "group": "short_valid_address",
+      "subgroup": "short_unaccented_lower",
+      "expected_sufficiency": "address_sufficient",
+      "expected_is_address": true,
+      "text": "hoa muc cho moi"
+    },
+    {
+      "id": "H2_084",
+      "group": "short_valid_address",
+      "subgroup": "short_unaccented_lower",
+      "expected_sufficiency": "address_sufficient",
+      "expected_is_address": true,
+      "text": "thanh binh tan bien"
+    },
+    {
+      "id": "H2_085",
+      "group": "short_valid_address",
+      "subgroup": "short_unaccented_lower",
+      "expected_sufficiency": "address_sufficient",
+      "expected_is_address": true,
+      "text": "tra son tra bong quang ngai"
+    },
+    {
+      "id": "H2_086",
+      "group": "short_valid_address",
+      "subgroup": "short_unaccented_lower",
+      "expected_sufficiency": "address_sufficient",
+      "expected_is_address": true,
+      "text": "quang trung hai duong"
+    },
+    {
+      "id": "H2_087",
+      "group": "short_valid_address",
+      "subgroup": "short_unaccented_lower",
+      "expected_sufficiency": "address_sufficient",
+      "expected_is_address": true,
+      "text": "an minh bac u minh thuong"
+    },
+    {
+      "id": "H2_088",
+      "group": "short_valid_address",
+      "subgroup": "short_unaccented_lower",
+      "expected_sufficiency": "address_sufficient",
+      "expected_is_address": true,
+      "text": "phong thanh phong dien hue"
+    },
+    {
+      "id": "H2_089",
+      "group": "short_valid_address",
+      "subgroup": "short_unaccented_lower",
+      "expected_sufficiency": "address_sufficient",
+      "expected_is_address": true,
+      "text": "phuong 10 quan 11"
+    },
+    {
+      "id": "H2_090",
+      "group": "short_valid_address",
+      "subgroup": "short_unaccented_lower",
+      "expected_sufficiency": "address_sufficient",
+      "expected_is_address": true,
+      "text": "san chai si ma cai"
+    },
+    {
+      "id": "H2_091",
+      "group": "short_valid_address",
+      "subgroup": "short_abbreviated",
+      "expected_sufficiency": "address_sufficient",
+      "expected_is_address": true,
+      "text": "x. Tích Thiện, h. Trà Ôn"
+    },
+    {
+      "id": "H2_092",
+      "group": "short_valid_address",
+      "subgroup": "short_abbreviated",
+      "expected_sufficiency": "address_sufficient",
+      "expected_is_address": true,
+      "text": "x.phu ly h.phu luong"
+    },
+    {
+      "id": "H2_093",
+      "group": "short_valid_address",
+      "subgroup": "short_abbreviated",
+      "expected_sufficiency": "address_sufficient",
+      "expected_is_address": true,
+      "text": "x. gia phu h. bao thang lao cai"
+    },
+    {
+      "id": "H2_094",
+      "group": "short_valid_address",
+      "subgroup": "short_abbreviated",
+      "expected_sufficiency": "address_sufficient",
+      "expected_is_address": true,
+      "text": "p. Mỹ Thới, tp. Long Xuyên"
+    },
+    {
+      "id": "H2_095",
+      "group": "short_valid_address",
+      "subgroup": "short_abbreviated",
+      "expected_sufficiency": "address_sufficient",
+      "expected_is_address": true,
+      "text": "x.cam hai tay h.cam lam"
+    },
+    {
+      "id": "H2_096",
+      "group": "short_valid_address",
+      "subgroup": "short_abbreviated",
+      "expected_sufficiency": "address_sufficient",
+      "expected_is_address": true,
+      "text": "x. xuan hoa h. bao yen lao cai"
+    },
+    {
+      "id": "H2_097",
+      "group": "short_valid_address",
+      "subgroup": "short_abbreviated",
+      "expected_sufficiency": "address_sufficient",
+      "expected_is_address": true,
+      "text": "x. Xuân Phương, tx. Sông Cầu"
+    },
+    {
+      "id": "H2_098",
+      "group": "short_valid_address",
+      "subgroup": "short_abbreviated",
+      "expected_sufficiency": "address_sufficient",
+      "expected_is_address": true,
+      "text": "x.truong giang h.luc nam"
+    },
+    {
+      "id": "H2_099",
+      "group": "short_valid_address",
+      "subgroup": "short_abbreviated",
+      "expected_sufficiency": "address_sufficient",
+      "expected_is_address": true,
+      "text": "p. ea tam tp. buon ma thuot dak lak"
+    },
+    {
+      "id": "H2_100",
+      "group": "short_valid_address",
+      "subgroup": "short_abbreviated",
+      "expected_sufficiency": "address_sufficient",
+      "expected_is_address": true,
+      "text": "p. Châu Phú A, tp. Châu Đốc"
+    },
+    {
+      "id": "H2_101",
+      "group": "short_valid_address",
+      "subgroup": "short_abbreviated",
+      "expected_sufficiency": "address_sufficient",
+      "expected_is_address": true,
+      "text": "x.muong cang h.than uyen"
+    },
+    {
+      "id": "H2_102",
+      "group": "short_valid_address",
+      "subgroup": "short_abbreviated",
+      "expected_sufficiency": "address_sufficient",
+      "expected_is_address": true,
+      "text": "p. dinh cong q. hoang mai ha noi"
+    },
+    {
+      "id": "H2_103",
+      "group": "short_valid_address",
+      "subgroup": "short_abbreviated",
+      "expected_sufficiency": "address_sufficient",
+      "expected_is_address": true,
+      "text": "x. Đức Lương, h. Đại Từ"
+    },
+    {
+      "id": "H2_104",
+      "group": "short_valid_address",
+      "subgroup": "short_abbreviated",
+      "expected_sufficiency": "address_sufficient",
+      "expected_is_address": true,
+      "text": "x.trieu nguyen h.da krong"
+    },
+    {
+      "id": "H2_105",
+      "group": "short_valid_address",
+      "subgroup": "short_abbreviated",
+      "expected_sufficiency": "address_sufficient",
+      "expected_is_address": true,
+      "text": "x. vinh cuong h. thanh ha hai duong"
+    },
+    {
+      "id": "H2_106",
+      "group": "short_valid_address",
+      "subgroup": "short_abbreviated",
+      "expected_sufficiency": "address_sufficient",
+      "expected_is_address": true,
+      "text": "x. Thạnh An, h. Vĩnh Thạnh"
+    },
+    {
+      "id": "H2_107",
+      "group": "short_valid_address",
+      "subgroup": "short_abbreviated",
+      "expected_sufficiency": "address_sufficient",
+      "expected_is_address": true,
+      "text": "x.vinh phuoc a h.go quao"
+    },
+    {
+      "id": "H2_108",
+      "group": "short_valid_address",
+      "subgroup": "short_abbreviated",
+      "expected_sufficiency": "address_sufficient",
+      "expected_is_address": true,
+      "text": "x. thuong am h. son duong tuyen quang"
+    },
+    {
+      "id": "H2_109",
+      "group": "short_valid_address",
+      "subgroup": "short_abbreviated",
+      "expected_sufficiency": "address_sufficient",
+      "expected_is_address": true,
+      "text": "x. Quế An, h. Quế Sơn"
+    },
+    {
+      "id": "H2_110",
+      "group": "short_valid_address",
+      "subgroup": "short_abbreviated",
+      "expected_sufficiency": "address_sufficient",
+      "expected_is_address": true,
+      "text": "x.dai thanh h.dai loc"
+    },
+    {
+      "id": "H2_111",
+      "group": "short_valid_address",
+      "subgroup": "short_abbreviated",
+      "expected_sufficiency": "address_sufficient",
+      "expected_is_address": true,
+      "text": "x. tan hoa h. buon don dak lak"
+    },
+    {
+      "id": "H2_112",
+      "group": "short_valid_address",
+      "subgroup": "short_abbreviated",
+      "expected_sufficiency": "address_sufficient",
+      "expected_is_address": true,
+      "text": "p. Đại Bản, q. Hồng Bàng"
+    },
+    {
+      "id": "H2_113",
+      "group": "short_valid_address",
+      "subgroup": "short_abbreviated",
+      "expected_sufficiency": "address_sufficient",
+      "expected_is_address": true,
+      "text": "x.ia lau h.chu prong"
+    },
+    {
+      "id": "H2_114",
+      "group": "short_valid_address",
+      "subgroup": "short_abbreviated",
+      "expected_sufficiency": "address_sufficient",
+      "expected_is_address": true,
+      "text": "x. ta nang h. duc trong lam dong"
+    },
+    {
+      "id": "H2_115",
+      "group": "short_valid_address",
+      "subgroup": "short_abbreviated",
+      "expected_sufficiency": "address_sufficient",
+      "expected_is_address": true,
+      "text": "x. Tân Kiên, h. Bình Chánh"
+    },
+    {
+      "id": "H2_116",
+      "group": "short_valid_address",
+      "subgroup": "short_abbreviated",
+      "expected_sufficiency": "address_sufficient",
+      "expected_is_address": true,
+      "text": "x.hai lang h.tien yen"
+    },
+    {
+      "id": "H2_117",
+      "group": "short_valid_address",
+      "subgroup": "short_abbreviated",
+      "expected_sufficiency": "address_sufficient",
+      "expected_is_address": true,
+      "text": "x. binh nhi h. go cong tay tien giang"
+    },
+    {
+      "id": "H2_118",
+      "group": "short_valid_address",
+      "subgroup": "short_abbreviated",
+      "expected_sufficiency": "address_sufficient",
+      "expected_is_address": true,
+      "text": "x. Khánh Vân, h. Yên Khánh"
+    },
+    {
+      "id": "H2_119",
+      "group": "short_valid_address",
+      "subgroup": "short_abbreviated",
+      "expected_sufficiency": "address_sufficient",
+      "expected_is_address": true,
+      "text": "tt.phu thong h.bach thong"
+    },
+    {
+      "id": "H2_120",
+      "group": "short_valid_address",
+      "subgroup": "short_abbreviated",
+      "expected_sufficiency": "address_sufficient",
+      "expected_is_address": true,
+      "text": "x. phu phong h. chau thanh tien giang"
+    },
+    {
+      "id": "H2_121",
+      "group": "short_valid_address",
+      "subgroup": "short_ward_district_province",
+      "expected_sufficiency": "address_sufficient",
+      "expected_is_address": true,
+      "text": "Mỹ Thạnh Trung, Tam Bình, Vĩnh Long"
+    },
+    {
+      "id": "H2_122",
+      "group": "short_valid_address",
+      "subgroup": "short_ward_district_province",
+      "expected_sufficiency": "address_sufficient",
+      "expected_is_address": true,
+      "text": "Xã Ea Sol, Huyện Ea H'leo, Đắk Lắk"
+    },
+    {
+      "id": "H2_123",
+      "group": "short_valid_address",
+      "subgroup": "short_ward_district_province",
+      "expected_sufficiency": "address_sufficient",
+      "expected_is_address": true,
+      "text": "Thuận Bình, Thạnh Hóa, Long An"
+    },
+    {
+      "id": "H2_124",
+      "group": "short_valid_address",
+      "subgroup": "short_ward_district_province",
+      "expected_sufficiency": "address_sufficient",
+      "expected_is_address": true,
+      "text": "Phường Mỹ Long, Thành phố Long Xuyên, An Giang"
+    },
+    {
+      "id": "H2_125",
+      "group": "short_valid_address",
+      "subgroup": "short_ward_district_province",
+      "expected_sufficiency": "address_sufficient",
+      "expected_is_address": true,
+      "text": "Bon Phặng, Thuận Châu, Sơn La"
+    },
+    {
+      "id": "H2_126",
+      "group": "short_valid_address",
+      "subgroup": "short_ward_district_province",
+      "expected_sufficiency": "address_sufficient",
+      "expected_is_address": true,
+      "text": "Xã Hoà Bình, Huyện Tam Nông, Đồng Tháp"
+    },
+    {
+      "id": "H2_127",
+      "group": "short_valid_address",
+      "subgroup": "short_ward_district_province",
+      "expected_sufficiency": "address_sufficient",
+      "expected_is_address": true,
+      "text": "Tiên Phong, Phổ Yên, Thái Nguyên"
+    },
+    {
+      "id": "H2_128",
+      "group": "short_valid_address",
+      "subgroup": "short_ward_district_province",
+      "expected_sufficiency": "address_sufficient",
+      "expected_is_address": true,
+      "text": "Xã Phong Niên, Huyện Bảo Thắng, Lào Cai"
+    },
+    {
+      "id": "H2_129",
+      "group": "short_valid_address",
+      "subgroup": "short_ward_district_province",
+      "expected_sufficiency": "address_sufficient",
+      "expected_is_address": true,
+      "text": "Thanh Bình, Thanh Bình, Đồng Tháp"
+    },
+    {
+      "id": "H2_130",
+      "group": "short_valid_address",
+      "subgroup": "short_ward_district_province",
+      "expected_sufficiency": "address_sufficient",
+      "expected_is_address": true,
+      "text": "Phường An Khánh, Thành phố Thủ Đức, Hồ Chí Minh"
+    },
+    {
+      "id": "H2_131",
+      "group": "short_valid_address",
+      "subgroup": "short_ward_district_province",
+      "expected_sufficiency": "address_sufficient",
+      "expected_is_address": true,
+      "text": "Phường 8, Vũng Tàu, Bà Rịa - Vũng Tàu"
+    },
+    {
+      "id": "H2_132",
+      "group": "short_valid_address",
+      "subgroup": "short_ward_district_province",
+      "expected_sufficiency": "address_sufficient",
+      "expected_is_address": true,
+      "text": "Xã Cẩm Giàng, Huyện Bạch Thông, Bắc Kạn"
+    },
+    {
+      "id": "H2_133",
+      "group": "short_valid_address",
+      "subgroup": "short_ward_district_province",
+      "expected_sufficiency": "address_sufficient",
+      "expected_is_address": true,
+      "text": "Ninh Điền, Châu Thành, Tây Ninh"
+    },
+    {
+      "id": "H2_134",
+      "group": "short_valid_address",
+      "subgroup": "short_ward_district_province",
+      "expected_sufficiency": "address_sufficient",
+      "expected_is_address": true,
+      "text": "Xã Đak Ơ, Huyện Bù Gia Mập, Bình Phước"
+    },
+    {
+      "id": "H2_135",
+      "group": "short_valid_address",
+      "subgroup": "short_ward_district_province",
+      "expected_sufficiency": "address_sufficient",
+      "expected_is_address": true,
+      "text": "Định Mỹ, Thoại Sơn, An Giang"
+    },
+    {
+      "id": "H2_136",
+      "group": "short_valid_address",
+      "subgroup": "short_ward_district_province",
+      "expected_sufficiency": "address_sufficient",
+      "expected_is_address": true,
+      "text": "Xã Bình Lợi, Huyện Vĩnh Cửu, Đồng Nai"
+    },
+    {
+      "id": "H2_137",
+      "group": "short_valid_address",
+      "subgroup": "short_ward_district_province",
+      "expected_sufficiency": "address_sufficient",
+      "expected_is_address": true,
+      "text": "An Phú, Thuận An, Bình Dương"
+    },
+    {
+      "id": "H2_138",
+      "group": "short_valid_address",
+      "subgroup": "short_ward_district_province",
+      "expected_sufficiency": "address_sufficient",
+      "expected_is_address": true,
+      "text": "Xã Hải Khê, Huyện Hải Lăng, Quảng Trị"
+    },
+    {
+      "id": "H2_139",
+      "group": "short_valid_address",
+      "subgroup": "short_ward_district_province",
+      "expected_sufficiency": "address_sufficient",
+      "expected_is_address": true,
+      "text": "Trì Quang, Bảo Thắng, Lào Cai"
+    },
+    {
+      "id": "H2_140",
+      "group": "short_valid_address",
+      "subgroup": "short_ward_district_province",
+      "expected_sufficiency": "address_sufficient",
+      "expected_is_address": true,
+      "text": "Xã Yên Đồng, Huyện Ý Yên, Nam Định"
+    },
+    {
+      "id": "H2_141",
+      "group": "short_valid_address",
+      "subgroup": "short_ward_district_province",
+      "expected_sufficiency": "address_sufficient",
+      "expected_is_address": true,
+      "text": "Kim Bảng, Thanh Chương, Nghệ An"
+    },
+    {
+      "id": "H2_142",
+      "group": "short_valid_address",
+      "subgroup": "short_ward_district_province",
+      "expected_sufficiency": "address_sufficient",
+      "expected_is_address": true,
+      "text": "Xã Nam Xuân, Huyện Nam Đàn, Nghệ An"
+    },
+    {
+      "id": "H2_143",
+      "group": "short_valid_address",
+      "subgroup": "short_ward_district_province",
+      "expected_sufficiency": "address_sufficient",
+      "expected_is_address": true,
+      "text": "Cảnh Dương, Quảng Trạch, Quảng Bình"
+    },
+    {
+      "id": "H2_144",
+      "group": "short_valid_address",
+      "subgroup": "short_ward_district_province",
+      "expected_sufficiency": "address_sufficient",
+      "expected_is_address": true,
+      "text": "Thị trấn Tuần Giáo, Huyện Tuần Giáo, Điện Biên"
+    },
+    {
+      "id": "H2_145",
+      "group": "short_valid_address",
+      "subgroup": "short_ward_district_province",
+      "expected_sufficiency": "address_sufficient",
+      "expected_is_address": true,
+      "text": "Phăng Sô Lin, Sìn Hồ, Lai Châu"
+    },
+    {
+      "id": "H2_146",
+      "group": "short_valid_address",
+      "subgroup": "short_ward_district_province",
+      "expected_sufficiency": "address_sufficient",
+      "expected_is_address": true,
+      "text": "Thị trấn Một Ngàn, Huyện Châu Thành A, Hậu Giang"
+    },
+    {
+      "id": "H2_147",
+      "group": "short_valid_address",
+      "subgroup": "short_ward_district_province",
+      "expected_sufficiency": "address_sufficient",
+      "expected_is_address": true,
+      "text": "Lê Hồng Phong, Quảng Ngãi, Quảng Ngãi"
+    },
+    {
+      "id": "H2_148",
+      "group": "short_valid_address",
+      "subgroup": "short_ward_district_province",
+      "expected_sufficiency": "address_sufficient",
+      "expected_is_address": true,
+      "text": "Phường Linh Tây, Thành phố Thủ Đức, Hồ Chí Minh"
+    },
+    {
+      "id": "H2_149",
+      "group": "short_valid_address",
+      "subgroup": "short_ward_district_province",
+      "expected_sufficiency": "address_sufficient",
+      "expected_is_address": true,
+      "text": "Lai Hưng, Bàu Bàng, Bình Dương"
+    },
+    {
+      "id": "H2_150",
+      "group": "short_valid_address",
+      "subgroup": "short_ward_district_province",
+      "expected_sufficiency": "address_sufficient",
+      "expected_is_address": true,
+      "text": "Xã Tú Sơn, Huyện Kim Bôi, Hoà Bình"
+    },
+    {
+      "id": "H2_151",
+      "group": "short_valid_address",
+      "subgroup": "short_ward_province_2tier",
+      "expected_sufficiency": "address_sufficient",
+      "expected_is_address": true,
+      "text": "Hưng Thịnh, Đồng Nai"
+    },
+    {
+      "id": "H2_152",
+      "group": "short_valid_address",
+      "subgroup": "short_ward_province_2tier",
+      "expected_sufficiency": "address_sufficient",
+      "expected_is_address": true,
+      "text": "phuong phuc loi, ha noi"
+    },
+    {
+      "id": "H2_153",
+      "group": "short_valid_address",
+      "subgroup": "short_ward_province_2tier",
+      "expected_sufficiency": "address_sufficient",
+      "expected_is_address": true,
+      "text": "Lưu Vệ, Thanh Hóa"
+    },
+    {
+      "id": "H2_154",
+      "group": "short_valid_address",
+      "subgroup": "short_ward_province_2tier",
+      "expected_sufficiency": "address_sufficient",
+      "expected_is_address": true,
+      "text": "xa kien lao, bac ninh"
+    },
+    {
+      "id": "H2_155",
+      "group": "short_valid_address",
+      "subgroup": "short_ward_province_2tier",
+      "expected_sufficiency": "address_sufficient",
+      "expected_is_address": true,
+      "text": "Ia Dreh, Gia Lai"
+    },
+    {
+      "id": "H2_156",
+      "group": "short_valid_address",
+      "subgroup": "short_ward_province_2tier",
+      "expected_sufficiency": "address_sufficient",
+      "expected_is_address": true,
+      "text": "xa tho tang, phu tho"
+    },
+    {
+      "id": "H2_157",
+      "group": "short_valid_address",
+      "subgroup": "short_ward_province_2tier",
+      "expected_sufficiency": "address_sufficient",
+      "expected_is_address": true,
+      "text": "Định Thành, Cà Mau"
+    },
+    {
+      "id": "H2_158",
+      "group": "short_valid_address",
+      "subgroup": "short_ward_province_2tier",
+      "expected_sufficiency": "address_sufficient",
+      "expected_is_address": true,
+      "text": "phuong thien huong, hai phong"
+    },
+    {
+      "id": "H2_159",
+      "group": "short_valid_address",
+      "subgroup": "short_ward_province_2tier",
+      "expected_sufficiency": "address_sufficient",
+      "expected_is_address": true,
+      "text": "Minh Đức, Đồng Nai"
+    },
+    {
+      "id": "H2_160",
+      "group": "short_valid_address",
+      "subgroup": "short_ward_province_2tier",
+      "expected_sufficiency": "address_sufficient",
+      "expected_is_address": true,
+      "text": "xa an bien, an giang"
+    },
+    {
+      "id": "H2_161",
+      "group": "short_valid_address",
+      "subgroup": "short_ward_province_2tier",
+      "expected_sufficiency": "address_sufficient",
+      "expected_is_address": true,
+      "text": "Tân Thành, Cà Mau"
+    },
+    {
+      "id": "H2_162",
+      "group": "short_valid_address",
+      "subgroup": "short_ward_province_2tier",
+      "expected_sufficiency": "address_sufficient",
+      "expected_is_address": true,
+      "text": "xa thanh thuy, phu tho"
+    },
+    {
+      "id": "H2_163",
+      "group": "short_valid_address",
+      "subgroup": "short_ward_province_2tier",
+      "expected_sufficiency": "address_sufficient",
+      "expected_is_address": true,
+      "text": "Tuy An Đông, Đắk Lắk"
+    },
+    {
+      "id": "H2_164",
+      "group": "short_valid_address",
+      "subgroup": "short_ward_province_2tier",
+      "expected_sufficiency": "address_sufficient",
+      "expected_is_address": true,
+      "text": "xa muong coi, son la"
+    },
+    {
+      "id": "H2_165",
+      "group": "short_valid_address",
+      "subgroup": "short_ward_province_2tier",
+      "expected_sufficiency": "address_sufficient",
+      "expected_is_address": true,
+      "text": "Luận Thành, Thanh Hóa"
+    },
+    {
+      "id": "H2_166",
+      "group": "short_valid_address",
+      "subgroup": "short_ward_province_2tier",
+      "expected_sufficiency": "address_sufficient",
+      "expected_is_address": true,
+      "text": "xa hoa lac, ha noi"
+    },
+    {
+      "id": "H2_167",
+      "group": "short_valid_address",
+      "subgroup": "short_ward_province_2tier",
+      "expected_sufficiency": "address_sufficient",
+      "expected_is_address": true,
+      "text": "Hòa Cường, Đà Nẵng"
+    },
+    {
+      "id": "H2_168",
+      "group": "short_valid_address",
+      "subgroup": "short_ward_province_2tier",
+      "expected_sufficiency": "address_sufficient",
+      "expected_is_address": true,
+      "text": "xa xuan dinh, dong nai"
+    },
+    {
+      "id": "H2_169",
+      "group": "short_valid_address",
+      "subgroup": "short_ward_province_2tier",
+      "expected_sufficiency": "address_sufficient",
+      "expected_is_address": true,
+      "text": "Phước Hòa, Hồ Chí Minh"
+    },
+    {
+      "id": "H2_170",
+      "group": "short_valid_address",
+      "subgroup": "short_ward_province_2tier",
+      "expected_sufficiency": "address_sufficient",
+      "expected_is_address": true,
+      "text": "xa bao lam, cao bang"
+    },
+    {
+      "id": "H2_171",
+      "group": "short_valid_address",
+      "subgroup": "short_ward_province_2tier",
+      "expected_sufficiency": "address_sufficient",
+      "expected_is_address": true,
+      "text": "Sơn Điện, Thanh Hóa"
+    },
+    {
+      "id": "H2_172",
+      "group": "short_valid_address",
+      "subgroup": "short_ward_province_2tier",
+      "expected_sufficiency": "address_sufficient",
+      "expected_is_address": true,
+      "text": "xa kieu phu, ha noi"
+    },
+    {
+      "id": "H2_173",
+      "group": "short_valid_address",
+      "subgroup": "short_ward_province_2tier",
+      "expected_sufficiency": "address_sufficient",
+      "expected_is_address": true,
+      "text": "Thông Nông, Cao Bằng"
+    },
+    {
+      "id": "H2_174",
+      "group": "short_valid_address",
+      "subgroup": "short_ward_province_2tier",
+      "expected_sufficiency": "address_sufficient",
+      "expected_is_address": true,
+      "text": "xa bac ruong, lam dong"
+    },
+    {
+      "id": "H2_175",
+      "group": "short_valid_address",
+      "subgroup": "short_ward_province_2tier",
+      "expected_sufficiency": "address_sufficient",
+      "expected_is_address": true,
+      "text": "Kiến Hưng, Hà Nội"
+    },
+    {
+      "id": "H2_176",
+      "group": "short_valid_address",
+      "subgroup": "short_ward_province_2tier",
+      "expected_sufficiency": "address_sufficient",
+      "expected_is_address": true,
+      "text": "phuong long thuan, dong thap"
+    },
+    {
+      "id": "H2_177",
+      "group": "short_valid_address",
+      "subgroup": "short_ward_province_2tier",
+      "expected_sufficiency": "address_sufficient",
+      "expected_is_address": true,
+      "text": "Nà Hang, Tuyên Quang"
+    },
+    {
+      "id": "H2_178",
+      "group": "short_valid_address",
+      "subgroup": "short_ward_province_2tier",
+      "expected_sufficiency": "address_sufficient",
+      "expected_is_address": true,
+      "text": "xa ia phi, gia lai"
+    },
+    {
+      "id": "H2_179",
+      "group": "short_valid_address",
+      "subgroup": "short_ward_province_2tier",
+      "expected_sufficiency": "address_sufficient",
+      "expected_is_address": true,
+      "text": "Hương Cần, Phú Thọ"
+    },
+    {
+      "id": "H2_180",
+      "group": "short_valid_address",
+      "subgroup": "short_ward_province_2tier",
+      "expected_sufficiency": "address_sufficient",
+      "expected_is_address": true,
+      "text": "phuong tan dinh, ho chi minh"
+    },
+    {
+      "id": "H3_001",
+      "group": "insufficient_address",
+      "subgroup": "insuf_ward_only",
+      "expected_sufficiency": "address_insufficient",
+      "expected_is_address": false,
+      "text": "Xã Lộc Thạnh"
+    },
+    {
+      "id": "H3_002",
+      "group": "insufficient_address",
+      "subgroup": "insuf_ward_only",
+      "expected_sufficiency": "address_insufficient",
+      "expected_is_address": false,
+      "text": "phuong hoa mac"
+    },
+    {
+      "id": "H3_003",
+      "group": "insufficient_address",
+      "subgroup": "insuf_ward_only",
+      "expected_sufficiency": "address_insufficient",
+      "expected_is_address": false,
+      "text": "X. Mường Thải"
+    },
+    {
+      "id": "H3_004",
+      "group": "insufficient_address",
+      "subgroup": "insuf_ward_only",
+      "expected_sufficiency": "address_insufficient",
+      "expected_is_address": false,
+      "text": "p.huong mac"
+    },
+    {
+      "id": "H3_005",
+      "group": "insufficient_address",
+      "subgroup": "insuf_ward_only",
+      "expected_sufficiency": "address_insufficient",
+      "expected_is_address": false,
+      "text": "Xã Tân Lộc"
+    },
+    {
+      "id": "H3_006",
+      "group": "insufficient_address",
+      "subgroup": "insuf_ward_only",
+      "expected_sufficiency": "address_insufficient",
+      "expected_is_address": false,
+      "text": "xa hoang van thu"
+    },
+    {
+      "id": "H3_007",
+      "group": "insufficient_address",
+      "subgroup": "insuf_ward_only",
+      "expected_sufficiency": "address_insufficient",
+      "expected_is_address": false,
+      "text": "X. AL Bá"
+    },
+    {
+      "id": "H3_008",
+      "group": "insufficient_address",
+      "subgroup": "insuf_ward_only",
+      "expected_sufficiency": "address_insufficient",
+      "expected_is_address": false,
+      "text": "p.nam son"
+    },
+    {
+      "id": "H3_009",
+      "group": "insufficient_address",
+      "subgroup": "insuf_ward_only",
+      "expected_sufficiency": "address_insufficient",
+      "expected_is_address": false,
+      "text": "Xã Côn Lôn"
+    },
+    {
+      "id": "H3_010",
+      "group": "insufficient_address",
+      "subgroup": "insuf_ward_only",
+      "expected_sufficiency": "address_insufficient",
+      "expected_is_address": false,
+      "text": "xa thach luong"
+    },
+    {
+      "id": "H3_011",
+      "group": "insufficient_address",
+      "subgroup": "insuf_ward_only",
+      "expected_sufficiency": "address_insufficient",
+      "expected_is_address": false,
+      "text": "X. Dương Hưu"
+    },
+    {
+      "id": "H3_012",
+      "group": "insufficient_address",
+      "subgroup": "insuf_ward_only",
+      "expected_sufficiency": "address_insufficient",
+      "expected_is_address": false,
+      "text": "x.thach thang"
+    },
+    {
+      "id": "H3_013",
+      "group": "insufficient_address",
+      "subgroup": "insuf_ward_only",
+      "expected_sufficiency": "address_insufficient",
+      "expected_is_address": false,
+      "text": "Xã Sơn Thủy"
+    },
+    {
+      "id": "H3_014",
+      "group": "insufficient_address",
+      "subgroup": "insuf_ward_only",
+      "expected_sufficiency": "address_insufficient",
+      "expected_is_address": false,
+      "text": "xa an linh"
+    },
+    {
+      "id": "H3_015",
+      "group": "insufficient_address",
+      "subgroup": "insuf_ward_only",
+      "expected_sufficiency": "address_insufficient",
+      "expected_is_address": false,
+      "text": "X. Mường Bang"
+    },
+    {
+      "id": "H3_016",
+      "group": "insufficient_address",
+      "subgroup": "insuf_ward_only",
+      "expected_sufficiency": "address_insufficient",
+      "expected_is_address": false,
+      "text": "x.ka dang"
+    },
+    {
+      "id": "H3_017",
+      "group": "insufficient_address",
+      "subgroup": "insuf_ward_only",
+      "expected_sufficiency": "address_insufficient",
+      "expected_is_address": false,
+      "text": "Xã Tân Tiến"
+    },
+    {
+      "id": "H3_018",
+      "group": "insufficient_address",
+      "subgroup": "insuf_ward_only",
+      "expected_sufficiency": "address_insufficient",
+      "expected_is_address": false,
+      "text": "xa my duc"
+    },
+    {
+      "id": "H3_019",
+      "group": "insufficient_address",
+      "subgroup": "insuf_ward_only",
+      "expected_sufficiency": "address_insufficient",
+      "expected_is_address": false,
+      "text": "X. An Thuận"
+    },
+    {
+      "id": "H3_020",
+      "group": "insufficient_address",
+      "subgroup": "insuf_ward_only",
+      "expected_sufficiency": "address_insufficient",
+      "expected_is_address": false,
+      "text": "x.vu ban"
+    },
+    {
+      "id": "H3_021",
+      "group": "insufficient_address",
+      "subgroup": "insuf_ward_only",
+      "expected_sufficiency": "address_insufficient",
+      "expected_is_address": false,
+      "text": "Xã Tà Mung"
+    },
+    {
+      "id": "H3_022",
+      "group": "insufficient_address",
+      "subgroup": "insuf_ward_only",
+      "expected_sufficiency": "address_insufficient",
+      "expected_is_address": false,
+      "text": "phuong dat hieu"
+    },
+    {
+      "id": "H3_023",
+      "group": "insufficient_address",
+      "subgroup": "insuf_ward_only",
+      "expected_sufficiency": "address_insufficient",
+      "expected_is_address": false,
+      "text": "X. Phú Cường"
+    },
+    {
+      "id": "H3_024",
+      "group": "insufficient_address",
+      "subgroup": "insuf_ward_only",
+      "expected_sufficiency": "address_insufficient",
+      "expected_is_address": false,
+      "text": "x.ham my"
+    },
+    {
+      "id": "H3_025",
+      "group": "insufficient_address",
+      "subgroup": "insuf_ward_only",
+      "expected_sufficiency": "address_insufficient",
+      "expected_is_address": false,
+      "text": "Thị trấn Tăng Bạt Hổ"
+    },
+    {
+      "id": "H3_026",
+      "group": "insufficient_address",
+      "subgroup": "insuf_ward_only",
+      "expected_sufficiency": "address_insufficient",
+      "expected_is_address": false,
+      "text": "thi tran chi dong"
+    },
+    {
+      "id": "H3_027",
+      "group": "insufficient_address",
+      "subgroup": "insuf_ward_only",
+      "expected_sufficiency": "address_insufficient",
+      "expected_is_address": false,
+      "text": "X. Ninh Thạnh Lợi A"
+    },
+    {
+      "id": "H3_028",
+      "group": "insufficient_address",
+      "subgroup": "insuf_ward_only",
+      "expected_sufficiency": "address_insufficient",
+      "expected_is_address": false,
+      "text": "x.cat tien"
+    },
+    {
+      "id": "H3_029",
+      "group": "insufficient_address",
+      "subgroup": "insuf_ward_only",
+      "expected_sufficiency": "address_insufficient",
+      "expected_is_address": false,
+      "text": "Thị trấn Mường Tè"
+    },
+    {
+      "id": "H3_030",
+      "group": "insufficient_address",
+      "subgroup": "insuf_ward_only",
+      "expected_sufficiency": "address_insufficient",
+      "expected_is_address": false,
+      "text": "phuong 11"
+    },
+    {
+      "id": "H3_031",
+      "group": "insufficient_address",
+      "subgroup": "insuf_ward_only",
+      "expected_sufficiency": "address_insufficient",
+      "expected_is_address": false,
+      "text": "X. Hải Bối"
+    },
+    {
+      "id": "H3_032",
+      "group": "insufficient_address",
+      "subgroup": "insuf_ward_only",
+      "expected_sufficiency": "address_insufficient",
+      "expected_is_address": false,
+      "text": "x.tuong thuong"
+    },
+    {
+      "id": "H3_033",
+      "group": "insufficient_address",
+      "subgroup": "insuf_ward_only",
+      "expected_sufficiency": "address_insufficient",
+      "expected_is_address": false,
+      "text": "Xã Trần Phán"
+    },
+    {
+      "id": "H3_034",
+      "group": "insufficient_address",
+      "subgroup": "insuf_ward_only",
+      "expected_sufficiency": "address_insufficient",
+      "expected_is_address": false,
+      "text": "phuong an phu dong"
+    },
+    {
+      "id": "H3_035",
+      "group": "insufficient_address",
+      "subgroup": "insuf_ward_only",
+      "expected_sufficiency": "address_insufficient",
+      "expected_is_address": false,
+      "text": "X. Quán Hàu"
+    },
+    {
+      "id": "H3_036",
+      "group": "insufficient_address",
+      "subgroup": "insuf_province_only",
+      "expected_sufficiency": "address_insufficient",
+      "expected_is_address": false,
+      "text": "Tỉnh Bến Tre"
+    },
+    {
+      "id": "H3_037",
+      "group": "insufficient_address",
+      "subgroup": "insuf_province_only",
+      "expected_sufficiency": "address_insufficient",
+      "expected_is_address": false,
+      "text": "Bến Tre"
+    },
+    {
+      "id": "H3_038",
+      "group": "insufficient_address",
+      "subgroup": "insuf_province_only",
+      "expected_sufficiency": "address_insufficient",
+      "expected_is_address": false,
+      "text": "Tỉnh Quảng Trị"
+    },
+    {
+      "id": "H3_039",
+      "group": "insufficient_address",
+      "subgroup": "insuf_province_only",
+      "expected_sufficiency": "address_insufficient",
+      "expected_is_address": false,
+      "text": "Quảng Trị"
+    },
+    {
+      "id": "H3_040",
+      "group": "insufficient_address",
+      "subgroup": "insuf_province_only",
+      "expected_sufficiency": "address_insufficient",
+      "expected_is_address": false,
+      "text": "Tỉnh Nam Định"
+    },
+    {
+      "id": "H3_041",
+      "group": "insufficient_address",
+      "subgroup": "insuf_province_only",
+      "expected_sufficiency": "address_insufficient",
+      "expected_is_address": false,
+      "text": "Nam Định"
+    },
+    {
+      "id": "H3_042",
+      "group": "insufficient_address",
+      "subgroup": "insuf_province_only",
+      "expected_sufficiency": "address_insufficient",
+      "expected_is_address": false,
+      "text": "Tỉnh Tuyên Quang"
+    },
+    {
+      "id": "H3_043",
+      "group": "insufficient_address",
+      "subgroup": "insuf_province_only",
+      "expected_sufficiency": "address_insufficient",
+      "expected_is_address": false,
+      "text": "Tuyên Quang"
+    },
+    {
+      "id": "H3_044",
+      "group": "insufficient_address",
+      "subgroup": "insuf_province_only",
+      "expected_sufficiency": "address_insufficient",
+      "expected_is_address": false,
+      "text": "Tỉnh Lai Châu"
+    },
+    {
+      "id": "H3_045",
+      "group": "insufficient_address",
+      "subgroup": "insuf_province_only",
+      "expected_sufficiency": "address_insufficient",
+      "expected_is_address": false,
+      "text": "Lai Châu"
+    },
+    {
+      "id": "H3_046",
+      "group": "insufficient_address",
+      "subgroup": "insuf_province_only",
+      "expected_sufficiency": "address_insufficient",
+      "expected_is_address": false,
+      "text": "Tỉnh Lạng Sơn"
+    },
+    {
+      "id": "H3_047",
+      "group": "insufficient_address",
+      "subgroup": "insuf_province_only",
+      "expected_sufficiency": "address_insufficient",
+      "expected_is_address": false,
+      "text": "Lạng Sơn"
+    },
+    {
+      "id": "H3_048",
+      "group": "insufficient_address",
+      "subgroup": "insuf_province_only",
+      "expected_sufficiency": "address_insufficient",
+      "expected_is_address": false,
+      "text": "Tỉnh Thanh Hóa"
+    },
+    {
+      "id": "H3_049",
+      "group": "insufficient_address",
+      "subgroup": "insuf_province_only",
+      "expected_sufficiency": "address_insufficient",
+      "expected_is_address": false,
+      "text": "Thanh Hóa"
+    },
+    {
+      "id": "H3_050",
+      "group": "insufficient_address",
+      "subgroup": "insuf_province_only",
+      "expected_sufficiency": "address_insufficient",
+      "expected_is_address": false,
+      "text": "Thành phố Hà Nội"
+    },
+    {
+      "id": "H3_051",
+      "group": "insufficient_address",
+      "subgroup": "insuf_province_only",
+      "expected_sufficiency": "address_insufficient",
+      "expected_is_address": false,
+      "text": "Hà Nội"
+    },
+    {
+      "id": "H3_052",
+      "group": "insufficient_address",
+      "subgroup": "insuf_province_only",
+      "expected_sufficiency": "address_insufficient",
+      "expected_is_address": false,
+      "text": "Tỉnh Gia Lai"
+    },
+    {
+      "id": "H3_053",
+      "group": "insufficient_address",
+      "subgroup": "insuf_province_only",
+      "expected_sufficiency": "address_insufficient",
+      "expected_is_address": false,
+      "text": "Gia Lai"
+    },
+    {
+      "id": "H3_054",
+      "group": "insufficient_address",
+      "subgroup": "insuf_province_only",
+      "expected_sufficiency": "address_insufficient",
+      "expected_is_address": false,
+      "text": "Tỉnh Kiên Giang"
+    },
+    {
+      "id": "H3_055",
+      "group": "insufficient_address",
+      "subgroup": "insuf_province_only",
+      "expected_sufficiency": "address_insufficient",
+      "expected_is_address": false,
+      "text": "Kiên Giang"
+    },
+    {
+      "id": "H3_056",
+      "group": "insufficient_address",
+      "subgroup": "insuf_province_only",
+      "expected_sufficiency": "address_insufficient",
+      "expected_is_address": false,
+      "text": "Tỉnh Bắc Giang"
+    },
+    {
+      "id": "H3_057",
+      "group": "insufficient_address",
+      "subgroup": "insuf_province_only",
+      "expected_sufficiency": "address_insufficient",
+      "expected_is_address": false,
+      "text": "Bắc Giang"
+    },
+    {
+      "id": "H3_058",
+      "group": "insufficient_address",
+      "subgroup": "insuf_province_only",
+      "expected_sufficiency": "address_insufficient",
+      "expected_is_address": false,
+      "text": "Tỉnh Vĩnh Long"
+    },
+    {
+      "id": "H3_059",
+      "group": "insufficient_address",
+      "subgroup": "insuf_province_only",
+      "expected_sufficiency": "address_insufficient",
+      "expected_is_address": false,
+      "text": "Vĩnh Long"
+    },
+    {
+      "id": "H3_060",
+      "group": "insufficient_address",
+      "subgroup": "insuf_province_only",
+      "expected_sufficiency": "address_insufficient",
+      "expected_is_address": false,
+      "text": "Tỉnh Quảng Ngãi"
+    },
+    {
+      "id": "H3_061",
+      "group": "insufficient_address",
+      "subgroup": "insuf_district_only",
+      "expected_sufficiency": "address_insufficient",
+      "expected_is_address": false,
+      "text": "Thành phố Tam Kỳ"
+    },
+    {
+      "id": "H3_062",
+      "group": "insufficient_address",
+      "subgroup": "insuf_district_only",
+      "expected_sufficiency": "address_insufficient",
+      "expected_is_address": false,
+      "text": "Buôn Hồ, Đắk Lắk"
+    },
+    {
+      "id": "H3_063",
+      "group": "insufficient_address",
+      "subgroup": "insuf_district_only",
+      "expected_sufficiency": "address_insufficient",
+      "expected_is_address": false,
+      "text": "Huyện Đông Hải"
+    },
+    {
+      "id": "H3_064",
+      "group": "insufficient_address",
+      "subgroup": "insuf_district_only",
+      "expected_sufficiency": "address_insufficient",
+      "expected_is_address": false,
+      "text": "Mường Tè, Lai Châu"
+    },
+    {
+      "id": "H3_065",
+      "group": "insufficient_address",
+      "subgroup": "insuf_district_only",
+      "expected_sufficiency": "address_insufficient",
+      "expected_is_address": false,
+      "text": "Huyện Đô Lương"
+    },
+    {
+      "id": "H3_066",
+      "group": "insufficient_address",
+      "subgroup": "insuf_district_only",
+      "expected_sufficiency": "address_insufficient",
+      "expected_is_address": false,
+      "text": "Hà Đông, Hà Nội"
+    },
+    {
+      "id": "H3_067",
+      "group": "insufficient_address",
+      "subgroup": "insuf_district_only",
+      "expected_sufficiency": "address_insufficient",
+      "expected_is_address": false,
+      "text": "Huyện Lâm Hà"
+    },
+    {
+      "id": "H3_068",
+      "group": "insufficient_address",
+      "subgroup": "insuf_district_only",
+      "expected_sufficiency": "address_insufficient",
+      "expected_is_address": false,
+      "text": "Văn Chấn, Yên Bái"
+    },
+    {
+      "id": "H3_069",
+      "group": "insufficient_address",
+      "subgroup": "insuf_district_only",
+      "expected_sufficiency": "address_insufficient",
+      "expected_is_address": false,
+      "text": "Thị xã Hòa Thành"
+    },
+    {
+      "id": "H3_070",
+      "group": "insufficient_address",
+      "subgroup": "insuf_district_only",
+      "expected_sufficiency": "address_insufficient",
+      "expected_is_address": false,
+      "text": "M'Đrắk, Đắk Lắk"
+    },
+    {
+      "id": "H3_071",
+      "group": "insufficient_address",
+      "subgroup": "insuf_district_only",
+      "expected_sufficiency": "address_insufficient",
+      "expected_is_address": false,
+      "text": "Huyện Định Hóa"
+    },
+    {
+      "id": "H3_072",
+      "group": "insufficient_address",
+      "subgroup": "insuf_district_only",
+      "expected_sufficiency": "address_insufficient",
+      "expected_is_address": false,
+      "text": "Thủ Đức, Hồ Chí Minh"
+    },
+    {
+      "id": "H3_073",
+      "group": "insufficient_address",
+      "subgroup": "insuf_district_only",
+      "expected_sufficiency": "address_insufficient",
+      "expected_is_address": false,
+      "text": "Huyện Bình Đại"
+    },
+    {
+      "id": "H3_074",
+      "group": "insufficient_address",
+      "subgroup": "insuf_district_only",
+      "expected_sufficiency": "address_insufficient",
+      "expected_is_address": false,
+      "text": "Đắk Song, Đắk Nông"
+    },
+    {
+      "id": "H3_075",
+      "group": "insufficient_address",
+      "subgroup": "insuf_district_only",
+      "expected_sufficiency": "address_insufficient",
+      "expected_is_address": false,
+      "text": "Huyện Cẩm Xuyên"
+    },
+    {
+      "id": "H3_076",
+      "group": "insufficient_address",
+      "subgroup": "insuf_district_only",
+      "expected_sufficiency": "address_insufficient",
+      "expected_is_address": false,
+      "text": "Ninh Hải, Ninh Thuận"
+    },
+    {
+      "id": "H3_077",
+      "group": "insufficient_address",
+      "subgroup": "insuf_district_only",
+      "expected_sufficiency": "address_insufficient",
+      "expected_is_address": false,
+      "text": "Thành phố Phúc Yên"
+    },
+    {
+      "id": "H3_078",
+      "group": "insufficient_address",
+      "subgroup": "insuf_district_only",
+      "expected_sufficiency": "address_insufficient",
+      "expected_is_address": false,
+      "text": "Hai Bà Trưng, Hà Nội"
+    },
+    {
+      "id": "H3_079",
+      "group": "insufficient_address",
+      "subgroup": "insuf_district_only",
+      "expected_sufficiency": "address_insufficient",
+      "expected_is_address": false,
+      "text": "Huyện Tri Tôn"
+    },
+    {
+      "id": "H3_080",
+      "group": "insufficient_address",
+      "subgroup": "insuf_district_only",
+      "expected_sufficiency": "address_insufficient",
+      "expected_is_address": false,
+      "text": "Ân Thi, Hưng Yên"
+    },
+    {
+      "id": "H3_081",
+      "group": "insufficient_address",
+      "subgroup": "insuf_fragment_only",
+      "expected_sufficiency": "address_insufficient",
+      "expected_is_address": false,
+      "text": "ngõ 12"
+    },
+    {
+      "id": "H3_082",
+      "group": "insufficient_address",
+      "subgroup": "insuf_fragment_only",
+      "expected_sufficiency": "address_insufficient",
+      "expected_is_address": false,
+      "text": "Thôn 7"
+    },
+    {
+      "id": "H3_083",
+      "group": "insufficient_address",
+      "subgroup": "insuf_fragment_only",
+      "expected_sufficiency": "address_insufficient",
+      "expected_is_address": false,
+      "text": "thôn 3"
+    },
+    {
+      "id": "H3_084",
+      "group": "insufficient_address",
+      "subgroup": "insuf_fragment_only",
+      "expected_sufficiency": "address_insufficient",
+      "expected_is_address": false,
+      "text": "khu phố 3"
+    },
+    {
+      "id": "H3_085",
+      "group": "insufficient_address",
+      "subgroup": "insuf_fragment_only",
+      "expected_sufficiency": "address_insufficient",
+      "expected_is_address": false,
+      "text": "xóm 4"
+    },
+    {
+      "id": "H3_086",
+      "group": "insufficient_address",
+      "subgroup": "insuf_fragment_only",
+      "expected_sufficiency": "address_insufficient",
+      "expected_is_address": false,
+      "text": "ấp 2"
+    },
+    {
+      "id": "H3_087",
+      "group": "insufficient_address",
+      "subgroup": "insuf_fragment_only",
+      "expected_sufficiency": "address_insufficient",
+      "expected_is_address": false,
+      "text": "tổ dân phố 5"
+    },
+    {
+      "id": "H3_088",
+      "group": "insufficient_address",
+      "subgroup": "insuf_fragment_only",
+      "expected_sufficiency": "address_insufficient",
+      "expected_is_address": false,
+      "text": "hẻm 28"
+    },
+    {
+      "id": "H3_089",
+      "group": "insufficient_address",
+      "subgroup": "insuf_fragment_only",
+      "expected_sufficiency": "address_insufficient",
+      "expected_is_address": false,
+      "text": "tầng 4"
+    },
+    {
+      "id": "H3_090",
+      "group": "insufficient_address",
+      "subgroup": "insuf_fragment_only",
+      "expected_sufficiency": "address_insufficient",
+      "expected_is_address": false,
+      "text": "đường Lê Lợi"
+    },
+    {
+      "id": "H3_091",
+      "group": "insufficient_address",
+      "subgroup": "insuf_fragment_only",
+      "expected_sufficiency": "address_insufficient",
+      "expected_is_address": false,
+      "text": "lô B2"
+    },
+    {
+      "id": "H3_092",
+      "group": "insufficient_address",
+      "subgroup": "insuf_fragment_only",
+      "expected_sufficiency": "address_insufficient",
+      "expected_is_address": false,
+      "text": "chung cư A1"
+    },
+    {
+      "id": "H3_093",
+      "group": "insufficient_address",
+      "subgroup": "insuf_fragment_only",
+      "expected_sufficiency": "address_insufficient",
+      "expected_is_address": false,
+      "text": "Ngách 104/7"
+    },
+    {
+      "id": "H3_094",
+      "group": "insufficient_address",
+      "subgroup": "insuf_fragment_only",
+      "expected_sufficiency": "address_insufficient",
+      "expected_is_address": false,
+      "text": "Ngõ 37"
+    },
+    {
+      "id": "H3_095",
+      "group": "insufficient_address",
+      "subgroup": "insuf_fragment_only",
+      "expected_sufficiency": "address_insufficient",
+      "expected_is_address": false,
+      "text": "ngo 123"
+    },
+    {
+      "id": "H3_096",
+      "group": "insufficient_address",
+      "subgroup": "insuf_fragment_only",
+      "expected_sufficiency": "address_insufficient",
+      "expected_is_address": false,
+      "text": "Hẻm 94/5"
+    },
+    {
+      "id": "H3_097",
+      "group": "insufficient_address",
+      "subgroup": "insuf_fragment_only",
+      "expected_sufficiency": "address_insufficient",
+      "expected_is_address": false,
+      "text": "Thôn 11"
+    },
+    {
+      "id": "H3_098",
+      "group": "insufficient_address",
+      "subgroup": "insuf_fragment_only",
+      "expected_sufficiency": "address_insufficient",
+      "expected_is_address": false,
+      "text": "Ấp 5"
+    },
+    {
+      "id": "H3_099",
+      "group": "insufficient_address",
+      "subgroup": "insuf_fragment_only",
+      "expected_sufficiency": "address_insufficient",
+      "expected_is_address": false,
+      "text": "Xóm 8"
+    },
+    {
+      "id": "H3_100",
+      "group": "insufficient_address",
+      "subgroup": "insuf_fragment_only",
+      "expected_sufficiency": "address_insufficient",
+      "expected_is_address": false,
+      "text": "Tổ 7"
+    },
+    {
+      "id": "H3_101",
+      "group": "insufficient_address",
+      "subgroup": "insuf_fragment_only",
+      "expected_sufficiency": "address_insufficient",
+      "expected_is_address": false,
+      "text": "Kiệt 18"
+    },
+    {
+      "id": "H3_102",
+      "group": "insufficient_address",
+      "subgroup": "insuf_fragment_only",
+      "expected_sufficiency": "address_insufficient",
+      "expected_is_address": false,
+      "text": "Số nhà 141"
+    },
+    {
+      "id": "H3_103",
+      "group": "insufficient_address",
+      "subgroup": "insuf_fragment_only",
+      "expected_sufficiency": "address_insufficient",
+      "expected_is_address": false,
+      "text": "Tầng 15 Block A"
+    },
+    {
+      "id": "H3_104",
+      "group": "insufficient_address",
+      "subgroup": "insuf_fragment_only",
+      "expected_sufficiency": "address_insufficient",
+      "expected_is_address": false,
+      "text": "Đường Quang Trung"
+    },
+    {
+      "id": "H3_105",
+      "group": "insufficient_address",
+      "subgroup": "insuf_fragment_only",
+      "expected_sufficiency": "address_insufficient",
+      "expected_is_address": false,
+      "text": "Ngách 188/7"
+    },
+    {
+      "id": "H3_106",
+      "group": "insufficient_address",
+      "subgroup": "insuf_fragment_only",
+      "expected_sufficiency": "address_insufficient",
+      "expected_is_address": false,
+      "text": "Ngõ 217"
+    },
+    {
+      "id": "H3_107",
+      "group": "insufficient_address",
+      "subgroup": "insuf_fragment_only",
+      "expected_sufficiency": "address_insufficient",
+      "expected_is_address": false,
+      "text": "ngo 128"
+    },
+    {
+      "id": "H3_108",
+      "group": "insufficient_address",
+      "subgroup": "insuf_fragment_only",
+      "expected_sufficiency": "address_insufficient",
+      "expected_is_address": false,
+      "text": "Hẻm 183/4"
+    },
+    {
+      "id": "H3_109",
+      "group": "insufficient_address",
+      "subgroup": "insuf_fragment_only",
+      "expected_sufficiency": "address_insufficient",
+      "expected_is_address": false,
+      "text": "Thôn 12"
+    },
+    {
+      "id": "H3_110",
+      "group": "insufficient_address",
+      "subgroup": "insuf_fragment_only",
+      "expected_sufficiency": "address_insufficient",
+      "expected_is_address": false,
+      "text": "Ấp 4"
+    },
+    {
+      "id": "H3_111",
+      "group": "insufficient_address",
+      "subgroup": "insuf_fragment_only",
+      "expected_sufficiency": "address_insufficient",
+      "expected_is_address": false,
+      "text": "Xóm 5"
+    },
+    {
+      "id": "H3_112",
+      "group": "insufficient_address",
+      "subgroup": "insuf_fragment_only",
+      "expected_sufficiency": "address_insufficient",
+      "expected_is_address": false,
+      "text": "Khu phố 9"
+    },
+    {
+      "id": "H3_113",
+      "group": "insufficient_address",
+      "subgroup": "insuf_fragment_only",
+      "expected_sufficiency": "address_insufficient",
+      "expected_is_address": false,
+      "text": "Tổ 1"
+    },
+    {
+      "id": "H3_114",
+      "group": "insufficient_address",
+      "subgroup": "insuf_fragment_only",
+      "expected_sufficiency": "address_insufficient",
+      "expected_is_address": false,
+      "text": "Kiệt 2"
+    },
+    {
+      "id": "H3_115",
+      "group": "insufficient_address",
+      "subgroup": "insuf_fragment_only",
+      "expected_sufficiency": "address_insufficient",
+      "expected_is_address": false,
+      "text": "Số nhà 223"
+    },
+    {
+      "id": "H3_116",
+      "group": "insufficient_address",
+      "subgroup": "insuf_fragment_only",
+      "expected_sufficiency": "address_insufficient",
+      "expected_is_address": false,
+      "text": "Tầng 5 Block A"
+    },
+    {
+      "id": "H3_117",
+      "group": "insufficient_address",
+      "subgroup": "insuf_fragment_only",
+      "expected_sufficiency": "address_insufficient",
+      "expected_is_address": false,
+      "text": "Đường Tô Hiệu"
+    },
+    {
+      "id": "H3_118",
+      "group": "insufficient_address",
+      "subgroup": "insuf_fragment_only",
+      "expected_sufficiency": "address_insufficient",
+      "expected_is_address": false,
+      "text": "Ngách 238/1"
+    },
+    {
+      "id": "H3_119",
+      "group": "insufficient_address",
+      "subgroup": "insuf_fragment_only",
+      "expected_sufficiency": "address_insufficient",
+      "expected_is_address": false,
+      "text": "Ngõ 114"
+    },
+    {
+      "id": "H3_120",
+      "group": "insufficient_address",
+      "subgroup": "insuf_fragment_only",
+      "expected_sufficiency": "address_insufficient",
+      "expected_is_address": false,
+      "text": "ngo 171"
+    },
+    {
+      "id": "H4_001",
+      "group": "garbage_and_chat",
+      "subgroup": "mandatory_garbage",
+      "expected_sufficiency": "not_address",
+      "expected_is_address": false,
+      "text": "73"
+    },
+    {
+      "id": "H4_002",
+      "group": "garbage_and_chat",
+      "subgroup": "mandatory_garbage",
+      "expected_sufficiency": "not_address",
+      "expected_is_address": false,
+      "text": "10"
+    },
+    {
+      "id": "H4_003",
+      "group": "garbage_and_chat",
+      "subgroup": "mandatory_garbage",
+      "expected_sufficiency": "not_address",
+      "expected_is_address": false,
+      "text": "K"
+    },
+    {
+      "id": "H4_004",
+      "group": "garbage_and_chat",
+      "subgroup": "mandatory_garbage",
+      "expected_sufficiency": "not_address",
+      "expected_is_address": false,
+      "text": "Hi"
+    },
+    {
+      "id": "H4_005",
+      "group": "garbage_and_chat",
+      "subgroup": "mandatory_garbage",
+      "expected_sufficiency": "not_address",
+      "expected_is_address": false,
+      "text": "Ok"
+    },
+    {
+      "id": "H4_006",
+      "group": "garbage_and_chat",
+      "subgroup": "mandatory_garbage",
+      "expected_sufficiency": "not_address",
+      "expected_is_address": false,
+      "text": "Jean"
+    },
+    {
+      "id": "H4_007",
+      "group": "garbage_and_chat",
+      "subgroup": "mandatory_garbage",
+      "expected_sufficiency": "not_address",
+      "expected_is_address": false,
+      "text": "Xom"
+    },
+    {
+      "id": "H4_008",
+      "group": "garbage_and_chat",
+      "subgroup": "mandatory_garbage",
+      "expected_sufficiency": "not_address",
+      "expected_is_address": false,
+      "text": "Xin giá"
+    },
+    {
+      "id": "H4_009",
+      "group": "garbage_and_chat",
+      "subgroup": "mandatory_garbage",
+      "expected_sufficiency": "not_address",
+      "expected_is_address": false,
+      "text": "Cho mình 3 chai nướng BBQ"
+    },
+    {
+      "id": "H4_010",
+      "group": "garbage_and_chat",
+      "subgroup": "mandatory_garbage",
+      "expected_sufficiency": "not_address",
+      "expected_is_address": false,
+      "text": "ok shop"
+    },
+    {
+      "id": "H4_011",
+      "group": "garbage_and_chat",
+      "subgroup": "mandatory_garbage",
+      "expected_sufficiency": "not_address",
+      "expected_is_address": false,
+      "text": "ship nhanh giúp"
+    },
+    {
+      "id": "H4_012",
+      "group": "garbage_and_chat",
+      "subgroup": "chat_garbage",
+      "expected_sufficiency": "not_address",
+      "expected_is_address": false,
+      "text": "1"
+    },
+    {
+      "id": "H4_013",
+      "group": "garbage_and_chat",
+      "subgroup": "chat_garbage",
+      "expected_sufficiency": "not_address",
+      "expected_is_address": false,
+      "text": "99"
+    },
+    {
+      "id": "H4_014",
+      "group": "garbage_and_chat",
+      "subgroup": "chat_garbage",
+      "expected_sufficiency": "not_address",
+      "expected_is_address": false,
+      "text": "0"
+    },
+    {
+      "id": "H4_015",
+      "group": "garbage_and_chat",
+      "subgroup": "chat_garbage",
+      "expected_sufficiency": "not_address",
+      "expected_is_address": false,
+      "text": "abc"
+    },
+    {
+      "id": "H4_016",
+      "group": "garbage_and_chat",
+      "subgroup": "chat_garbage",
+      "expected_sufficiency": "not_address",
+      "expected_is_address": false,
+      "text": "xyz"
+    },
+    {
+      "id": "H4_017",
+      "group": "garbage_and_chat",
+      "subgroup": "chat_garbage",
+      "expected_sufficiency": "not_address",
+      "expected_is_address": false,
+      "text": "test"
+    },
+    {
+      "id": "H4_018",
+      "group": "garbage_and_chat",
+      "subgroup": "chat_garbage",
+      "expected_sufficiency": "not_address",
+      "expected_is_address": false,
+      "text": "hello"
+    },
+    {
+      "id": "H4_019",
+      "group": "garbage_and_chat",
+      "subgroup": "chat_garbage",
+      "expected_sufficiency": "not_address",
+      "expected_is_address": false,
+      "text": "alo"
+    },
+    {
+      "id": "H4_020",
+      "group": "garbage_and_chat",
+      "subgroup": "chat_garbage",
+      "expected_sufficiency": "not_address",
+      "expected_is_address": false,
+      "text": "dạ"
+    },
+    {
+      "id": "H4_021",
+      "group": "garbage_and_chat",
+      "subgroup": "chat_garbage",
+      "expected_sufficiency": "not_address",
+      "expected_is_address": false,
+      "text": "vâng ạ"
+    },
+    {
+      "id": "H4_022",
+      "group": "garbage_and_chat",
+      "subgroup": "chat_garbage",
+      "expected_sufficiency": "not_address",
+      "expected_is_address": false,
+      "text": "ok bạn"
+    },
+    {
+      "id": "H4_023",
+      "group": "garbage_and_chat",
+      "subgroup": "chat_garbage",
+      "expected_sufficiency": "not_address",
+      "expected_is_address": false,
+      "text": "chốt"
+    },
+    {
+      "id": "H4_024",
+      "group": "garbage_and_chat",
+      "subgroup": "chat_garbage",
+      "expected_sufficiency": "not_address",
+      "expected_is_address": false,
+      "text": "hủy"
+    },
+    {
+      "id": "H4_025",
+      "group": "garbage_and_chat",
+      "subgroup": "chat_garbage",
+      "expected_sufficiency": "not_address",
+      "expected_is_address": false,
+      "text": "xin chào shop"
+    },
+    {
+      "id": "H4_026",
+      "group": "garbage_and_chat",
+      "subgroup": "chat_garbage",
+      "expected_sufficiency": "not_address",
+      "expected_is_address": false,
+      "text": "inbox giá"
+    },
+    {
+      "id": "H4_027",
+      "group": "garbage_and_chat",
+      "subgroup": "chat_garbage",
+      "expected_sufficiency": "not_address",
+      "expected_is_address": false,
+      "text": "giá sao ạ"
+    },
+    {
+      "id": "H4_028",
+      "group": "garbage_and_chat",
+      "subgroup": "chat_garbage",
+      "expected_sufficiency": "not_address",
+      "expected_is_address": false,
+      "text": "còn hàng không shop"
+    },
+    {
+      "id": "H4_029",
+      "group": "garbage_and_chat",
+      "subgroup": "chat_garbage",
+      "expected_sufficiency": "not_address",
+      "expected_is_address": false,
+      "text": "còn size M không"
+    },
+    {
+      "id": "H4_030",
+      "group": "garbage_and_chat",
+      "subgroup": "chat_garbage",
+      "expected_sufficiency": "not_address",
+      "expected_is_address": false,
+      "text": "màu trắng còn không bạn"
+    },
+    {
+      "id": "H4_031",
+      "group": "garbage_and_chat",
+      "subgroup": "chat_garbage",
+      "expected_sufficiency": "not_address",
+      "expected_is_address": false,
+      "text": "cho xem ảnh thật đi"
+    },
+    {
+      "id": "H4_032",
+      "group": "garbage_and_chat",
+      "subgroup": "chat_garbage",
+      "expected_sufficiency": "not_address",
+      "expected_is_address": false,
+      "text": "gửi link giúp mình"
+    },
+    {
+      "id": "H4_033",
+      "group": "garbage_and_chat",
+      "subgroup": "chat_garbage",
+      "expected_sufficiency": "not_address",
+      "expected_is_address": false,
+      "text": "tổng hết bao nhiêu"
+    },
+    {
+      "id": "H4_034",
+      "group": "garbage_and_chat",
+      "subgroup": "chat_garbage",
+      "expected_sufficiency": "not_address",
+      "expected_is_address": false,
+      "text": "bao giờ có hàng lại"
+    },
+    {
+      "id": "H4_035",
+      "group": "garbage_and_chat",
+      "subgroup": "chat_garbage",
+      "expected_sufficiency": "not_address",
+      "expected_is_address": false,
+      "text": "shop mở cửa mấy giờ"
+    },
+    {
+      "id": "H4_036",
+      "group": "garbage_and_chat",
+      "subgroup": "chat_garbage",
+      "expected_sufficiency": "not_address",
+      "expected_is_address": false,
+      "text": "đặt 2 cái màu đen"
+    },
+    {
+      "id": "H4_037",
+      "group": "garbage_and_chat",
+      "subgroup": "chat_garbage",
+      "expected_sufficiency": "not_address",
+      "expected_is_address": false,
+      "text": "lấy 1 hộp nha"
+    },
+    {
+      "id": "H4_038",
+      "group": "garbage_and_chat",
+      "subgroup": "chat_garbage",
+      "expected_sufficiency": "not_address",
+      "expected_is_address": false,
+      "text": "cho 5 gói loại cay"
+    },
+    {
+      "id": "H4_039",
+      "group": "garbage_and_chat",
+      "subgroup": "chat_garbage",
+      "expected_sufficiency": "not_address",
+      "expected_is_address": false,
+      "text": "ship cod không ạ"
+    },
+    {
+      "id": "H4_040",
+      "group": "garbage_and_chat",
+      "subgroup": "chat_garbage",
+      "expected_sufficiency": "not_address",
+      "expected_is_address": false,
+      "text": "freeship nha shop"
+    },
+    {
+      "id": "H4_041",
+      "group": "garbage_and_chat",
+      "subgroup": "chat_garbage",
+      "expected_sufficiency": "not_address",
+      "expected_is_address": false,
+      "text": "giảm giá đi shop ơi"
+    },
+    {
+      "id": "H4_042",
+      "group": "garbage_and_chat",
+      "subgroup": "chat_garbage",
+      "expected_sufficiency": "not_address",
+      "expected_is_address": false,
+      "text": "mã giảm giá là gì"
+    },
+    {
+      "id": "H4_043",
+      "group": "garbage_and_chat",
+      "subgroup": "chat_garbage",
+      "expected_sufficiency": "not_address",
+      "expected_is_address": false,
+      "text": "chờ mình chuyển khoản"
+    },
+    {
+      "id": "H4_044",
+      "group": "garbage_and_chat",
+      "subgroup": "chat_garbage",
+      "expected_sufficiency": "not_address",
+      "expected_is_address": false,
+      "text": "đã ck rồi nhé"
+    },
+    {
+      "id": "H4_045",
+      "group": "garbage_and_chat",
+      "subgroup": "chat_garbage",
+      "expected_sufficiency": "not_address",
+      "expected_is_address": false,
+      "text": "kiểm tra giúp em"
+    },
+    {
+      "id": "H4_046",
+      "group": "garbage_and_chat",
+      "subgroup": "chat_garbage",
+      "expected_sufficiency": "not_address",
+      "expected_is_address": false,
+      "text": "sao lâu nhận được vậy"
+    },
+    {
+      "id": "H4_047",
+      "group": "garbage_and_chat",
+      "subgroup": "chat_garbage",
+      "expected_sufficiency": "not_address",
+      "expected_is_address": false,
+      "text": "đơn của em tới đâu rồi"
+    },
+    {
+      "id": "H4_048",
+      "group": "garbage_and_chat",
+      "subgroup": "chat_garbage",
+      "expected_sufficiency": "not_address",
+      "expected_is_address": false,
+      "text": "mã vận đơn VN123456789"
+    },
+    {
+      "id": "H4_049",
+      "group": "garbage_and_chat",
+      "subgroup": "chat_garbage",
+      "expected_sufficiency": "not_address",
+      "expected_is_address": false,
+      "text": "GHN88291032"
+    },
+    {
+      "id": "H4_050",
+      "group": "garbage_and_chat",
+      "subgroup": "chat_garbage",
+      "expected_sufficiency": "not_address",
+      "expected_is_address": false,
+      "text": "0901234567"
+    },
+    {
+      "id": "H4_051",
+      "group": "garbage_and_chat",
+      "subgroup": "chat_garbage",
+      "expected_sufficiency": "not_address",
+      "expected_is_address": false,
+      "text": "0356789123"
+    },
+    {
+      "id": "H4_052",
+      "group": "garbage_and_chat",
+      "subgroup": "chat_garbage",
+      "expected_sufficiency": "not_address",
+      "expected_is_address": false,
+      "text": "+84 912 345 678"
+    },
+    {
+      "id": "H4_053",
+      "group": "garbage_and_chat",
+      "subgroup": "chat_garbage",
+      "expected_sufficiency": "not_address",
+      "expected_is_address": false,
+      "text": "muahang@yahoo.com"
+    },
+    {
+      "id": "H4_054",
+      "group": "garbage_and_chat",
+      "subgroup": "chat_garbage",
+      "expected_sufficiency": "not_address",
+      "expected_is_address": false,
+      "text": "shopabc.vn"
+    },
+    {
+      "id": "H4_055",
+      "group": "garbage_and_chat",
+      "subgroup": "chat_garbage",
+      "expected_sufficiency": "not_address",
+      "expected_is_address": false,
+      "text": "https://tiktok.com/@shoptest"
+    },
+    {
+      "id": "H4_056",
+      "group": "garbage_and_chat",
+      "subgroup": "chat_garbage",
+      "expected_sufficiency": "not_address",
+      "expected_is_address": false,
+      "text": "180.000đ"
+    },
+    {
+      "id": "H4_057",
+      "group": "garbage_and_chat",
+      "subgroup": "chat_garbage",
+      "expected_sufficiency": "not_address",
+      "expected_is_address": false,
+      "text": "499k"
+    },
+    {
+      "id": "H4_058",
+      "group": "garbage_and_chat",
+      "subgroup": "chat_garbage",
+      "expected_sufficiency": "not_address",
+      "expected_is_address": false,
+      "text": "1tr2"
+    },
+    {
+      "id": "H4_059",
+      "group": "garbage_and_chat",
+      "subgroup": "chat_garbage",
+      "expected_sufficiency": "not_address",
+      "expected_is_address": false,
+      "text": "20/11/2026"
+    },
+    {
+      "id": "H4_060",
+      "group": "garbage_and_chat",
+      "subgroup": "chat_garbage",
+      "expected_sufficiency": "not_address",
+      "expected_is_address": false,
+      "text": "12:30"
+    },
+    {
+      "id": "H4_061",
+      "group": "garbage_and_chat",
+      "subgroup": "chat_garbage",
+      "expected_sufficiency": "not_address",
+      "expected_is_address": false,
+      "text": "ở chỗ cũ nha"
+    },
+    {
+      "id": "H4_062",
+      "group": "garbage_and_chat",
+      "subgroup": "chat_garbage",
+      "expected_sufficiency": "not_address",
+      "expected_is_address": false,
+      "text": "giao như tuần trước"
+    },
+    {
+      "id": "H4_063",
+      "group": "garbage_and_chat",
+      "subgroup": "chat_garbage",
+      "expected_sufficiency": "not_address",
+      "expected_is_address": false,
+      "text": "gửi về nhà cũ nhé"
+    },
+    {
+      "id": "H4_064",
+      "group": "garbage_and_chat",
+      "subgroup": "chat_garbage",
+      "expected_sufficiency": "not_address",
+      "expected_is_address": false,
+      "text": "để ngoài cổng giùm"
+    },
+    {
+      "id": "H4_065",
+      "group": "garbage_and_chat",
+      "subgroup": "chat_garbage",
+      "expected_sufficiency": "not_address",
+      "expected_is_address": false,
+      "text": "gọi mình trước khi tới"
+    },
+    {
+      "id": "H4_066",
+      "group": "garbage_and_chat",
+      "subgroup": "chat_garbage",
+      "expected_sufficiency": "not_address",
+      "expected_is_address": false,
+      "text": "tầm chiều mình mới về"
+    },
+    {
+      "id": "H4_067",
+      "group": "garbage_and_chat",
+      "subgroup": "chat_garbage",
+      "expected_sufficiency": "not_address",
+      "expected_is_address": false,
+      "text": "bảo vệ ký nhận hộ"
+    },
+    {
+      "id": "H4_068",
+      "group": "garbage_and_chat",
+      "subgroup": "chat_garbage",
+      "expected_sufficiency": "not_address",
+      "expected_is_address": false,
+      "text": "chút gửi lại địa chỉ"
+    },
+    {
+      "id": "H4_069",
+      "group": "garbage_and_chat",
+      "subgroup": "chat_garbage",
+      "expected_sufficiency": "not_address",
+      "expected_is_address": false,
+      "text": "tối mình nhắn sau"
+    },
+    {
+      "id": "H4_070",
+      "group": "garbage_and_chat",
+      "subgroup": "chat_garbage",
+      "expected_sufficiency": "not_address",
+      "expected_is_address": false,
+      "text": "hẹn thứ 7 nhé"
+    },
+    {
+      "id": "H4_071",
+      "group": "garbage_and_chat",
+      "subgroup": "chat_garbage",
+      "expected_sufficiency": "not_address",
+      "expected_is_address": false,
+      "text": "không cần gấp đâu"
+    },
+    {
+      "id": "H4_072",
+      "group": "garbage_and_chat",
+      "subgroup": "chat_garbage",
+      "expected_sufficiency": "not_address",
+      "expected_is_address": false,
+      "text": "cảm ơn nhiều nha"
+    },
+    {
+      "id": "H4_073",
+      "group": "garbage_and_chat",
+      "subgroup": "chat_garbage",
+      "expected_sufficiency": "not_address",
+      "expected_is_address": false,
+      "text": "ok luôn"
+    },
+    {
+      "id": "H4_074",
+      "group": "garbage_and_chat",
+      "subgroup": "chat_garbage",
+      "expected_sufficiency": "not_address",
+      "expected_is_address": false,
+      "text": "đúng rồi ạ"
+    },
+    {
+      "id": "H4_075",
+      "group": "garbage_and_chat",
+      "subgroup": "chat_garbage",
+      "expected_sufficiency": "not_address",
+      "expected_is_address": false,
+      "text": "sai rồi bạn ơi"
+    },
+    {
+      "id": "H4_076",
+      "group": "garbage_and_chat",
+      "subgroup": "chat_garbage",
+      "expected_sufficiency": "not_address",
+      "expected_is_address": false,
+      "text": "đổi sang màu xanh giúp mình"
+    },
+    {
+      "id": "H4_077",
+      "group": "garbage_and_chat",
+      "subgroup": "chat_garbage",
+      "expected_sufficiency": "not_address",
+      "expected_is_address": false,
+      "text": "lấy 2kg nhé"
+    },
+    {
+      "id": "H4_078",
+      "group": "garbage_and_chat",
+      "subgroup": "chat_garbage",
+      "expected_sufficiency": "not_address",
+      "expected_is_address": false,
+      "text": "chai 500ml"
+    },
+    {
+      "id": "H4_079",
+      "group": "garbage_and_chat",
+      "subgroup": "chat_garbage",
+      "expected_sufficiency": "not_address",
+      "expected_is_address": false,
+      "text": "combo 3 món"
+    },
+    {
+      "id": "H4_080",
+      "group": "garbage_and_chat",
+      "subgroup": "chat_garbage",
+      "expected_sufficiency": "not_address",
+      "expected_is_address": false,
+      "text": "quần jean ống suông"
+    },
+    {
+      "id": "H4_081",
+      "group": "garbage_and_chat",
+      "subgroup": "chat_garbage",
+      "expected_sufficiency": "not_address",
+      "expected_is_address": false,
+      "text": "áo khoác kaki"
+    },
+    {
+      "id": "H4_082",
+      "group": "garbage_and_chat",
+      "subgroup": "chat_garbage",
+      "expected_sufficiency": "not_address",
+      "expected_is_address": false,
+      "text": "giày sneaker trắng size 41"
+    },
+    {
+      "id": "H4_083",
+      "group": "garbage_and_chat",
+      "subgroup": "chat_garbage",
+      "expected_sufficiency": "not_address",
+      "expected_is_address": false,
+      "text": "túi xách nữ da bò"
+    },
+    {
+      "id": "H4_084",
+      "group": "garbage_and_chat",
+      "subgroup": "chat_garbage",
+      "expected_sufficiency": "not_address",
+      "expected_is_address": false,
+      "text": "son môi màu đỏ cam"
+    },
+    {
+      "id": "H4_085",
+      "group": "garbage_and_chat",
+      "subgroup": "chat_garbage",
+      "expected_sufficiency": "not_address",
+      "expected_is_address": false,
+      "text": "kem chống nắng"
+    },
+    {
+      "id": "H4_086",
+      "group": "garbage_and_chat",
+      "subgroup": "chat_garbage",
+      "expected_sufficiency": "not_address",
+      "expected_is_address": false,
+      "text": "nước hoa mini 10ml"
+    },
+    {
+      "id": "H4_087",
+      "group": "garbage_and_chat",
+      "subgroup": "chat_garbage",
+      "expected_sufficiency": "not_address",
+      "expected_is_address": false,
+      "text": "bàn phím cơ bluetooth"
+    },
+    {
+      "id": "H4_088",
+      "group": "garbage_and_chat",
+      "subgroup": "chat_garbage",
+      "expected_sufficiency": "not_address",
+      "expected_is_address": false,
+      "text": "tai nghe không dây"
+    },
+    {
+      "id": "H4_089",
+      "group": "garbage_and_chat",
+      "subgroup": "chat_garbage",
+      "expected_sufficiency": "not_address",
+      "expected_is_address": false,
+      "text": "cáp sạc type c"
+    },
+    {
+      "id": "H4_090",
+      "group": "garbage_and_chat",
+      "subgroup": "chat_garbage",
+      "expected_sufficiency": "not_address",
+      "expected_is_address": false,
+      "text": "ốp lưng trong suốt"
+    },
+    {
+      "id": "H4_091",
+      "group": "garbage_and_chat",
+      "subgroup": "chat_garbage",
+      "expected_sufficiency": "not_address",
+      "expected_is_address": false,
+      "text": "thẻ nhớ 128gb"
+    },
+    {
+      "id": "H4_092",
+      "group": "garbage_and_chat",
+      "subgroup": "chat_garbage",
+      "expected_sufficiency": "not_address",
+      "expected_is_address": false,
+      "text": "chuột gaming"
+    },
+    {
+      "id": "H4_093",
+      "group": "garbage_and_chat",
+      "subgroup": "chat_garbage",
+      "expected_sufficiency": "not_address",
+      "expected_is_address": false,
+      "text": "lót chuột cỡ lớn"
+    },
+    {
+      "id": "H4_094",
+      "group": "garbage_and_chat",
+      "subgroup": "chat_garbage",
+      "expected_sufficiency": "not_address",
+      "expected_is_address": false,
+      "text": "đèn bàn học sinh"
+    },
+    {
+      "id": "H4_095",
+      "group": "garbage_and_chat",
+      "subgroup": "chat_garbage",
+      "expected_sufficiency": "not_address",
+      "expected_is_address": false,
+      "text": "bình giữ nhiệt 1 lít"
+    },
+    {
+      "id": "H4_096",
+      "group": "garbage_and_chat",
+      "subgroup": "chat_garbage",
+      "expected_sufficiency": "not_address",
+      "expected_is_address": false,
+      "text": "ly sứ có nắp"
+    },
+    {
+      "id": "H4_097",
+      "group": "garbage_and_chat",
+      "subgroup": "chat_garbage",
+      "expected_sufficiency": "not_address",
+      "expected_is_address": false,
+      "text": "hộp cơm văn phòng"
+    },
+    {
+      "id": "H4_098",
+      "group": "garbage_and_chat",
+      "subgroup": "chat_garbage",
+      "expected_sufficiency": "not_address",
+      "expected_is_address": false,
+      "text": "nồi chiên không dầu"
+    },
+    {
+      "id": "H4_099",
+      "group": "garbage_and_chat",
+      "subgroup": "chat_garbage",
+      "expected_sufficiency": "not_address",
+      "expected_is_address": false,
+      "text": "máy xay sinh tố mini"
+    },
+    {
+      "id": "H4_100",
+      "group": "garbage_and_chat",
+      "subgroup": "chat_garbage",
+      "expected_sufficiency": "not_address",
+      "expected_is_address": false,
+      "text": "quạt tích điện"
+    },
+    {
+      "id": "H5_001",
+      "group": "hard_negative",
+      "subgroup": "hard_product_place",
+      "expected_sufficiency": "not_address",
+      "expected_is_address": false,
+      "text": "bánh mì Sài Gòn"
+    },
+    {
+      "id": "H5_002",
+      "group": "hard_negative",
+      "subgroup": "hard_product_place",
+      "expected_sufficiency": "not_address",
+      "expected_is_address": false,
+      "text": "mực Cà Mau"
+    },
+    {
+      "id": "H5_003",
+      "group": "hard_negative",
+      "subgroup": "hard_product_place",
+      "expected_sufficiency": "not_address",
+      "expected_is_address": false,
+      "text": "phở Hà Nội"
+    },
+    {
+      "id": "H5_004",
+      "group": "hard_negative",
+      "subgroup": "hard_product_place",
+      "expected_sufficiency": "not_address",
+      "expected_is_address": false,
+      "text": "bún bò Huế"
+    },
+    {
+      "id": "H5_005",
+      "group": "hard_negative",
+      "subgroup": "hard_product_place",
+      "expected_sufficiency": "not_address",
+      "expected_is_address": false,
+      "text": "nước mắm Phú Quốc"
+    },
+    {
+      "id": "H5_006",
+      "group": "hard_negative",
+      "subgroup": "hard_product_place",
+      "expected_sufficiency": "not_address",
+      "expected_is_address": false,
+      "text": "cà phê Buôn Ma Thuột"
+    },
+    {
+      "id": "H5_007",
+      "group": "hard_negative",
+      "subgroup": "hard_product_place",
+      "expected_sufficiency": "not_address",
+      "expected_is_address": false,
+      "text": "nem chua Thanh Hóa"
+    },
+    {
+      "id": "H5_008",
+      "group": "hard_negative",
+      "subgroup": "hard_product_place",
+      "expected_sufficiency": "not_address",
+      "expected_is_address": false,
+      "text": "kẹo dừa Bến Tre"
+    },
+    {
+      "id": "H5_009",
+      "group": "hard_negative",
+      "subgroup": "hard_product_place",
+      "expected_sufficiency": "not_address",
+      "expected_is_address": false,
+      "text": "chè Thái Nguyên"
+    },
+    {
+      "id": "H5_010",
+      "group": "hard_negative",
+      "subgroup": "hard_product_place",
+      "expected_sufficiency": "not_address",
+      "expected_is_address": false,
+      "text": "bánh đậu xanh Hải Dương"
+    },
+    {
+      "id": "H5_011",
+      "group": "hard_negative",
+      "subgroup": "hard_product_place",
+      "expected_sufficiency": "not_address",
+      "expected_is_address": false,
+      "text": "chả mực Hạ Long"
+    },
+    {
+      "id": "H5_012",
+      "group": "hard_negative",
+      "subgroup": "hard_product_place",
+      "expected_sufficiency": "not_address",
+      "expected_is_address": false,
+      "text": "bánh tráng Trảng Bàng Tây Ninh"
+    },
+    {
+      "id": "H5_013",
+      "group": "hard_negative",
+      "subgroup": "hard_product_place",
+      "expected_sufficiency": "not_address",
+      "expected_is_address": false,
+      "text": "nhãn lồng Hưng Yên"
+    },
+    {
+      "id": "H5_014",
+      "group": "hard_negative",
+      "subgroup": "hard_product_place",
+      "expected_sufficiency": "not_address",
+      "expected_is_address": false,
+      "text": "vải thiều Lục Ngạn Bắc Giang"
+    },
+    {
+      "id": "H5_015",
+      "group": "hard_negative",
+      "subgroup": "hard_product_place",
+      "expected_sufficiency": "not_address",
+      "expected_is_address": false,
+      "text": "mì Quảng Đà Nẵng"
+    },
+    {
+      "id": "H5_016",
+      "group": "hard_negative",
+      "subgroup": "hard_product_place",
+      "expected_sufficiency": "not_address",
+      "expected_is_address": false,
+      "text": "cơm tấm Sài Gòn"
+    },
+    {
+      "id": "H5_017",
+      "group": "hard_negative",
+      "subgroup": "hard_product_place",
+      "expected_sufficiency": "not_address",
+      "expected_is_address": false,
+      "text": "bánh pía Sóc Trăng"
+    },
+    {
+      "id": "H5_018",
+      "group": "hard_negative",
+      "subgroup": "hard_product_place",
+      "expected_sufficiency": "not_address",
+      "expected_is_address": false,
+      "text": "cho mình 2 hộp bánh đậu xanh Hải Dương"
+    },
+    {
+      "id": "H5_019",
+      "group": "hard_negative",
+      "subgroup": "hard_product_place",
+      "expected_sufficiency": "not_address",
+      "expected_is_address": false,
+      "text": "đặt 1kg mực một nắng Cà Mau nha shop"
+    },
+    {
+      "id": "H5_020",
+      "group": "hard_negative",
+      "subgroup": "hard_product_place",
+      "expected_sufficiency": "not_address",
+      "expected_is_address": false,
+      "text": "lấy 3 chai nước mắm Phú Quốc loại 1"
+    },
+    {
+      "id": "H5_021",
+      "group": "hard_negative",
+      "subgroup": "hard_product_place",
+      "expected_sufficiency": "not_address",
+      "expected_is_address": false,
+      "text": "ship 2 gói trà Tân Cương Thái Nguyên"
+    },
+    {
+      "id": "H5_022",
+      "group": "hard_negative",
+      "subgroup": "hard_product_place",
+      "expected_sufficiency": "not_address",
+      "expected_is_address": false,
+      "text": "mua 5 bịch kẹo dừa Bến Tre làm quà"
+    },
+    {
+      "id": "H5_023",
+      "group": "hard_negative",
+      "subgroup": "hard_product_place",
+      "expected_sufficiency": "not_address",
+      "expected_is_address": false,
+      "text": "10 cái nem chua Thanh Hóa nhé bạn"
+    },
+    {
+      "id": "H5_024",
+      "group": "hard_negative",
+      "subgroup": "hard_product_place",
+      "expected_sufficiency": "not_address",
+      "expected_is_address": false,
+      "text": "bánh đa cua Hải Phòng giá bao nhiêu 1 hộp"
+    },
+    {
+      "id": "H5_025",
+      "group": "hard_negative",
+      "subgroup": "hard_product_place",
+      "expected_sufficiency": "not_address",
+      "expected_is_address": false,
+      "text": "yến sào Khánh Hòa hộp 6 hũ"
+    },
+    {
+      "id": "H5_026",
+      "group": "hard_negative",
+      "subgroup": "hard_product_place",
+      "expected_sufficiency": "not_address",
+      "expected_is_address": false,
+      "text": "tỏi đen Lý Sơn Quảng Ngãi 500g"
+    },
+    {
+      "id": "H5_027",
+      "group": "hard_negative",
+      "subgroup": "hard_product_place",
+      "expected_sufficiency": "not_address",
+      "expected_is_address": false,
+      "text": "hạt điều rang muối Bình Phước 500gr"
+    },
+    {
+      "id": "H5_028",
+      "group": "hard_negative",
+      "subgroup": "hard_product_place",
+      "expected_sufficiency": "not_address",
+      "expected_is_address": false,
+      "text": "tiêu đen Phú Quốc nguyên hạt"
+    },
+    {
+      "id": "H5_029",
+      "group": "hard_negative",
+      "subgroup": "hard_product_place",
+      "expected_sufficiency": "not_address",
+      "expected_is_address": false,
+      "text": "sầu riêng Ri6 Cần Thơ bao ngon"
+    },
+    {
+      "id": "H5_030",
+      "group": "hard_negative",
+      "subgroup": "hard_product_place",
+      "expected_sufficiency": "not_address",
+      "expected_is_address": false,
+      "text": "xoài cát Hòa Lộc Tiền Giang 3kg"
+    },
+    {
+      "id": "H5_031",
+      "group": "hard_negative",
+      "subgroup": "hard_product_place",
+      "expected_sufficiency": "not_address",
+      "expected_is_address": false,
+      "text": "bưởi da xanh Bến Tre loại 1"
+    },
+    {
+      "id": "H5_032",
+      "group": "hard_negative",
+      "subgroup": "hard_product_place",
+      "expected_sufficiency": "not_address",
+      "expected_is_address": false,
+      "text": "gạo ST25 Sóc Trăng túi 5kg"
+    },
+    {
+      "id": "H5_033",
+      "group": "hard_negative",
+      "subgroup": "hard_product_place",
+      "expected_sufficiency": "not_address",
+      "expected_is_address": false,
+      "text": "rượu sim Phú Quốc chai 750ml"
+    },
+    {
+      "id": "H5_034",
+      "group": "hard_negative",
+      "subgroup": "hard_product_place",
+      "expected_sufficiency": "not_address",
+      "expected_is_address": false,
+      "text": "cá kho làng Vũ Đại Hà Nam"
+    },
+    {
+      "id": "H5_035",
+      "group": "hard_negative",
+      "subgroup": "hard_product_place",
+      "expected_sufficiency": "not_address",
+      "expected_is_address": false,
+      "text": "bánh cốm Hàng Than Hà Nội 10 chiếc"
+    },
+    {
+      "id": "H5_036",
+      "group": "hard_negative",
+      "subgroup": "hard_person_place",
+      "expected_sufficiency": "not_address",
+      "expected_is_address": false,
+      "text": "Nguyễn Trãi"
+    },
+    {
+      "id": "H5_037",
+      "group": "hard_negative",
+      "subgroup": "hard_person_place",
+      "expected_sufficiency": "not_address",
+      "expected_is_address": false,
+      "text": "Lê Lợi"
+    },
+    {
+      "id": "H5_038",
+      "group": "hard_negative",
+      "subgroup": "hard_person_place",
+      "expected_sufficiency": "not_address",
+      "expected_is_address": false,
+      "text": "Trần Hưng Đạo"
+    },
+    {
+      "id": "H5_039",
+      "group": "hard_negative",
+      "subgroup": "hard_person_place",
+      "expected_sufficiency": "not_address",
+      "expected_is_address": false,
+      "text": "Hai Bà Trưng"
+    },
+    {
+      "id": "H5_040",
+      "group": "hard_negative",
+      "subgroup": "hard_person_place",
+      "expected_sufficiency": "not_address",
+      "expected_is_address": false,
+      "text": "Nguyễn Thị Thanh Xuân"
+    },
+    {
+      "id": "H5_041",
+      "group": "hard_negative",
+      "subgroup": "hard_person_place",
+      "expected_sufficiency": "not_address",
+      "expected_is_address": false,
+      "text": "Trần Văn Bình Thạnh"
+    },
+    {
+      "id": "H5_042",
+      "group": "hard_negative",
+      "subgroup": "hard_person_place",
+      "expected_sufficiency": "not_address",
+      "expected_is_address": false,
+      "text": "Lê Hoàng Mai"
+    },
+    {
+      "id": "H5_043",
+      "group": "hard_negative",
+      "subgroup": "hard_person_place",
+      "expected_sufficiency": "not_address",
+      "expected_is_address": false,
+      "text": "Phạm Minh Đức"
+    },
+    {
+      "id": "H5_044",
+      "group": "hard_negative",
+      "subgroup": "hard_person_place",
+      "expected_sufficiency": "not_address",
+      "expected_is_address": false,
+      "text": "Nguyễn Văn Tân Bình"
+    },
+    {
+      "id": "H5_045",
+      "group": "hard_negative",
+      "subgroup": "hard_person_place",
+      "expected_sufficiency": "not_address",
+      "expected_is_address": false,
+      "text": "Võ Thị Phú Nhuận"
+    },
+    {
+      "id": "H5_046",
+      "group": "hard_negative",
+      "subgroup": "hard_person_place",
+      "expected_sufficiency": "not_address",
+      "expected_is_address": false,
+      "text": "Hoàng Văn Long Biên"
+    },
+    {
+      "id": "H5_047",
+      "group": "hard_negative",
+      "subgroup": "hard_person_place",
+      "expected_sufficiency": "not_address",
+      "expected_is_address": false,
+      "text": "Đặng Thị Hồng Hà"
+    },
+    {
+      "id": "H5_048",
+      "group": "hard_negative",
+      "subgroup": "hard_person_place",
+      "expected_sufficiency": "not_address",
+      "expected_is_address": false,
+      "text": "Bùi Quốc Hoàn Kiếm"
+    },
+    {
+      "id": "H5_049",
+      "group": "hard_negative",
+      "subgroup": "hard_person_place",
+      "expected_sufficiency": "not_address",
+      "expected_is_address": false,
+      "text": "Anh Nguyễn Trãi vừa gọi cho mình"
+    },
+    {
+      "id": "H5_050",
+      "group": "hard_negative",
+      "subgroup": "hard_person_place",
+      "expected_sufficiency": "not_address",
+      "expected_is_address": false,
+      "text": "Chị Thanh Xuân đặt 2 áo sơ mi"
+    },
+    {
+      "id": "H5_051",
+      "group": "hard_negative",
+      "subgroup": "hard_person_place",
+      "expected_sufficiency": "not_address",
+      "expected_is_address": false,
+      "text": "Bạn Lộc Ninh nhắn tin hỏi đơn"
+    },
+    {
+      "id": "H5_052",
+      "group": "hard_negative",
+      "subgroup": "hard_person_place",
+      "expected_sufficiency": "not_address",
+      "expected_is_address": false,
+      "text": "Ông Lê Lợi là anh hùng dân tộc"
+    },
+    {
+      "id": "H5_053",
+      "group": "hard_negative",
+      "subgroup": "hard_person_place",
+      "expected_sufficiency": "not_address",
+      "expected_is_address": false,
+      "text": "Bác Hồ từng sống ở Bến Nhà Rồng"
+    },
+    {
+      "id": "H5_054",
+      "group": "hard_negative",
+      "subgroup": "hard_person_place",
+      "expected_sufficiency": "not_address",
+      "expected_is_address": false,
+      "text": "Em tên Hải Châu sinh năm 1998"
+    },
+    {
+      "id": "H5_055",
+      "group": "hard_negative",
+      "subgroup": "hard_person_place",
+      "expected_sufficiency": "not_address",
+      "expected_is_address": false,
+      "text": "Cô Bến Nghé bán tạp hóa gần nhà"
+    },
+    {
+      "id": "H5_056",
+      "group": "hard_negative",
+      "subgroup": "hard_person_place",
+      "expected_sufficiency": "not_address",
+      "expected_is_address": false,
+      "text": "Chú Cầu Giấy mới mua xe hôm qua"
+    },
+    {
+      "id": "H5_057",
+      "group": "hard_negative",
+      "subgroup": "hard_person_place",
+      "expected_sufficiency": "not_address",
+      "expected_is_address": false,
+      "text": "Cháu Đông Anh năm nay học lớp 5"
+    },
+    {
+      "id": "H5_058",
+      "group": "hard_negative",
+      "subgroup": "hard_person_place",
+      "expected_sufficiency": "not_address",
+      "expected_is_address": false,
+      "text": "Anh Bình Chánh là trưởng phòng kỹ thuật"
+    },
+    {
+      "id": "H5_059",
+      "group": "hard_negative",
+      "subgroup": "hard_person_place",
+      "expected_sufficiency": "not_address",
+      "expected_is_address": false,
+      "text": "Nguyễn Thị Minh Khai là chiến sĩ cách mạng"
+    },
+    {
+      "id": "H5_060",
+      "group": "hard_negative",
+      "subgroup": "hard_person_place",
+      "expected_sufficiency": "not_address",
+      "expected_is_address": false,
+      "text": "Vua Quang Trung đại phá quân Thanh"
+    },
+    {
+      "id": "H5_061",
+      "group": "hard_negative",
+      "subgroup": "hard_chat_place",
+      "expected_sufficiency": "not_address",
+      "expected_is_address": false,
+      "text": "Phí ship về Bình Phước bao nhiêu tiền vậy shop?"
+    },
+    {
+      "id": "H5_062",
+      "group": "hard_negative",
+      "subgroup": "hard_chat_place",
+      "expected_sufficiency": "not_address",
+      "expected_is_address": false,
+      "text": "Shop có giao hàng đi Lộc Ninh không ạ?"
+    },
+    {
+      "id": "H5_063",
+      "group": "hard_negative",
+      "subgroup": "hard_chat_place",
+      "expected_sufficiency": "not_address",
+      "expected_is_address": false,
+      "text": "Ship từ Hà Nội vào TP.HCM mất mấy ngày?"
+    },
+    {
+      "id": "H5_064",
+      "group": "hard_negative",
+      "subgroup": "hard_chat_place",
+      "expected_sufficiency": "not_address",
+      "expected_is_address": false,
+      "text": "Bên mình có cửa hàng ở Quận 7 không?"
+    },
+    {
+      "id": "H5_065",
+      "group": "hard_negative",
+      "subgroup": "hard_chat_place",
+      "expected_sufficiency": "not_address",
+      "expected_is_address": false,
+      "text": "Hôm qua tôi mới đi công tác ở Hải Phòng về"
+    },
+    {
+      "id": "H5_066",
+      "group": "hard_negative",
+      "subgroup": "hard_chat_place",
+      "expected_sufficiency": "not_address",
+      "expected_is_address": false,
+      "text": "Cuối tuần gia đình mình đi du lịch Đà Lạt"
+    },
+    {
+      "id": "H5_067",
+      "group": "hard_negative",
+      "subgroup": "hard_chat_place",
+      "expected_sufficiency": "not_address",
+      "expected_is_address": false,
+      "text": "Thời tiết Đà Nẵng hôm nay nắng đẹp lắm"
+    },
+    {
+      "id": "H5_068",
+      "group": "hard_negative",
+      "subgroup": "hard_chat_place",
+      "expected_sufficiency": "not_address",
+      "expected_is_address": false,
+      "text": "Ở Cần Thơ mùa nước nổi rất đẹp"
+    },
+    {
+      "id": "H5_069",
+      "group": "hard_negative",
+      "subgroup": "hard_chat_place",
+      "expected_sufficiency": "not_address",
+      "expected_is_address": false,
+      "text": "Quận Tân Bình chiều nay mưa ngập đường"
+    },
+    {
+      "id": "H5_070",
+      "group": "hard_negative",
+      "subgroup": "hard_chat_place",
+      "expected_sufficiency": "not_address",
+      "expected_is_address": false,
+      "text": "Đường Nguyễn Huệ tối nay cấm xe đi bộ"
+    },
+    {
+      "id": "H5_071",
+      "group": "hard_negative",
+      "subgroup": "hard_chat_place",
+      "expected_sufficiency": "not_address",
+      "expected_is_address": false,
+      "text": "Bạn mình quê ở Nam Định nhưng làm việc tại Bình Dương"
+    },
+    {
+      "id": "H5_072",
+      "group": "hard_negative",
+      "subgroup": "hard_chat_place",
+      "expected_sufficiency": "not_address",
+      "expected_is_address": false,
+      "text": "Chi nhánh Thủ Đức mở cửa đến mấy giờ tối?"
+    },
+    {
+      "id": "H5_073",
+      "group": "hard_negative",
+      "subgroup": "hard_chat_place",
+      "expected_sufficiency": "not_address",
+      "expected_is_address": false,
+      "text": "Cước vận chuyển GHTK đi Đắk Lắk tính sao shop"
+    },
+    {
+      "id": "H5_074",
+      "group": "hard_negative",
+      "subgroup": "hard_chat_place",
+      "expected_sufficiency": "not_address",
+      "expected_is_address": false,
+      "text": "Tết năm nay mình về quê Thanh Hóa ăn Tết"
+    },
+    {
+      "id": "H5_075",
+      "group": "hard_negative",
+      "subgroup": "hard_chat_place",
+      "expected_sufficiency": "not_address",
+      "expected_is_address": false,
+      "text": "Vé máy bay từ Sài Gòn ra Phú Quốc đang giảm giá"
+    },
+    {
+      "id": "H5_076",
+      "group": "hard_negative",
+      "subgroup": "hard_chat_place",
+      "expected_sufficiency": "not_address",
+      "expected_is_address": false,
+      "text": "Sân bay Nội Bài hôm nay sương mù dày đặc"
+    },
+    {
+      "id": "H5_077",
+      "group": "hard_negative",
+      "subgroup": "hard_chat_place",
+      "expected_sufficiency": "not_address",
+      "expected_is_address": false,
+      "text": "Khu vực Đồng Nai hay cúp điện vào cuối tuần"
+    },
+    {
+      "id": "H5_078",
+      "group": "hard_negative",
+      "subgroup": "hard_chat_place",
+      "expected_sufficiency": "not_address",
+      "expected_is_address": false,
+      "text": "Mình đang tìm phòng trọ giá rẻ gần Gò Vấp"
+    },
+    {
+      "id": "H5_079",
+      "group": "hard_negative",
+      "subgroup": "hard_chat_place",
+      "expected_sufficiency": "not_address",
+      "expected_is_address": false,
+      "text": "Trường đại học ở Thanh Xuân nghỉ lễ 4 ngày"
+    },
+    {
+      "id": "H5_080",
+      "group": "hard_negative",
+      "subgroup": "hard_chat_place",
+      "expected_sufficiency": "not_address",
+      "expected_is_address": false,
+      "text": "Giá đất ở Long An dạo này tăng cao quá"
+    },
+    {
+      "id": "H5_081",
+      "group": "hard_negative",
+      "subgroup": "hard_chat_place",
+      "expected_sufficiency": "not_address",
+      "expected_is_address": false,
+      "text": "Khách sạn ở Nha Trang mùa hè hay hết phòng"
+    },
+    {
+      "id": "H5_082",
+      "group": "hard_negative",
+      "subgroup": "hard_chat_place",
+      "expected_sufficiency": "not_address",
+      "expected_is_address": false,
+      "text": "Xe khách chạy tuyến Hà Nội - Lào Cai mất 5 tiếng"
+    },
+    {
+      "id": "H5_083",
+      "group": "hard_negative",
+      "subgroup": "hard_chat_place",
+      "expected_sufficiency": "not_address",
+      "expected_is_address": false,
+      "text": "Công ty tuyển nhân viên làm việc tại Cầu Giấy"
+    },
+    {
+      "id": "H5_084",
+      "group": "hard_negative",
+      "subgroup": "hard_chat_place",
+      "expected_sufficiency": "not_address",
+      "expected_is_address": false,
+      "text": "Hàng gửi về Bến Tre có thu hộ COD không bạn"
+    },
+    {
+      "id": "H5_085",
+      "group": "hard_negative",
+      "subgroup": "hard_chat_place",
+      "expected_sufficiency": "not_address",
+      "expected_is_address": false,
+      "text": "Bưu cục Quận 10 hôm nay nghỉ trưa lúc 12h"
+    },
+    {
+      "id": "H5_086",
+      "group": "hard_negative",
+      "subgroup": "hard_chat_place",
+      "expected_sufficiency": "not_address",
+      "expected_is_address": false,
+      "text": "Em ở ngoài Bắc còn anh ấy ở trong Sài Gòn"
+    },
+    {
+      "id": "H5_087",
+      "group": "hard_negative",
+      "subgroup": "hard_chat_place",
+      "expected_sufficiency": "not_address",
+      "expected_is_address": false,
+      "text": "Món ăn miền Tây ở Cần Thơ rất hợp khẩu vị"
+    },
+    {
+      "id": "H5_088",
+      "group": "hard_negative",
+      "subgroup": "hard_chat_place",
+      "expected_sufficiency": "not_address",
+      "expected_is_address": false,
+      "text": "Cầu Rồng Đà Nẵng phun lửa vào tối thứ bảy"
+    },
+    {
+      "id": "H5_089",
+      "group": "hard_negative",
+      "subgroup": "hard_chat_place",
+      "expected_sufficiency": "not_address",
+      "expected_is_address": false,
+      "text": "Mùa thu Hà Nội có hương hoa sữa rất thơm"
+    },
+    {
+      "id": "H5_090",
+      "group": "hard_negative",
+      "subgroup": "hard_chat_place",
+      "expected_sufficiency": "not_address",
+      "expected_is_address": false,
+      "text": "Quê ngoại mình ở huyện Củ Chi trồng nhiều rau"
+    },
+    {
+      "id": "H5_091",
+      "group": "hard_negative",
+      "subgroup": "hard_chat_place",
+      "expected_sufficiency": "not_address",
+      "expected_is_address": false,
+      "text": "Tỉnh Lâm Đồng nổi tiếng với nhiều thác nước đẹp"
+    },
+    {
+      "id": "H5_092",
+      "group": "hard_negative",
+      "subgroup": "hard_chat_place",
+      "expected_sufficiency": "not_address",
+      "expected_is_address": false,
+      "text": "Giá vé tàu cao tốc đi Phú Quốc tăng nhẹ"
+    },
+    {
+      "id": "H5_093",
+      "group": "hard_negative",
+      "subgroup": "hard_chat_place",
+      "expected_sufficiency": "not_address",
+      "expected_is_address": false,
+      "text": "Hôm nay kẹt xe suốt đoạn Cộng Hòa Tân Bình"
+    },
+    {
+      "id": "H5_094",
+      "group": "hard_negative",
+      "subgroup": "hard_chat_place",
+      "expected_sufficiency": "not_address",
+      "expected_is_address": false,
+      "text": "Mình học cấp 3 ở Biên Hòa Đồng Nai"
+    },
+    {
+      "id": "H5_095",
+      "group": "hard_negative",
+      "subgroup": "hard_chat_place",
+      "expected_sufficiency": "not_address",
+      "expected_is_address": false,
+      "text": "Lễ hội pháo hoa quốc tế tổ chức tại Đà Nẵng"
+    },
+    {
+      "id": "H5_096",
+      "group": "hard_negative",
+      "subgroup": "hard_chat_place",
+      "expected_sufficiency": "not_address",
+      "expected_is_address": false,
+      "text": "Ship hỏa tốc nội thành TP.HCM hết bao nhiêu"
+    },
+    {
+      "id": "H5_097",
+      "group": "hard_negative",
+      "subgroup": "hard_chat_place",
+      "expected_sufficiency": "not_address",
+      "expected_is_address": false,
+      "text": "Kho hàng của shop đặt ở Bắc Ninh hay Hưng Yên"
+    },
+    {
+      "id": "H5_098",
+      "group": "hard_negative",
+      "subgroup": "hard_chat_place",
+      "expected_sufficiency": "not_address",
+      "expected_is_address": false,
+      "text": "Tối nay tụi mình họp nhóm ở quán cafe Hồ Tây"
+    },
+    {
+      "id": "H5_099",
+      "group": "hard_negative",
+      "subgroup": "hard_chat_place",
+      "expected_sufficiency": "not_address",
+      "expected_is_address": false,
+      "text": "Bệnh viện Chợ Rẫy đông bệnh nhân lắm"
+    },
+    {
+      "id": "H5_100",
+      "group": "hard_negative",
+      "subgroup": "hard_chat_place",
+      "expected_sufficiency": "not_address",
+      "expected_is_address": false,
+      "text": "Chúc các bạn ở Vũng Tàu cuối tuần vui vẻ"
+    }
+  ]
+}

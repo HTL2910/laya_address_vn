@@ -1,0 +1,794 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="light dark">
+  <title>Laya for Address VN v2 — 3-Class Sufficiency CPU Microservice (Way B)</title>
+  <style>
+    :root {
+      --bg-light: #f6f7fb;
+      --bg-dark: #0f131a;
+      --surface-light: #ffffff;
+      --surface-dark: #171d27;
+      --surface-alt-light: #eef1f7;
+      --surface-alt-dark: #1f2735;
+      --border-light: #cbd2df;
+      --border-dark: #303b4f;
+      --text-light: #131926;
+      --text-dark: #eef2f8;
+      --muted-light: #4b5568;
+      --muted-dark: #9ea9be;
+      --brand-light: #0b57d0;
+      --brand-dark: #6ba5ff;
+      --brand-contrast-light: #ffffff;
+      --brand-contrast-dark: #081222;
+      --ok-bg-light: #e5f5ec;
+      --ok-bg-dark: #103323;
+      --ok-text-light: #0b5a34;
+      --ok-text-dark: #74e3a7;
+      --no-bg-light: #fdecec;
+      --no-bg-dark: #3c171b;
+      --no-text-light: #8e1c24;
+      --no-text-dark: #ff949c;
+      --warn-bg-light: #fff4df;
+      --warn-bg-dark: #3a2b10;
+      --warn-text-light: #7c4d00;
+      --warn-text-dark: #ffd073;
+      --scroll-track-light: #e7ebf2;
+      --scroll-track-dark: #1a212e;
+      --scroll-thumb-light: #6b768a;
+      --scroll-thumb-dark: #7e8ca6;
+
+      --bg: var(--bg-light);
+      --surface: var(--surface-light);
+      --surface-alt: var(--surface-alt-light);
+      --border: var(--border-light);
+      --text: var(--text-light);
+      --muted: var(--muted-light);
+      --brand: var(--brand-light);
+      --brand-contrast: var(--brand-contrast-light);
+      --ok-bg: var(--ok-bg-light);
+      --ok-text: var(--ok-text-light);
+      --no-bg: var(--no-bg-light);
+      --no-text: var(--no-text-light);
+      --warn-bg: var(--warn-bg-light);
+      --warn-text: var(--warn-text-light);
+      --scroll-track: var(--scroll-track-light);
+      --scroll-thumb: var(--scroll-thumb-light);
+
+      color-scheme: light dark;
+      accent-color: var(--brand);
+      scrollbar-color: var(--scroll-thumb) var(--scroll-track);
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: var(--bg-dark);
+        --surface: var(--surface-dark);
+        --surface-alt: var(--surface-alt-dark);
+        --border: var(--border-dark);
+        --text: var(--text-dark);
+        --muted: var(--muted-dark);
+        --brand: var(--brand-dark);
+        --brand-contrast: var(--brand-contrast-dark);
+        --ok-bg: var(--ok-bg-dark);
+        --ok-text: var(--ok-text-dark);
+        --no-bg: var(--no-bg-dark);
+        --no-text: var(--no-text-dark);
+        --warn-bg: var(--warn-bg-dark);
+        --warn-text: var(--warn-text-dark);
+        --scroll-track: var(--scroll-track-dark);
+        --scroll-thumb: var(--scroll-thumb-dark);
+      }
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+      line-height: 1.5;
+      background-color: var(--bg);
+      color: var(--text);
+    }
+
+    .visually-hidden:where(:not(:focus-within, :active)) {
+      position: absolute !important;
+      clip-path: inset(50%) !important;
+      overflow: hidden !important;
+      width: 1px !important;
+      height: 1px !important;
+      margin: -1px !important;
+      padding: 0 !important;
+      border: 0 !important;
+      white-space: nowrap !important;
+    }
+
+    .skip-link:focus-visible {
+      position: fixed;
+      inset-block-start: 0.75rem;
+      inset-inline-start: 0.75rem;
+      z-index: 100;
+      padding: 0.65rem 1rem;
+      background: var(--brand);
+      color: var(--brand-contrast);
+      border-radius: 0.5rem;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    :where(a, button, input, textarea, [tabindex]):focus-visible {
+      outline: 3px solid var(--brand);
+      outline-offset: 2px;
+    }
+
+    .page-shell {
+      max-inline-size: 74rem;
+      margin-inline: auto;
+      padding: 1.5rem 1rem 3rem;
+    }
+
+    header.topbar {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 1rem;
+      margin-block-end: 1.5rem;
+      padding-block-end: 1rem;
+      border-block-end: 1px solid var(--border);
+    }
+
+    h1 { margin: 0 0 0.25rem; font-size: clamp(1.35rem, 2.5vw, 1.85rem); line-height: 1.25; }
+    h2 { margin: 0 0 0.75rem; font-size: 1.15rem; line-height: 1.3; }
+    h3 { margin: 1rem 0 0.5rem; font-size: 0.92rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.04em; }
+
+    .subtitle { margin: 0; color: var(--muted); font-size: 0.94rem; }
+
+    .status-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      padding: 0.4rem 0.75rem;
+      border-radius: 999px;
+      background: var(--ok-bg);
+      color: var(--ok-text);
+      font-size: 0.84rem;
+      font-weight: 600;
+      border: 1px solid var(--border);
+    }
+
+    .metrics-strip {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(11.5rem, 1fr));
+      gap: 0.75rem;
+      margin-block-end: 1.5rem;
+    }
+
+    .metric-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 0.75rem;
+      padding: 0.85rem 1rem;
+    }
+
+    .metric-label { display: block; font-size: 0.76rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.03em; }
+    .metric-value { display: block; margin-block-start: 0.2rem; font-size: 1.12rem; font-weight: 700; font-variant-numeric: tabular-nums; }
+    .metric-sub { display: block; margin-block-start: 0.15rem; font-size: 0.78rem; color: var(--muted); }
+
+    .grid-main {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(100%, 30rem), 1fr));
+      gap: 1.25rem;
+      align-items: start;
+    }
+
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 0.85rem;
+      padding: 1.25rem;
+      margin-block-end: 1.25rem;
+    }
+
+    fieldset.mode-fieldset {
+      border: 1px solid var(--border);
+      border-radius: 0.65rem;
+      padding: 0.75rem 1rem;
+      margin: 0 0 1rem;
+      background: var(--surface-alt);
+    }
+
+    fieldset.mode-fieldset legend { font-weight: 600; font-size: 0.88rem; padding-inline: 0.35rem; }
+
+    .radio-row { display: flex; flex-wrap: wrap; gap: 0.75rem 1.25rem; margin-block-start: 0.35rem; }
+    .radio-item { display: inline-flex; align-items: center; gap: 0.45rem; min-block-size: 40px; }
+    .radio-item input[type="radio"] { inline-size: 1.1rem; block-size: 1.1rem; margin: 0; }
+    .radio-item label { font-size: 0.91rem; cursor: pointer; }
+
+    .field { display: flex; flex-direction: column; gap: 0.35rem; margin-block-end: 1rem; }
+    .field label { font-weight: 600; font-size: 0.92rem; }
+    .hint { font-size: 0.82rem; color: var(--muted); }
+
+    textarea, input[type="text"] {
+      font: inherit;
+      font-size: max(1rem, 1em);
+      padding: 0.7rem 0.85rem;
+      min-block-size: 48px;
+      border-radius: 0.55rem;
+      border: 1.5px solid var(--border);
+      background: var(--bg);
+      color: var(--text);
+      inline-size: 100%;
+    }
+    textarea { resize: vertical; }
+
+    .btn-row { display: flex; flex-wrap: wrap; gap: 0.6rem; align-items: center; }
+
+    button {
+      font: inherit;
+      font-size: 0.92rem;
+      font-weight: 600;
+      min-block-size: 44px;
+      min-inline-size: 44px;
+      padding: 0.55rem 1rem;
+      border-radius: 0.55rem;
+      border: 1.5px solid var(--border);
+      background: var(--surface-alt);
+      color: var(--text);
+      cursor: pointer;
+    }
+
+    button.primary { background: var(--brand); color: var(--brand-contrast); border-color: var(--brand); }
+    button:disabled { opacity: 0.6; cursor: wait; }
+
+    .preset-grid { display: flex; flex-wrap: wrap; gap: 0.45rem; }
+    .preset-btn { font-size: 0.81rem; font-weight: 500; min-block-size: 36px; padding: 0.32rem 0.62rem; text-align: start; }
+    .preset-btn[data-kind="suff"] { border-inline-start: 4px solid var(--ok-text); }
+    .preset-btn[data-kind="insuf"] { border-inline-start: 4px solid var(--warn-text); }
+    .preset-btn[data-kind="not"] { border-inline-start: 4px solid var(--no-text); }
+
+    .result-box {
+      margin-block-start: 1rem;
+      padding: 1rem;
+      border-radius: 0.7rem;
+      border: 1.5px solid var(--border);
+      background: var(--surface-alt);
+    }
+    .result-box[hidden] { display: none; }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      padding: 0.25rem 0.65rem;
+      border-radius: 999px;
+      font-size: 0.81rem;
+      font-weight: 700;
+    }
+    .badge-suff { background: var(--ok-bg); color: var(--ok-text); }
+    .badge-insuf { background: var(--warn-bg); color: var(--warn-text); }
+    .badge-not { background: var(--no-bg); color: var(--no-text); }
+    .badge-tier { background: var(--surface); color: var(--text); border: 1px solid var(--border); font-weight: 600; }
+
+    .result-header { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 0.5rem; margin-block-end: 0.75rem; }
+
+    .prob-track { block-size: 0.6rem; border-radius: 999px; background: var(--border); overflow: hidden; margin-block: 0.4rem 0.75rem; }
+    .prob-fill { block-size: 100%; background: var(--brand); inline-size: 0%; }
+
+    .kv-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(8.2rem, 1fr)); gap: 0.5rem; font-size: 0.84rem; }
+    .kv-item { background: var(--surface); border: 1px solid var(--border); border-radius: 0.45rem; padding: 0.45rem 0.6rem; }
+    .kv-item span { display: block; font-size: 0.74rem; color: var(--muted); }
+    .kv-item strong { font-variant-numeric: tabular-nums; }
+
+    .alert-box {
+      margin-block: 0.75rem;
+      padding: 0.7rem 0.9rem;
+      border-radius: 0.55rem;
+      background: var(--no-bg);
+      color: var(--no-text);
+      font-size: 0.88rem;
+      font-weight: 600;
+    }
+    .alert-box[hidden] { display: none; }
+
+    .table-wrapper {
+      overflow: auto;
+      max-inline-size: 100%;
+      max-block-size: min(460px, 70vh);
+      border: 1px solid var(--border);
+      border-radius: 0.65rem;
+      margin-block-start: 1rem;
+    }
+
+    table.results-table {
+      inline-size: 100%;
+      border-collapse: separate;
+      border-spacing: 0;
+      font-size: 0.85rem;
+    }
+    table.results-table caption { text-align: start; font-weight: 600; padding: 0.65rem 0.85rem; background: var(--surface-alt); border-block-end: 1px solid var(--border); }
+    table.results-table thead { position: sticky; inset-block-start: 0; z-index: 2; }
+    table.results-table th, table.results-table td { padding: 0.5rem 0.7rem; text-align: start; border-block-end: 1px solid var(--border); vertical-align: top; }
+    table.results-table thead th { background: var(--surface-alt); font-weight: 700; white-space: nowrap; }
+    table.results-table tbody th { font-weight: 500; min-inline-size: 13rem; }
+    table.results-table td { font-variant-numeric: tabular-nums; white-space: nowrap; }
+
+    progress { inline-size: 100%; block-size: 0.75rem; margin-block: 0.5rem; }
+
+    footer {
+      margin-block-start: 2rem;
+      padding-block-start: 1rem;
+      border-block-start: 1px solid var(--border);
+      color: var(--muted);
+      font-size: 0.84rem;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 0.5rem;
+    }
+  </style>
+</head>
+<body>
+  <a href="#main-heading" class="skip-link visually-hidden">Skip to main content</a>
+
+  <div class="page-shell">
+    <header class="topbar">
+      <div>
+        <h1 id="main-heading" tabindex="-1">Laya for Address VN v2 — 3-Class Sufficiency CPU API</h1>
+        <p class="subtitle">Way B v2 · Dual-Granularity Transformer + Char-CNN · Calibrated ONNX INT8 + MIT Vietnam Admin Gazetteer (63P / 656D / 7,044W)</p>
+      </div>
+      <div class="status-pill" id="health-pill" role="status" aria-live="polite">
+        <span aria-hidden="true">●</span>
+        <span id="health-text">Checking engine…</span>
+      </div>
+    </header>
+
+    <main>
+      <section aria-label="Model Telemetry">
+        <div class="metrics-strip" id="info-strip">
+          <div class="metric-card">
+            <span class="metric-label">INT8 vs FP32 Size</span>
+            <span class="metric-value" id="m-size">—</span>
+            <span class="metric-sub" id="m-size-sub">Loading…</span>
+          </div>
+          <div class="metric-card">
+            <span class="metric-label">3-Class / Binary Acc</span>
+            <span class="metric-value" id="m-acc">—</span>
+            <span class="metric-sub" id="m-acc-sub">INT8 ONNX Runtime</span>
+          </div>
+          <div class="metric-card">
+            <span class="metric-label">Dual Calibration (T / T_suf)</span>
+            <span class="metric-value" id="m-temp">—</span>
+            <span class="metric-sub" id="m-ece-sub">Post-cal ECE</span>
+          </div>
+          <div class="metric-card">
+            <span class="metric-label">CPU Single Latency</span>
+            <span class="metric-value" id="m-tput">—</span>
+            <span class="metric-sub" id="m-lat-sub">p50 / p95 / p99</span>
+          </div>
+        </div>
+      </section>
+
+      <div id="global-error" class="alert-box" role="alert" hidden></div>
+
+      <div class="grid-main">
+        <section class="card" aria-labelledby="single-heading">
+          <h2 id="single-heading">Single 3-Class Sufficiency Decision (<code>POST /v1/decide</code>)</h2>
+
+          <form id="single-form" aria-labelledby="single-heading" method="POST" action="/v1/decide">
+            <fieldset class="mode-fieldset">
+              <legend>Inference Mode</legend>
+              <div class="radio-row">
+                <div class="radio-item">
+                  <input type="radio" id="mode-hybrid" name="mode" value="hybrid" checked>
+                  <label for="mode-hybrid">Hybrid (Gazetteer + INT8)</label>
+                </div>
+                <div class="radio-item">
+                  <input type="radio" id="mode-model" name="mode" value="model_only">
+                  <label for="mode-model">Model Only (ONNX INT8)</label>
+                </div>
+                <div class="radio-item">
+                  <input type="radio" id="mode-heur" name="mode" value="heuristic_only">
+                  <label for="mode-heur">Heuristic Only</label>
+                </div>
+              </div>
+            </fieldset>
+
+            <div class="field">
+              <label for="single-input">Vietnamese input text</label>
+              <span id="single-hint" class="hint">Classify as not_address, address_insufficient, or address_sufficient.</span>
+              <textarea
+                id="single-input"
+                name="text"
+                lang="vi"
+                rows="3"
+                required
+                aria-describedby="single-hint"
+                placeholder="e.g. Lộc Thạnh, Lộc Ninh"
+              ></textarea>
+            </div>
+
+            <div class="btn-row">
+              <button type="submit" class="primary" id="single-submit">Run Sufficiency Check</button>
+              <button type="button" id="single-clear">Clear</button>
+            </div>
+          </form>
+
+          <div id="single-result" class="result-box" role="status" aria-live="polite" hidden>
+            <div class="result-header">
+              <span id="res-badge" class="badge badge-suff">address_sufficient</span>
+              <span id="res-tier" class="badge badge-tier">onnx_int8</span>
+            </div>
+            <div class="prob-track" aria-hidden="true">
+              <div class="prob-fill" id="res-prob-bar"></div>
+            </div>
+            <div class="kv-grid">
+              <div class="kv-item"><span>Sufficiency Class</span><strong id="res-suff">—</strong></div>
+              <div class="kv-item"><span>is_address</span><strong id="res-is-addr">—</strong></div>
+              <div class="kv-item"><span>P(sufficient)</span><strong id="res-prob">—</strong></div>
+              <div class="kv-item"><span>P(insufficient)</span><strong id="res-p-insuf">—</strong></div>
+              <div class="kv-item"><span>P(not_address)</span><strong id="res-p-not">—</strong></div>
+              <div class="kv-item"><span>Latency</span><strong id="res-lat">—</strong></div>
+              <div class="kv-item"><span>Reason</span><strong id="res-reason">—</strong></div>
+            </div>
+          </div>
+
+          <h3>Vietnamese Edge-Case Presets (Click to Test)</h3>
+          <div class="preset-grid" id="preset-list"></div>
+        </section>
+
+        <section class="card" aria-labelledby="batch-heading">
+          <h2 id="batch-heading">Batch API &amp; Live 100-Item CPU Benchmark</h2>
+
+          <form id="batch-form" aria-labelledby="batch-heading" method="POST" action="/v1/decide/batch">
+            <div class="field">
+              <label for="batch-input">Batch inputs (one Vietnamese string per line)</label>
+              <span id="batch-hint" class="hint">Uses the currently selected Inference Mode above.</span>
+              <textarea id="batch-input" name="texts" lang="vi" rows="8" required aria-describedby="batch-hint"></textarea>
+            </div>
+            <div class="btn-row">
+              <button type="submit" class="primary" id="batch-submit">Run Batch Inference</button>
+              <button type="button" id="bench-btn">Run 100-Item CPU Benchmark</button>
+            </div>
+          </form>
+
+          <progress id="bench-progress" max="100" value="0" hidden>Running benchmark</progress>
+
+          <div id="batch-summary" class="result-box" role="status" aria-live="polite" hidden>
+            <div class="kv-grid">
+              <div class="kv-item"><span>Items</span><strong id="b-count">—</strong></div>
+              <div class="kv-item"><span>p50 / p95 / p99</span><strong id="b-pcts">—</strong></div>
+              <div class="kv-item"><span>Total Time</span><strong id="b-total">—</strong></div>
+              <div class="kv-item"><span>Throughput</span><strong id="b-tput">—</strong></div>
+            </div>
+          </div>
+
+          <div id="batch-table-region" class="table-wrapper" tabindex="0" role="region" aria-labelledby="batch-table-caption" hidden>
+            <table class="results-table">
+              <caption id="batch-table-caption">Batch 3-Class Sufficiency Results</caption>
+              <thead>
+                <tr>
+                  <th scope="col">Input Text</th>
+                  <th scope="col">Sufficiency</th>
+                  <th scope="col">P(suff)</th>
+                  <th scope="col">Tier</th>
+                  <th scope="col">Latency (ms)</th>
+                </tr>
+              </thead>
+              <tbody id="batch-tbody"></tbody>
+            </table>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <footer>
+      <span>Laya for Address VN v2 · Way B CPU Backend Microservice</span>
+      <span>Endpoints: <code>GET /health</code> · <code>GET /v1/info</code> · <code>POST /v1/decide</code> · <code>POST /v1/decide/batch</code></span>
+    </footer>
+  </div>
+
+  <script>
+    const PRESETS = [
+      { kind: "suff", label: "Lộc Thạnh, Lộc Ninh", text: "Lộc Thạnh, Lộc Ninh" },
+      { kind: "suff", label: "No-comma short", text: "Lộc Thạnh Lộc Ninh" },
+      { kind: "suff", label: "Unaccented short", text: "loc thanh loc ninh" },
+      { kind: "suff", label: "Abbrev x./h.", text: "x.loc thanh h.loc ninh" },
+      { kind: "suff", label: "Abbrev p.12 q.tb", text: "p.12 q.tb" },
+      { kind: "suff", label: "2-tier Hồng Hà", text: "Phường Hồng Hà, Hà Nội" },
+      { kind: "suff", label: "Delivery freetext", text: "giao cho anh hùng ở 25 trần hưng đạo hoàn kiếm hà nội nhé shop" },
+      { kind: "insuf", label: "Ward only", text: "Xã Lộc Thạnh" },
+      { kind: "insuf", label: "Province only", text: "Tỉnh Bình Phước" },
+      { kind: "insuf", label: "District+Prov", text: "Thanh Xuân, Hà Nội" },
+      { kind: "insuf", label: "Fragment ngõ 12", text: "ngõ 12" },
+      { kind: "insuf", label: "Fragment Thôn 7", text: "Thôn 7" },
+      { kind: "not", label: "Number 73", text: "73" },
+      { kind: "not", label: "BBQ order", text: "Cho mình 3 chai nướng BBQ" },
+      { kind: "not", label: "Bánh mì SG", text: "bánh mì Sài Gòn" },
+      { kind: "not", label: "Person name", text: "Nguyễn Thị Thanh Xuân" },
+      { kind: "not", label: "Ship fee ?", text: "Phí ship về Bình Phước bao nhiêu?" }
+    ];
+
+    const singleForm = document.getElementById("single-form");
+    const singleInput = document.getElementById("single-input");
+    const singleSubmit = document.getElementById("single-submit");
+    const singleClear = document.getElementById("single-clear");
+    const singleResult = document.getElementById("single-result");
+    const batchForm = document.getElementById("batch-form");
+    const batchInput = document.getElementById("batch-input");
+    const batchSubmit = document.getElementById("batch-submit");
+    const benchBtn = document.getElementById("bench-btn");
+    const benchProgress = document.getElementById("bench-progress");
+    const batchSummary = document.getElementById("batch-summary");
+    const batchTableRegion = document.getElementById("batch-table-region");
+    const batchTbody = document.getElementById("batch-tbody");
+    const globalError = document.getElementById("global-error");
+
+    function getSelectedMode() {
+      const checked = document.querySelector('input[name="mode"]:checked');
+      return checked ? checked.value : "hybrid";
+    }
+
+    function showError(msg) {
+      globalError.textContent = msg;
+      globalError.hidden = false;
+    }
+
+    function clearError() {
+      globalError.textContent = "";
+      globalError.hidden = true;
+    }
+
+    function badgeInfoForSufficiency(suff) {
+      if (suff === "address_sufficient") return { cls: "badge-suff", text: "✓ address_sufficient" };
+      if (suff === "address_insufficient") return { cls: "badge-insuf", text: "⚠ address_insufficient" };
+      return { cls: "badge-not", text: "✕ not_address" };
+    }
+
+    function percentile(sortedArr, pct) {
+      if (!sortedArr.length) return 0;
+      const idx = Math.min(sortedArr.length - 1, Math.max(0, Math.ceil((pct / 100) * sortedArr.length) - 1));
+      return sortedArr[idx];
+    }
+
+    function renderSingleResult(data) {
+      const badge = document.getElementById("res-badge");
+      const b = badgeInfoForSufficiency(data.sufficiency);
+      badge.className = "badge " + b.cls;
+      badge.textContent = b.text;
+
+      document.getElementById("res-tier").textContent = data.tier;
+      const sp = data.sufficiency_probs || {};
+      const pct = Math.round(data.probability * 10000) / 100;
+      document.getElementById("res-prob-bar").style.inlineSize = `${Math.max(1, Math.min(100, pct))}%`;
+      document.getElementById("res-suff").textContent = data.sufficiency;
+      document.getElementById("res-is-addr").textContent = String(data.is_address);
+      document.getElementById("res-prob").textContent = `${(sp.address_sufficient ?? data.probability).toFixed(4)}`;
+      document.getElementById("res-p-insuf").textContent = `${(sp.address_insufficient ?? 0).toFixed(4)}`;
+      document.getElementById("res-p-not").textContent = `${(sp.not_address ?? 0).toFixed(4)}`;
+      document.getElementById("res-lat").textContent = `${data.latency_ms.toFixed(3)} ms`;
+      document.getElementById("res-reason").textContent = data.reason;
+      singleResult.hidden = false;
+    }
+
+    async function runSingle(text) {
+      clearError();
+      const trimmed = (text || "").trim();
+      if (!trimmed) {
+        singleInput.focus();
+        return;
+      }
+      singleSubmit.disabled = true;
+      try {
+        const res = await fetch("/v1/decide", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ text: trimmed, mode: getSelectedMode() })
+        });
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        renderSingleResult(await res.json());
+      } catch (err) {
+        showError(`Single inference failed: ${err.message}`);
+      } finally {
+        singleSubmit.disabled = false;
+      }
+    }
+
+    function renderBatchOutput(items, totalMs, throughput, modeLabel, captionPrefix) {
+      const lats = items.map((x) => Number(x.latency_ms || 0)).sort((a, b) => a - b);
+      const p50 = percentile(lats, 50);
+      const p95 = percentile(lats, 95);
+      const p99 = percentile(lats, 99);
+
+      document.getElementById("b-count").textContent = `${items.length} (${modeLabel})`;
+      document.getElementById("b-pcts").textContent = `${p50.toFixed(2)} / ${p95.toFixed(2)} / ${p99.toFixed(2)} ms`;
+      document.getElementById("b-total").textContent = `${totalMs.toFixed(2)} ms`;
+      document.getElementById("b-tput").textContent = `${throughput.toFixed(0)} req/s`;
+      batchSummary.hidden = false;
+
+      document.getElementById("batch-table-caption").textContent =
+        `${captionPrefix} — ${items.length} items · p50=${p50.toFixed(2)}ms p95=${p95.toFixed(2)}ms p99=${p99.toFixed(2)}ms`;
+
+      batchTbody.textContent = "";
+      for (const item of items.slice(0, 100)) {
+        const tr = document.createElement("tr");
+        const thText = document.createElement("th");
+        thText.scope = "row";
+        thText.lang = "vi";
+        thText.textContent = item.text;
+
+        const tdSuff = document.createElement("td");
+        const span = document.createElement("span");
+        const b = badgeInfoForSufficiency(item.sufficiency);
+        span.className = "badge " + b.cls;
+        span.textContent = b.text;
+        tdSuff.appendChild(span);
+
+        const tdProb = document.createElement("td");
+        tdProb.textContent = `${(item.probability * 100).toFixed(2)}%`;
+
+        const tdTier = document.createElement("td");
+        tdTier.textContent = item.tier;
+
+        const tdLat = document.createElement("td");
+        tdLat.textContent = Number(item.latency_ms).toFixed(3);
+
+        tr.append(thText, tdSuff, tdProb, tdTier, tdLat);
+        batchTbody.appendChild(tr);
+      }
+      batchTableRegion.hidden = false;
+    }
+
+    async function runBatch(lines, captionPrefix) {
+      clearError();
+      if (!lines.length) {
+        batchInput.focus();
+        return;
+      }
+      batchSubmit.disabled = true;
+      benchBtn.disabled = true;
+      try {
+        const res = await fetch("/v1/decide/batch", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ texts: lines, mode: getSelectedMode() })
+        });
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        const data = await res.json();
+        renderBatchOutput(data.results, data.total_latency_ms, data.throughput_req_per_s, data.mode, captionPrefix);
+      } catch (err) {
+        showError(`Batch inference failed: ${err.message}`);
+      } finally {
+        batchSubmit.disabled = false;
+        benchBtn.disabled = false;
+      }
+    }
+
+    async function loadTelemetry() {
+      try {
+        const [hRes, iRes] = await Promise.all([fetch("/health"), fetch("/v1/info")]);
+        if (!hRes.ok || !iRes.ok) throw new Error("Service telemetry unavailable");
+        const health = await hRes.json();
+        const info = await iRes.json();
+
+        document.getElementById("health-text").textContent =
+          `Online · ${health.model_file} (T=${Number(health.temperature).toFixed(3)}, Tsuf=${Number(health.sufficiency_temperature).toFixed(3)})`;
+
+        const q = info.quantization || {};
+        const cal = info.calibration || {};
+        const int8Bin = q.int8_test_metrics || {};
+        const int8Suf = q.int8_test_sufficiency_metrics || {};
+        const int8Bench = q.int8_cpu_benchmark || {};
+        const postSuf = cal.test_sufficiency_post_calibration || {};
+
+        document.getElementById("m-size").textContent = `${q.int8_size_mb} MB`;
+        document.getElementById("m-size-sub").textContent = `FP32 ${q.fp32_size_mb} MB (-${q.size_reduction_percent}%)`;
+
+        document.getElementById("m-acc").textContent =
+          `${(Number(int8Suf.accuracy || 0) * 100).toFixed(2)}% / ${(Number(int8Bin.accuracy || 0) * 100).toFixed(2)}%`;
+        document.getElementById("m-acc-sub").textContent =
+          `Test ${(info.dataset || {}).test_samples || 0} samples`;
+
+        document.getElementById("m-temp").textContent =
+          `T=${Number(cal.temperature || 1).toFixed(3)} / ${Number(cal.sufficiency_temperature || 1).toFixed(3)}`;
+        document.getElementById("m-ece-sub").textContent =
+          `3-Class ECE ${Number(postSuf.ece || 0).toFixed(4)} · NLL ${Number(postSuf.nll || 0).toFixed(4)}`;
+
+        document.getElementById("m-tput").textContent = `p50 ${int8Bench.single_p50_ms || "—"} ms`;
+        document.getElementById("m-lat-sub").textContent =
+          `p95 ${int8Bench.single_p95_ms || "—"} ms · p99 ${int8Bench.single_p99_ms || "—"} ms`;
+      } catch (err) {
+        document.getElementById("health-text").textContent = "Offline / Error";
+        showError(`Failed to load /v1/info: ${err.message}`);
+      }
+    }
+
+    const presetContainer = document.getElementById("preset-list");
+    for (const preset of PRESETS) {
+      const btn = document.createElement("button");
+      btn.type = "button";
+      btn.className = "preset-btn";
+      btn.dataset.kind = preset.kind;
+      const icon = preset.kind === "suff" ? "✓" : (preset.kind === "insuf" ? "⚠" : "✕");
+      btn.textContent = `${icon} ${preset.label}`;
+      btn.addEventListener("click", () => {
+        singleInput.value = preset.text;
+        runSingle(preset.text);
+      });
+      presetContainer.appendChild(btn);
+    }
+
+    batchInput.value = PRESETS.map((p) => p.text).join("\n");
+
+    singleForm.addEventListener("submit", (e) => {
+      e.preventDefault();
+      runSingle(singleInput.value);
+    });
+
+    singleInput.addEventListener("keydown", (e) => {
+      if (e.isComposing || e.keyCode === 229) return;
+      if ((e.ctrlKey || e.metaKey) && e.key === "Enter") {
+        e.preventDefault();
+        runSingle(singleInput.value);
+      }
+    });
+
+    singleClear.addEventListener("click", () => {
+      singleInput.value = "";
+      singleResult.hidden = true;
+      clearError();
+      singleInput.focus();
+    });
+
+    batchForm.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const lines = batchInput.value.split(/\r?\n/).map((l) => l.trim()).filter(Boolean);
+      runBatch(lines, "Batch Results");
+    });
+
+    benchBtn.addEventListener("click", async () => {
+      clearError();
+      const mode = getSelectedMode();
+      const items = [];
+      for (let i = 0; i < 100; i++) {
+        items.push(PRESETS[i % PRESETS.length].text);
+      }
+      batchSubmit.disabled = true;
+      benchBtn.disabled = true;
+      benchProgress.hidden = false;
+      benchProgress.value = 0;
+      const results = [];
+      const tStart = performance.now();
+      try {
+        for (let i = 0; i < items.length; i++) {
+          const res = await fetch("/v1/decide", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ text: items[i], mode })
+          });
+          if (!res.ok) throw new Error(`HTTP ${res.status}`);
+          results.push(await res.json());
+          if ((i + 1) % 5 === 0) benchProgress.value = i + 1;
+        }
+        const totalMs = performance.now() - tStart;
+        const cpuTotalMs = results.reduce((acc, r) => acc + Number(r.latency_ms || 0), 0);
+        const tput = 100.0 / Math.max(cpuTotalMs / 1000.0, 1e-6);
+        renderBatchOutput(results, totalMs, tput, mode, "Live 100-Item CPU Single-Request Benchmark");
+      } catch (err) {
+        showError(`100-item CPU benchmark failed: ${err.message}`);
+      } finally {
+        batchSubmit.disabled = false;
+        benchBtn.disabled = false;
+        setTimeout(() => {
+          benchProgress.hidden = true;
+          benchProgress.value = 0;
+        }, 350);
+      }
+    });
+
+    loadTelemetry();
+  </script>
+</body>
+</html>

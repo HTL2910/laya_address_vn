@@ -1,0 +1,131 @@
+{
+  "model_name": "Laya Address VN v2 (Dual-Output Char-CNN)",
+  "architecture": "Multi-Scale Char-CNN (k=2,3,5,7 + 2-layer contextual conv) + GlobalMaxPool + GlobalMeanPool + Dual MLP Heads",
+  "opset": 14,
+  "ops": [
+    "Concat",
+    "Conv",
+    "Gather",
+    "Gemm",
+    "ReduceMax",
+    "ReduceMean",
+    "Relu",
+    "Transpose"
+  ],
+  "param_count": 278436,
+  "max_length": 128,
+  "embed_dim": 64,
+  "temperature": 1.61869,
+  "threshold": 0.5,
+  "sufficiency_temperature": 1.6228,
+  "sufficiency_classes": [
+    "not_address",
+    "address_insufficient",
+    "address_sufficient"
+  ],
+  "output_names": [
+    "logit",
+    "sufficiency_logits"
+  ],
+  "model_size_bytes": 1118184,
+  "gazetteer_size_bytes": 221796,
+  "vocab_size_bytes": 1959,
+  "calibration_size_bytes": 3084,
+  "total_artifacts_bytes": 1345023,
+  "threshold_tuning": {
+    "short_address_false_block_rate": 0.03902,
+    "garbage_block_rate": 0.99778,
+    "val_f1_at_threshold": 0.98097,
+    "constraints_satisfied": true
+  },
+  "metrics": {
+    "val_gate_pre": {
+      "accuracy": 0.98289,
+      "precision": 0.9817,
+      "recall": 0.98025,
+      "f1": 0.98097,
+      "nll": 0.04965,
+      "brier": 0.01307,
+      "ece": 0.00767
+    },
+    "val_gate_post": {
+      "accuracy": 0.98289,
+      "precision": 0.9817,
+      "recall": 0.98025,
+      "f1": 0.98097,
+      "nll": 0.04459,
+      "brier": 0.01289,
+      "ece": 0.00659
+    },
+    "val_sufficiency_pre": {
+      "accuracy": 0.98067,
+      "macro_f1": 0.97973,
+      "f1_not_address": 0.9937,
+      "f1_insufficient": 0.96451,
+      "f1_sufficient": 0.98097,
+      "nll": 0.05978,
+      "brier": 0.02975,
+      "ece": 0.00692
+    },
+    "val_sufficiency_post": {
+      "accuracy": 0.98067,
+      "macro_f1": 0.97973,
+      "f1_not_address": 0.9937,
+      "f1_insufficient": 0.96451,
+      "f1_sufficient": 0.98097,
+      "nll": 0.05272,
+      "brier": 0.02926,
+      "ece": 0.00285
+    },
+    "test_gate_pre": {
+      "accuracy": 0.98356,
+      "precision": 0.98149,
+      "recall": 0.98198,
+      "f1": 0.98173,
+      "nll": 0.04134,
+      "brier": 0.01195,
+      "ece": 0.00659
+    },
+    "test_gate_post": {
+      "accuracy": 0.98356,
+      "precision": 0.98149,
+      "recall": 0.98198,
+      "f1": 0.98173,
+      "nll": 0.03966,
+      "brier": 0.0119,
+      "ece": 0.00698
+    },
+    "test_sufficiency_pre": {
+      "accuracy": 0.98222,
+      "macro_f1": 0.98134,
+      "f1_not_address": 0.9963,
+      "f1_insufficient": 0.96575,
+      "f1_sufficient": 0.98199,
+      "nll": 0.05063,
+      "brier": 0.02675,
+      "ece": 0.00586
+    },
+    "test_sufficiency_post": {
+      "accuracy": 0.98222,
+      "macro_f1": 0.98134,
+      "f1_not_address": 0.9963,
+      "f1_insufficient": 0.96575,
+      "f1_sufficient": 0.98199,
+      "nll": 0.04702,
+      "brier": 0.02668,
+      "ece": 0.00365
+    },
+    "onnx_pytorch_max_abs_diff": 3.814697265625e-05,
+    "cpu_onnx_latency_ms": {
+      "p50": 0.255,
+      "p95": 0.514,
+      "p99": 0.638
+    }
+  },
+  "dataset": {
+    "seed": 101,
+    "train_size": 71999,
+    "val_size": 9000,
+    "test_size": 9001
+  }
+}

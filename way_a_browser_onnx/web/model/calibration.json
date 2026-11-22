@@ -1,0 +1,60 @@
+{
+  "model_name": "Laya Address VN (Noul Char-CNN)",
+  "architecture": "Multi-Scale Char-CNN (k=2,3,5,7 + 2-layer contextual conv) + GlobalMaxPool + MLP",
+  "opset": 14,
+  "ops": [
+    "Concat",
+    "Conv",
+    "Gather",
+    "Gemm",
+    "ReduceMax",
+    "Relu",
+    "Transpose"
+  ],
+  "param_count": 129857,
+  "model_size_bytes": 522907,
+  "max_length": 96,
+  "temperature": 0.75008,
+  "threshold": 0.5,
+  "metrics": {
+    "val_uncalibrated": {
+      "accuracy": 1.0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "nll": 0.00268,
+      "brier": 0.00026,
+      "ece": 0.00251
+    },
+    "val_calibrated": {
+      "accuracy": 1.0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "nll": 0.00104,
+      "brier": 0.00019,
+      "ece": 0.00092
+    },
+    "test": {
+      "accuracy": 1.0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "nll": 0.00027,
+      "brier": 0.0,
+      "ece": 0.00027
+    },
+    "test_uncalibrated_ece": 0.00162,
+    "curated_edge_accuracy": 1.0,
+    "curated_edge_correct": 28,
+    "curated_edge_total": 28,
+    "onnx_pytorch_max_abs_diff": 2.86102294921875e-06,
+    "cpu_onnx_latency_ms": 0.182
+  },
+  "dataset": {
+    "train_size": 14400,
+    "val_size": 1800,
+    "test_size": 1800,
+    "seed": 42
+  }
+}

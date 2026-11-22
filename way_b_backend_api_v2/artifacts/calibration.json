@@ -1,0 +1,231 @@
+{
+  "model_name": "laya-address-vn-way-b-v2-int8",
+  "version": "2.0.0",
+  "architecture": {
+    "architecture": "LayaDualGranularitySufficiencyModel (2-Layer Word Transformer + Multi-Scale Char-CNN + Dual Heads)",
+    "word_vocab_size": 3243,
+    "char_vocab_size": 118,
+    "max_word_len": 64,
+    "max_char_len": 160,
+    "word_emb_dim": 64,
+    "d_model": 160,
+    "n_heads": 4,
+    "d_ff": 512,
+    "n_layers": 2,
+    "char_emb_dim": 32,
+    "char_channels": 64,
+    "num_sufficiency_classes": 3,
+    "dropout": 0.15
+  },
+  "total_parameters": 1023461,
+  "dataset": {
+    "source": "tranngocminhhieu/vietnamadminunits (MIT) + synthetic negative/chat/fragment corpus",
+    "total_samples": 75000,
+    "train_samples": 60000,
+    "val_samples": 7500,
+    "test_samples": 7500,
+    "seed": 202,
+    "sufficiency_classes": [
+      "not_address",
+      "address_insufficient",
+      "address_sufficient"
+    ]
+  },
+  "calibration": {
+    "temperature": 1.25809,
+    "threshold": 0.52,
+    "sufficiency_temperature": 1.28803,
+    "sufficiency_classes": [
+      "not_address",
+      "address_insufficient",
+      "address_sufficient"
+    ],
+    "val_pre_calibration": {
+      "accuracy": 0.978667,
+      "precision": 0.973212,
+      "recall": 0.979556,
+      "f1": 0.976373,
+      "nll": 0.062198,
+      "brier": 0.017103,
+      "ece": 0.009019,
+      "tp": 3306,
+      "tn": 4034,
+      "fp": 91,
+      "fn": 69
+    },
+    "val_post_calibration": {
+      "accuracy": 0.978933,
+      "precision": 0.974064,
+      "recall": 0.979259,
+      "f1": 0.976655,
+      "nll": 0.059384,
+      "brier": 0.016743,
+      "ece": 0.006101,
+      "tp": 3305,
+      "tn": 4037,
+      "fp": 88,
+      "fn": 70
+    },
+    "test_pre_calibration": {
+      "accuracy": 0.978267,
+      "precision": 0.974026,
+      "recall": 0.977778,
+      "f1": 0.975898,
+      "nll": 0.061847,
+      "brier": 0.016587,
+      "ece": 0.009029,
+      "tp": 3300,
+      "tn": 4037,
+      "fp": 88,
+      "fn": 75
+    },
+    "test_post_calibration": {
+      "accuracy": 0.9784,
+      "precision": 0.975155,
+      "recall": 0.976889,
+      "f1": 0.976021,
+      "nll": 0.058892,
+      "brier": 0.016281,
+      "ece": 0.004861,
+      "tp": 3297,
+      "tn": 4041,
+      "fp": 84,
+      "fn": 78
+    },
+    "val_sufficiency_pre_calibration": {
+      "accuracy": 0.976,
+      "macro_f1": 0.974703,
+      "nll": 0.077127,
+      "brier": 0.038728,
+      "ece": 0.010484,
+      "per_class_f1": {
+        "not_address": 0.992688,
+        "address_insufficient": 0.955047,
+        "address_sufficient": 0.976373
+      }
+    },
+    "val_sufficiency_post_calibration": {
+      "accuracy": 0.976,
+      "macro_f1": 0.974703,
+      "nll": 0.072267,
+      "brier": 0.037815,
+      "ece": 0.00543,
+      "per_class_f1": {
+        "not_address": 0.992688,
+        "address_insufficient": 0.955047,
+        "address_sufficient": 0.976373
+      }
+    },
+    "test_sufficiency_pre_calibration": {
+      "accuracy": 0.975333,
+      "macro_f1": 0.973973,
+      "nll": 0.078774,
+      "brier": 0.040037,
+      "ece": 0.010945,
+      "per_class_f1": {
+        "not_address": 0.99048,
+        "address_insufficient": 0.955095,
+        "address_sufficient": 0.976345
+      }
+    },
+    "test_sufficiency_post_calibration": {
+      "accuracy": 0.975333,
+      "macro_f1": 0.973973,
+      "nll": 0.073765,
+      "brier": 0.039111,
+      "ece": 0.004515,
+      "per_class_f1": {
+        "not_address": 0.99048,
+        "address_insufficient": 0.955095,
+        "address_sufficient": 0.976345
+      }
+    }
+  },
+  "onnx_comparison": {
+    "opset_version": 17,
+    "ort_intra_op_threads": 2,
+    "fp32_file": "laya_address_vn_fp32.onnx",
+    "int8_file": "laya_address_vn_int8.onnx",
+    "fp32_size_bytes": 4131453,
+    "int8_size_bytes": 1876241,
+    "fp32_size_mb": 3.94,
+    "int8_size_mb": 1.789,
+    "size_reduction_percent": 54.59,
+    "max_torch_vs_fp32_logit_diff": 1.4e-05,
+    "max_fp32_vs_int8_logit_diff": 1.037884,
+    "max_fp32_vs_int8_suf_logit_diff": 0.554371,
+    "fp32_test_metrics": {
+      "accuracy": 0.9784,
+      "precision": 0.975155,
+      "recall": 0.976889,
+      "f1": 0.976021,
+      "nll": 0.058892,
+      "brier": 0.016281,
+      "ece": 0.004861,
+      "tp": 3297,
+      "tn": 4041,
+      "fp": 84,
+      "fn": 78
+    },
+    "int8_test_metrics": {
+      "accuracy": 0.978667,
+      "precision": 0.975732,
+      "recall": 0.976889,
+      "f1": 0.97631,
+      "nll": 0.059143,
+      "brier": 0.016341,
+      "ece": 0.004416,
+      "tp": 3297,
+      "tn": 4043,
+      "fp": 82,
+      "fn": 78
+    },
+    "fp32_test_sufficiency_metrics": {
+      "accuracy": 0.975333,
+      "macro_f1": 0.973973,
+      "nll": 0.073765,
+      "brier": 0.039111,
+      "ece": 0.004515,
+      "per_class_f1": {
+        "not_address": 0.99048,
+        "address_insufficient": 0.955095,
+        "address_sufficient": 0.976345
+      }
+    },
+    "int8_test_sufficiency_metrics": {
+      "accuracy": 0.975333,
+      "macro_f1": 0.973937,
+      "nll": 0.074032,
+      "brier": 0.039214,
+      "ece": 0.004984,
+      "per_class_f1": {
+        "not_address": 0.990476,
+        "address_insufficient": 0.954839,
+        "address_sufficient": 0.976497
+      }
+    },
+    "fp32_cpu_benchmark": {
+      "single_mean_ms": 0.47,
+      "single_p50_ms": 0.402,
+      "single_p95_ms": 0.933,
+      "single_p99_ms": 1.513,
+      "single_req_per_s": 2125.6,
+      "batch_size": 32,
+      "batch_mean_ms": 8.73,
+      "batch_ms_per_req": 0.2728,
+      "batch_req_per_s": 3665.4
+    },
+    "int8_cpu_benchmark": {
+      "single_mean_ms": 0.477,
+      "single_p50_ms": 0.425,
+      "single_p95_ms": 0.893,
+      "single_p99_ms": 1.122,
+      "single_req_per_s": 2096.5,
+      "batch_size": 32,
+      "batch_mean_ms": 7.912,
+      "batch_ms_per_req": 0.2473,
+      "batch_req_per_s": 4044.3
+    }
+  },
+  "training_wall_seconds": 581.54
+}

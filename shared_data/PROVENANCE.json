@@ -1,0 +1,32 @@
+{
+  "source_repository": "https://github.com/tranngocminhhieu/vietnamadminunits",
+  "license": "MIT License (Copyright (c) 2025 Tran Ngoc Minh Hieu)",
+  "raw_files": [
+    {
+      "filename": "danhmuchanhchinh.gso.gov.vn_ward_2025-07-18.csv",
+      "url": "https://raw.githubusercontent.com/tranngocminhhieu/vietnamadminunits/main/data/raw/danhmuchanhchinh.gso.gov.vn_ward_2025-07-18.csv",
+      "sha256": "bad8474f99dd8476f07a11117154f1e587741a210f20e33c4b50d9d3fe6954a9",
+      "rows": 10035
+    },
+    {
+      "filename": "2025_34-province-3221-ward_with_location.csv",
+      "url": "https://raw.githubusercontent.com/tranngocminhhieu/vietnamadminunits/main/data/processed/2025_34-province-3221-ward_with_location.csv",
+      "sha256": "cf103923c0c469201f3b22d78f5b05c90db13986994811a9fc17988de18bf678",
+      "rows": 3321
+    },
+    {
+      "filename": "LICENSE_vietnamadminunits.txt",
+      "url": "https://raw.githubusercontent.com/tranngocminhhieu/vietnamadminunits/main/LICENSE",
+      "sha256": "5a5366d3137d7f84b8ef9ce3a66c4dc3db2a0716b317f901b1c0542ed44ffd13"
+    }
+  ],
+  "counts": {
+    "unique_provinces": 63,
+    "unique_districts": 656,
+    "unique_wards": 7044,
+    "legacy_3tier_rows": 10035,
+    "merged_2025_2tier_rows": 3321
+  },
+  "gazetteer_sha256": "11096369768889e62dc9b11f7065d9a414452207511ad4c87ad29c406732cc79",
+  "gazetteer_bytes": 221796
+}

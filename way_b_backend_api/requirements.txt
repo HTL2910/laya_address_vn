@@ -1,0 +1,12 @@
+# Way B: Laya for Address VN — CPU Backend Microservice Dependencies
+# Install PyTorch CPU first:
+#   pip install --index-url https://download.pytorch.org/whl/cpu torch
+torch
+onnx
+onnxscript
+onnxruntime
+numpy
+fastapi
+uvicorn
+httpx
+pytest

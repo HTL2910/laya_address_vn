@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="dark">
+  <title>Laya Address VN v2 — 100% Client-Side Browser ONNX (0đ Server)</title>
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <div class="app-shell">
+    <header class="hero">
+      <div class="hero-top">
+        <div class="brand">
+          <span class="brand-badge" aria-hidden="true">LAYA v2</span>
+          <div>
+            <h1>Laya for Address VN v2</h1>
+            <p class="subtitle">Cổng kiểm định &amp; phân loại mức độ đầy đủ Địa chỉ Việt Nam — 100% Browser WASM (0đ Server)</p>
+          </div>
+        </div>
+        <div id="engine-status" class="status-pill status-loading" role="status" aria-live="polite">
+          <span class="status-dot" aria-hidden="true"></span>
+          <span id="engine-status-text">Đang nạp Gazetteer &amp; ONNX WASM…</span>
+        </div>
+      </div>
+
+      <section class="metrics-bar" aria-label="Thông số mô hình ONNX v2">
+        <div class="metric-card">
+          <span class="metric-label">ONNX / Tổng Artifacts</span>
+          <strong id="meta-size" class="metric-value">-- KB</strong>
+        </div>
+        <div class="metric-card">
+          <span class="metric-label">Hiệu chuẩn (T / T_suf)</span>
+          <strong id="meta-temp" class="metric-value">--</strong>
+        </div>
+        <div class="metric-card">
+          <span class="metric-label">Test Gate / 3-Class Acc</span>
+          <strong id="meta-acc" class="metric-value">--</strong>
+        </div>
+        <div class="metric-card">
+          <span class="metric-label">ECE sau hiệu chuẩn</span>
+          <strong id="meta-ece" class="metric-value">--</strong>
+        </div>
+        <div class="metric-card">
+          <span class="metric-label">Thời gian nạp cục bộ</span>
+          <strong id="meta-load" class="metric-value">-- ms</strong>
+        </div>
+      </section>
+
+      <div id="offline-banner" class="alert-banner" role="alert" hidden></div>
+    </header>
+
+    <main class="main-grid">
+      <section class="panel mode-panel" aria-labelledby="mode-heading">
+        <h2 id="mode-heading" class="visually-hidden">Chế độ suy luận</h2>
+        <fieldset class="mode-fieldset">
+          <legend>Chế độ suy luận (So sánh trực tiếp)</legend>
+          <div class="mode-options">
+            <div class="mode-option">
+              <input type="radio" id="mode-hybrid" name="inference_mode" value="hybrid" checked>
+              <label for="mode-hybrid">
+                <span class="mode-title">Hybrid 2-Tier (Khuyên dùng)</span>
+                <span class="mode-desc">Tier 1 Gazetteer 7,044 xã/phường (&lt;1ms) → Tier 2 Dual-Head ONNX xử lý ca mơ hồ</span>
+              </label>
+            </div>
+            <div class="mode-option">
+              <input type="radio" id="mode-onnx" name="inference_mode" value="onnx">
+              <label for="mode-onnx">
+                <span class="mode-title">Pure ONNX Model Only</span>
+                <span class="mode-desc">Chạy trực tiếp Char-CNN 2 đầu ra (Gate + 3-Class Sufficiency)</span>
+              </label>
+            </div>
+            <div class="mode-option">
+              <input type="radio" id="mode-heuristic" name="inference_mode" value="heuristic">
+              <label for="mode-heuristic">
+                <span class="mode-title">Gazetteer / Rule Only</span>
+                <span class="mode-desc">Chỉ dùng từ điển hành chính GSO/2025 &amp; luật cấu trúc (không dùng mạng neural)</span>
+              </label>
+            </div>
+          </div>
+        </fieldset>
+      </section>
+
+      <section class="panel single-panel" aria-labelledby="single-heading">
+        <div class="panel-header">
+          <h2 id="single-heading">Kiểm thử đơn lẻ (Gate + 3-Class Sufficiency)</h2>
+          <span class="panel-hint">Nhấn <kbd>Enter</kbd> hoặc nút Phân tích</span>
+        </div>
+
+        <form id="single-form" aria-labelledby="single-heading" novalidate>
+          <div class="form-field">
+            <label for="single-input">Nhập chuỗi cần kiểm tra địa chỉ Việt Nam</label>
+            <textarea
+              id="single-input"
+              name="address_text"
+              rows="2"
+              autocomplete="street-address"
+              enterkeyhint="done"
+              placeholder="Ví dụ: Lộc Thạnh, Lộc Ninh hoặc p.12 q.tb hoặc Xã Lộc Thạnh"
+              aria-describedby="single-help"
+            ></textarea>
+            <span id="single-help" class="field-help">Phân biệt 3 lớp: address_sufficient (PASS), address_insufficient (BLOCK - thiếu cấp), not_address (BLOCK - nhiễu/chat/tên người/món ăn).</span>
+          </div>
+
+          <div class="action-row">
+            <button type="submit" id="single-submit" class="btn btn-primary">Phân tích ngay</button>
+            <button type="button" id="single-clear" class="btn btn-secondary">Xóa ô nhập</button>
+          </div>
+        </form>
+
+        <div class="presets-block" aria-label="Mẫu kiểm thử nhanh">
+          <span class="presets-title">Mẫu nhanh (6 kiểu viết ngắn hợp lệ + thiếu cấp + bẫy nhiễu):</span>
+          <div id="preset-chips" class="chip-list">
+            <button type="button" class="chip chip-pos" data-sample="Lộc Thạnh, Lộc Ninh">Xã, Huyện</button>
+            <button type="button" class="chip chip-pos" data-sample="Lộc Thạnh Lộc Ninh">Không dấu phẩy</button>
+            <button type="button" class="chip chip-pos" data-sample="loc thanh loc ninh">Không dấu</button>
+            <button type="button" class="chip chip-pos" data-sample="x. lộc thạnh, h. lộc ninh">Viết tắt x./h.</button>
+            <button type="button" class="chip chip-pos" data-sample="p.12 q.tb">p.12 q.tb</button>
+            <button type="button" class="chip chip-pos" data-sample="Phường Hồng Hà, Hà Nội">2025 2-tier</button>
+            <button type="button" class="chip chip-pos" data-sample="Số 123 Đường Nguyễn Trãi, Phường Thượng Đình, Quận Thanh Xuân, Hà Nội">Đầy đủ HN</button>
+            <button type="button" class="chip chip-warn" data-sample="Xã Lộc Thạnh">Thiếu: Xã đơn</button>
+            <button type="button" class="chip chip-warn" data-sample="Thanh Xuân, Hà Nội">Thiếu: Quận+Tỉnh</button>
+            <button type="button" class="chip chip-warn" data-sample="ngõ 12">Thiếu: ngõ 12</button>
+            <button type="button" class="chip chip-warn" data-sample="Thôn 7">Thiếu: Thôn 7</button>
+            <button type="button" class="chip chip-neg" data-sample="73">Bẫy: 73</button>
+            <button type="button" class="chip chip-neg" data-sample="Cho mình 3 chai nướng BBQ">Bẫy: Đặt món</button>
+            <button type="button" class="chip chip-neg" data-sample="bánh mì Sài Gòn">Bẫy: Món ăn</button>
+            <button type="button" class="chip chip-neg" data-sample="Nguyễn Thị Thanh Xuân">Bẫy: Tên người</button>
+            <button type="button" class="chip chip-neg" data-sample="Phí ship về Bình Phước bao nhiêu?">Bẫy: Hỏi phí ship</button>
+          </div>
+        </div>
+
+        <div id="single-result" class="result-box result-empty" role="status" aria-live="polite">
+          <p class="empty-msg">Nhập một chuỗi hoặc chọn mẫu nhanh bên trên để xem Gate PASS/BLOCK và nhãn 3-class sufficiency.</p>
+        </div>
+      </section>
+
+      <section class="panel batch-panel" aria-labelledby="batch-heading">
+        <div class="panel-header">
+          <h2 id="batch-heading">Kiểm thử hàng loạt (Batch Tester)</h2>
+          <span class="panel-hint">Mỗi dòng là một chuỗi độc lập</span>
+        </div>
+
+        <form id="batch-form" aria-labelledby="batch-heading" novalidate>
+          <div class="form-field">
+            <label for="batch-input">Danh sách chuỗi (1 dòng / mẫu)</label>
+            <textarea
+              id="batch-input"
+              name="batch_lines"
+              rows="8"
+              aria-describedby="batch-help"
+            ></textarea>
+            <span id="batch-help" class="field-help">Đo tốc độ xử lý 100% cục bộ trên trình duyệt (vendored onnxruntime-web, 0 kết nối ngoài).</span>
+          </div>
+
+          <div class="action-row">
+            <button type="submit" id="batch-submit" class="btn btn-primary">Phân tích hàng loạt</button>
+            <button type="button" id="batch-load-sample" class="btn btn-secondary">Nạp bộ mẫu v2</button>
+            <button type="button" id="batch-clear" class="btn btn-secondary">Xóa danh sách</button>
+          </div>
+        </form>
+
+        <div id="batch-summary" class="batch-summary" role="status" aria-live="polite" hidden></div>
+
+        <div tabindex="0" role="region" aria-labelledby="batch-table-caption" class="table-wrapper">
+          <table id="batch-table">
+            <caption id="batch-table-caption">Kết quả Gate &amp; 3-Class Sufficiency hàng loạt</caption>
+            <thead>
+              <tr>
+                <th scope="col">Chuỗi đầu vào</th>
+                <th scope="col">Gate</th>
+                <th scope="col">Sufficiency (3-Class)</th>
+                <th scope="col">P(Gate)</th>
+                <th scope="col">Tầng xử lý</th>
+                <th scope="col">Độ trễ</th>
+                <th scope="col">Ghi chú</th>
+              </tr>
+            </thead>
+            <tbody id="batch-tbody">
+              <tr class="placeholder-row">
+                <td colspan="7">Bấm "Phân tích hàng loạt" để chạy thử bộ mẫu ngay trên WASM cục bộ.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <p>Laya Address VN v2 • Vendored onnxruntime-web + GSO/2025 Gazetteer • Zero CDN / Zero Server Inference Cost (0đ).</p>
+    </footer>
+  </div>
+
+  <script src="./vendor/onnxruntime-web/ort.wasm.min.js" defer></script>
+  <script src="./heuristics.js" defer></script>
+  <script src="./app.js" defer></script>
+</body>
+</html>

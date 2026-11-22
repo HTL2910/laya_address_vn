@@ -1,0 +1,3309 @@
+{
+  "holdout_total": 600,
+  "old_total": 90,
+  "deleaked_old_total": 85,
+  "results": {
+    "way_a_v2_heuristic_only": {
+      "holdout_600": {
+        "total": 600,
+        "acc_3class": 0.96,
+        "macro_f1_3class": 0.9485,
+        "acc_binary": 0.9983,
+        "f1_binary": 0.9982,
+        "fp_binary": 0,
+        "fn_binary": 1,
+        "ece_binary": 0.0142,
+        "ece_3class": 0.0338,
+        "confusion_matrix_3x3": [
+          [
+            179,
+            21,
+            0
+          ],
+          [
+            2,
+            118,
+            0
+          ],
+          [
+            0,
+            1,
+            279
+          ]
+        ],
+        "short_valid_pass_rate": 0.9944,
+        "short_valid_false_block_rate": 0.0056,
+        "short_styles": {
+          "short_no_prefix_comma": {
+            "total": 30,
+            "passed": 30,
+            "blocked": 0,
+            "correct_3class": 30,
+            "false_block_rate": 0.0,
+            "pass_rate": 1.0
+          },
+          "short_no_prefix_no_comma": {
+            "total": 30,
+            "passed": 30,
+            "blocked": 0,
+            "correct_3class": 30,
+            "false_block_rate": 0.0,
+            "pass_rate": 1.0
+          },
+          "short_unaccented_lower": {
+            "total": 30,
+            "passed": 30,
+            "blocked": 0,
+            "correct_3class": 30,
+            "false_block_rate": 0.0,
+            "pass_rate": 1.0
+          },
+          "short_abbreviated": {
+            "total": 30,
+            "passed": 30,
+            "blocked": 0,
+            "correct_3class": 30,
+            "false_block_rate": 0.0,
+            "pass_rate": 1.0
+          },
+          "short_ward_district_province": {
+            "total": 30,
+            "passed": 30,
+            "blocked": 0,
+            "correct_3class": 30,
+            "false_block_rate": 0.0,
+            "pass_rate": 1.0
+          },
+          "short_ward_province_2tier": {
+            "total": 30,
+            "passed": 29,
+            "blocked": 1,
+            "correct_3class": 29,
+            "false_block_rate": 0.0333,
+            "pass_rate": 0.9667
+          }
+        },
+        "insufficient_tagged_recall": 0.9833,
+        "insufficient_gate_block_rate": 1.0,
+        "insufficient_subgroups": {
+          "insuf_ward_only": {
+            "total": 35,
+            "tagged_insufficient": 35,
+            "blocked_gate": 35
+          },
+          "insuf_province_only": {
+            "total": 25,
+            "tagged_insufficient": 25,
+            "blocked_gate": 25
+          },
+          "insuf_district_only": {
+            "total": 20,
+            "tagged_insufficient": 20,
+            "blocked_gate": 20
+          },
+          "insuf_fragment_only": {
+            "total": 40,
+            "tagged_insufficient": 38,
+            "blocked_gate": 40
+          }
+        },
+        "garbage_block_rate": 1.0,
+        "hard_negative_block_rate": 1.0,
+        "mandatory_garbage_checks": {
+          "73": {
+            "blocked": true,
+            "sufficiency": "not_address",
+            "probability": 0.002
+          },
+          "10": {
+            "blocked": true,
+            "sufficiency": "not_address",
+            "probability": 0.002
+          },
+          "K": {
+            "blocked": true,
+            "sufficiency": "not_address",
+            "probability": 0.002
+          },
+          "Hi": {
+            "blocked": true,
+            "sufficiency": "not_address",
+            "probability": 0.002
+          },
+          "Ok": {
+            "blocked": true,
+            "sufficiency": "not_address",
+            "probability": 0.002
+          },
+          "Jean": {
+            "blocked": true,
+            "sufficiency": "not_address",
+            "probability": 0.005
+          },
+          "Xom": {
+            "blocked": true,
+            "sufficiency": "not_address",
+            "probability": 0.005
+          },
+          "Thôn 7": {
+            "blocked": true,
+            "sufficiency": "address_insufficient",
+            "probability": 0.03
+          },
+          "Xin giá": {
+            "blocked": true,
+            "sufficiency": "not_address",
+            "probability": 0.01
+          },
+          "ngõ 12": {
+            "blocked": true,
+            "sufficiency": "address_insufficient",
+            "probability": 0.03
+          },
+          "Cho mình 3 chai nướng BBQ": {
+            "blocked": true,
+            "sufficiency": "not_address",
+            "probability": 0.01
+          }
+        },
+        "latency_ms": {
+          "mean": 0.038,
+          "p50": 0.016,
+          "p95": 0.071,
+          "p99": 0.249
+        },
+        "per_group": {
+          "full_address": {
+            "total": 100,
+            "correct_3class": 100,
+            "correct_binary": 100,
+            "passed_gate": 100,
+            "cm": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                100
+              ]
+            ],
+            "acc_3class": 1.0,
+            "acc_binary": 1.0
+          },
+          "short_valid_address": {
+            "total": 180,
+            "correct_3class": 179,
+            "correct_binary": 179,
+            "passed_gate": 179,
+            "cm": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                1,
+                179
+              ]
+            ],
+            "acc_3class": 0.9944,
+            "acc_binary": 0.9944
+          },
+          "insufficient_address": {
+            "total": 120,
+            "correct_3class": 118,
+            "correct_binary": 120,
+            "passed_gate": 0,
+            "cm": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                2,
+                118,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ]
+            ],
+            "acc_3class": 0.9833,
+            "acc_binary": 1.0
+          },
+          "garbage_and_chat": {
+            "total": 100,
+            "correct_3class": 94,
+            "correct_binary": 100,
+            "passed_gate": 0,
+            "cm": [
+              [
+                94,
+                6,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ]
+            ],
+            "acc_3class": 0.94,
+            "acc_binary": 1.0
+          },
+          "hard_negative": {
+            "total": 100,
+            "correct_3class": 85,
+            "correct_binary": 100,
+            "passed_gate": 0,
+            "cm": [
+              [
+                85,
+                15,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ]
+            ],
+            "acc_3class": 0.85,
+            "acc_binary": 1.0
+          }
+        },
+        "mistake_count": 24,
+        "mistakes_sample": [
+          {
+            "id": "H2_177",
+            "group": "short_valid_address",
+            "subgroup": "short_ward_province_2tier",
+            "expected_suf": "address_sufficient",
+            "pred_suf": "address_insufficient",
+            "expected_addr": true,
+            "pred_addr": false,
+            "prob": 0.035,
+            "tier": "Gazetteer/Rule Only",
+            "text": "Nà Hang, Tuyên Quang"
+          },
+          {
+            "id": "H3_102",
+            "group": "insufficient_address",
+            "subgroup": "insuf_fragment_only",
+            "expected_suf": "address_insufficient",
+            "pred_suf": "not_address",
+            "expected_addr": false,
+            "pred_addr": false,
+            "prob": 0.05,
+            "tier": "Gazetteer/Rule Only",
+            "text": "Số nhà 141"
+          },
+          {
+            "id": "H3_115",
+            "group": "insufficient_address",
+            "subgroup": "insuf_fragment_only",
+            "expected_suf": "address_insufficient",
+            "pred_suf": "not_address",
+            "expected_addr": false,
+            "pred_addr": false,
+            "prob": 0.05,
+            "tier": "Gazetteer/Rule Only",
+            "text": "Số nhà 223"
+          },
+          {
+            "id": "H4_046",
+            "group": "garbage_and_chat",
+            "subgroup": "chat_garbage",
+            "expected_suf": "not_address",
+            "pred_suf": "address_insufficient",
+            "expected_addr": false,
+            "pred_addr": false,
+            "prob": 0.03,
+            "tier": "Gazetteer/Rule Only",
+            "text": "sao lâu nhận được vậy"
+          },
+          {
+            "id": "H4_048",
+            "group": "garbage_and_chat",
+            "subgroup": "chat_garbage",
+            "expected_suf": "not_address",
+            "pred_suf": "address_insufficient",
+            "expected_addr": false,
+            "pred_addr": false,
+            "prob": 0.04,
+            "tier": "Gazetteer/Rule Only",
+            "text": "mã vận đơn VN123456789"
+          },
+          {
+            "id": "H4_075",
+            "group": "garbage_and_chat",
+            "subgroup": "chat_garbage",
+            "expected_suf": "not_address",
+            "pred_suf": "address_insufficient",
+            "expected_addr": false,
+            "pred_addr": false,
+            "prob": 0.03,
+            "tier": "Gazetteer/Rule Only",
+            "text": "sai rồi bạn ơi"
+          },
+          {
+            "id": "H4_087",
+            "group": "garbage_and_chat",
+            "subgroup": "chat_garbage",
+            "expected_suf": "not_address",
+            "pred_suf": "address_insufficient",
+            "expected_addr": false,
+            "pred_addr": false,
+            "prob": 0.03,
+            "tier": "Gazetteer/Rule Only",
+            "text": "bàn phím cơ bluetooth"
+          },
+          {
+            "id": "H4_094",
+            "group": "garbage_and_chat",
+            "subgroup": "chat_garbage",
+            "expected_suf": "not_address",
+            "pred_suf": "address_insufficient",
+            "expected_addr": false,
+            "pred_addr": false,
+            "prob": 0.03,
+            "tier": "Gazetteer/Rule Only",
+            "text": "đèn bàn học sinh"
+          },
+          {
+            "id": "H4_099",
+            "group": "garbage_and_chat",
+            "subgroup": "chat_garbage",
+            "expected_suf": "not_address",
+            "pred_suf": "address_insufficient",
+            "expected_addr": false,
+            "pred_addr": false,
+            "prob": 0.03,
+            "tier": "Gazetteer/Rule Only",
+            "text": "máy xay sinh tố mini"
+          },
+          {
+            "id": "H5_009",
+            "group": "hard_negative",
+            "subgroup": "hard_product_place",
+            "expected_suf": "not_address",
+            "pred_suf": "address_insufficient",
+            "expected_addr": false,
+            "pred_addr": false,
+            "prob": 0.04,
+            "tier": "Gazetteer/Rule Only",
+            "text": "chè Thái Nguyên"
+          },
+          {
+            "id": "H5_055",
+            "group": "hard_negative",
+            "subgroup": "hard_person_place",
+            "expected_suf": "not_address",
+            "pred_suf": "address_insufficient",
+            "expected_addr": false,
+            "pred_addr": false,
+            "prob": 0.03,
+            "tier": "Gazetteer/Rule Only",
+            "text": "Cô Bến Nghé bán tạp hóa gần nhà"
+          },
+          {
+            "id": "H5_057",
+            "group": "hard_negative",
+            "subgroup": "hard_person_place",
+            "expected_suf": "not_address",
+            "pred_suf": "address_insufficient",
+            "expected_addr": false,
+            "pred_addr": false,
+            "prob": 0.04,
+            "tier": "Gazetteer/Rule Only",
+            "text": "Cháu Đông Anh năm nay học lớp 5"
+          },
+          {
+            "id": "H5_060",
+            "group": "hard_negative",
+            "subgroup": "hard_person_place",
+            "expected_suf": "not_address",
+            "pred_suf": "address_insufficient",
+            "expected_addr": false,
+            "pred_addr": false,
+            "prob": 0.04,
+            "tier": "Gazetteer/Rule Only",
+            "text": "Vua Quang Trung đại phá quân Thanh"
+          },
+          {
+            "id": "H5_062",
+            "group": "hard_negative",
+            "subgroup": "hard_chat_place",
+            "expected_suf": "not_address",
+            "pred_suf": "address_insufficient",
+            "expected_addr": false,
+            "pred_addr": false,
+            "prob": 0.04,
+            "tier": "Gazetteer/Rule Only",
+            "text": "Shop có giao hàng đi Lộc Ninh không ạ?"
+          },
+          {
+            "id": "H5_069",
+            "group": "hard_negative",
+            "subgroup": "hard_chat_place",
+            "expected_suf": "not_address",
+            "pred_suf": "address_insufficient",
+            "expected_addr": false,
+            "pred_addr": false,
+            "prob": 0.04,
+            "tier": "Gazetteer/Rule Only",
+            "text": "Quận Tân Bình chiều nay mưa ngập đường"
+          },
+          {
+            "id": "H5_071",
+            "group": "hard_negative",
+            "subgroup": "hard_chat_place",
+            "expected_suf": "not_address",
+            "pred_suf": "address_insufficient",
+            "expected_addr": false,
+            "pred_addr": false,
+            "prob": 0.04,
+            "tier": "Gazetteer/Rule Only",
+            "text": "Bạn mình quê ở Nam Định nhưng làm việc tại Bình Dương"
+          },
+          {
+            "id": "H5_077",
+            "group": "hard_negative",
+            "subgroup": "hard_chat_place",
+            "expected_suf": "not_address",
+            "pred_suf": "address_insufficient",
+            "expected_addr": false,
+            "pred_addr": false,
+            "prob": 0.04,
+            "tier": "Gazetteer/Rule Only",
+            "text": "Khu vực Đồng Nai hay cúp điện vào cuối tuần"
+          },
+          {
+            "id": "H5_081",
+            "group": "hard_negative",
+            "subgroup": "hard_chat_place",
+            "expected_suf": "not_address",
+            "pred_suf": "address_insufficient",
+            "expected_addr": false,
+            "pred_addr": false,
+            "prob": 0.04,
+            "tier": "Gazetteer/Rule Only",
+            "text": "Khách sạn ở Nha Trang mùa hè hay hết phòng"
+          },
+          {
+            "id": "H5_084",
+            "group": "hard_negative",
+            "subgroup": "hard_chat_place",
+            "expected_suf": "not_address",
+            "pred_suf": "address_insufficient",
+            "expected_addr": false,
+            "pred_addr": false,
+            "prob": 0.04,
+            "tier": "Gazetteer/Rule Only",
+            "text": "Hàng gửi về Bến Tre có thu hộ COD không bạn"
+          },
+          {
+            "id": "H5_086",
+            "group": "hard_negative",
+            "subgroup": "hard_chat_place",
+            "expected_suf": "not_address",
+            "pred_suf": "address_insufficient",
+            "expected_addr": false,
+            "pred_addr": false,
+            "prob": 0.04,
+            "tier": "Gazetteer/Rule Only",
+            "text": "Em ở ngoài Bắc còn anh ấy ở trong Sài Gòn"
+          },
+          {
+            "id": "H5_090",
+            "group": "hard_negative",
+            "subgroup": "hard_chat_place",
+            "expected_suf": "not_address",
+            "pred_suf": "address_insufficient",
+            "expected_addr": false,
+            "pred_addr": false,
+            "prob": 0.04,
+            "tier": "Gazetteer/Rule Only",
+            "text": "Quê ngoại mình ở huyện Củ Chi trồng nhiều rau"
+          },
+          {
+            "id": "H5_094",
+            "group": "hard_negative",
+            "subgroup": "hard_chat_place",
+            "expected_suf": "not_address",
+            "pred_suf": "address_insufficient",
+            "expected_addr": false,
+            "pred_addr": false,
+            "prob": 0.035,
+            "tier": "Gazetteer/Rule Only",
+            "text": "Mình học cấp 3 ở Biên Hòa Đồng Nai"
+          },
+          {
+            "id": "H5_098",
+            "group": "hard_negative",
+            "subgroup": "hard_chat_place",
+            "expected_suf": "not_address",
+            "pred_suf": "address_insufficient",
+            "expected_addr": false,
+            "pred_addr": false,
+            "prob": 0.04,
+            "tier": "Gazetteer/Rule Only",
+            "text": "Tối nay tụi mình họp nhóm ở quán cafe Hồ Tây"
+          },
+          {
+            "id": "H5_100",
+            "group": "hard_negative",
+            "subgroup": "hard_chat_place",
+            "expected_suf": "not_address",
+            "pred_suf": "address_insufficient",
+            "expected_addr": false,
+            "pred_addr": false,
+            "prob": 0.04,
+            "tier": "Gazetteer/Rule Only",
+            "text": "Chúc các bạn ở Vũng Tàu cuối tuần vui vẻ"
+          }
+        ]
+      },
+      "old_benchmark": {
+        "full_90": {
+          "total": 90,
+          "correct": 88,
+          "accuracy": 0.9778,
+          "f1": 0.9825,
+          "fp": 0,
+          "fn": 2,
+          "mistakes": [
+            {
+              "id": "R06",
+              "expected": true,
+              "pred": false,
+              "suf": "address_insufficient",
+              "prob": 0.04,
+              "text": "Khu phố 3, Phường Tam Hòa, Thành phố Biên Hòa, Đồng Nai"
+            },
+            {
+              "id": "F04",
+              "expected": true,
+              "pred": false,
+              "suf": "address_insufficient",
+              "prob": 0.03,
+              "text": "ship tới phòng 702 chung cư HH1C Linh Đàm gọi 0988112233"
+            }
+          ]
+        },
+        "deleaked_85": {
+          "total": 85,
+          "correct": 83,
+          "accuracy": 0.9765,
+          "f1": 0.9821,
+          "fp": 0,
+          "fn": 2,
+          "mistakes": [
+            {
+              "id": "R06",
+              "expected": true,
+              "pred": false,
+              "suf": "address_insufficient",
+              "prob": 0.04,
+              "text": "Khu phố 3, Phường Tam Hòa, Thành phố Biên Hòa, Đồng Nai"
+            },
+            {
+              "id": "F04",
+              "expected": true,
+              "pred": false,
+              "suf": "address_insufficient",
+              "prob": 0.03,
+              "text": "ship tới phòng 702 chung cư HH1C Linh Đàm gọi 0988112233"
+            }
+          ]
+        }
+      }
+    },
+    "way_a_v2_model_only": {
+      "holdout_600": {
+        "total": 600,
+        "acc_3class": 0.9117,
+        "macro_f1_3class": 0.9048,
+        "acc_binary": 0.935,
+        "f1_binary": 0.9342,
+        "fp_binary": 36,
+        "fn_binary": 3,
+        "ece_binary": 0.0522,
+        "ece_3class": 0.0488,
+        "confusion_matrix_3x3": [
+          [
+            158,
+            15,
+            27
+          ],
+          [
+            0,
+            112,
+            8
+          ],
+          [
+            0,
+            3,
+            277
+          ]
+        ],
+        "short_valid_pass_rate": 0.9833,
+        "short_valid_false_block_rate": 0.0167,
+        "short_styles": {
+          "short_no_prefix_comma": {
+            "total": 30,
+            "passed": 30,
+            "blocked": 0,
+            "correct_3class": 30,
+            "false_block_rate": 0.0,
+            "pass_rate": 1.0
+          },
+          "short_no_prefix_no_comma": {
+            "total": 30,
+            "passed": 30,
+            "blocked": 0,
+            "correct_3class": 30,
+            "false_block_rate": 0.0,
+            "pass_rate": 1.0
+          },
+          "short_unaccented_lower": {
+            "total": 30,
+            "passed": 29,
+            "blocked": 1,
+            "correct_3class": 29,
+            "false_block_rate": 0.0333,
+            "pass_rate": 0.9667
+          },
+          "short_abbreviated": {
+            "total": 30,
+            "passed": 30,
+            "blocked": 0,
+            "correct_3class": 30,
+            "false_block_rate": 0.0,
+            "pass_rate": 1.0
+          },
+          "short_ward_district_province": {
+            "total": 30,
+            "passed": 30,
+            "blocked": 0,
+            "correct_3class": 30,
+            "false_block_rate": 0.0,
+            "pass_rate": 1.0
+          },
+          "short_ward_province_2tier": {
+            "total": 30,
+            "passed": 28,
+            "blocked": 2,
+            "correct_3class": 28,
+            "false_block_rate": 0.0667,
+            "pass_rate": 0.9333
+          }
+        },
+        "insufficient_tagged_recall": 0.9333,
+        "insufficient_gate_block_rate": 0.9333,
+        "insufficient_subgroups": {
+          "insuf_ward_only": {
+            "total": 35,
+            "tagged_insufficient": 35,
+            "blocked_gate": 35
+          },
+          "insuf_province_only": {
+            "total": 25,
+            "tagged_insufficient": 25,
+            "blocked_gate": 25
+          },
+          "insuf_district_only": {
+            "total": 20,
+            "tagged_insufficient": 14,
+            "blocked_gate": 14
+          },
+          "insuf_fragment_only": {
+            "total": 40,
+            "tagged_insufficient": 38,
+            "blocked_gate": 38
+          }
+        },
+        "garbage_block_rate": 0.91,
+        "hard_negative_block_rate": 0.81,
+        "mandatory_garbage_checks": {
+          "73": {
+            "blocked": true,
+            "sufficiency": "not_address",
+            "probability": 0.0
+          },
+          "10": {
+            "blocked": true,
+            "sufficiency": "not_address",
+            "probability": 0.0
+          },
+          "K": {
+            "blocked": true,
+            "sufficiency": "not_address",
+            "probability": 0.0008
+          },
+          "Hi": {
+            "blocked": true,
+            "sufficiency": "not_address",
+            "probability": 0.0
+          },
+          "Ok": {
+            "blocked": true,
+            "sufficiency": "not_address",
+            "probability": 0.0
+          },
+          "Jean": {
+            "blocked": true,
+            "sufficiency": "not_address",
+            "probability": 0.0
+          },
+          "Xom": {
+            "blocked": true,
+            "sufficiency": "not_address",
+            "probability": 0.0
+          },
+          "Thôn 7": {
+            "blocked": true,
+            "sufficiency": "address_insufficient",
+            "probability": 0.0
+          },
+          "Xin giá": {
+            "blocked": true,
+            "sufficiency": "address_insufficient",
+            "probability": 0.0001
+          },
+          "ngõ 12": {
+            "blocked": true,
+            "sufficiency": "address_insufficient",
+            "probability": 0.0
+          },
+          "Cho mình 3 chai nướng BBQ": {
+            "blocked": true,
+            "sufficiency": "not_address",
+            "probability": 0.0
+          }
+        },
+        "latency_ms": {
+          "mean": 0.292,
+          "p50": 0.282,
+          "p95": 0.32,
+          "p99": 0.561
+        },
+        "per_group": {
+          "full_address": {
+            "total": 100,
+            "correct_3class": 100,
+            "correct_binary": 100,
+            "passed_gate": 100,
+            "cm": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                100
+              ]
+            ],
+            "acc_3class": 1.0,
+            "acc_binary": 1.0
+          },
+          "short_valid_address": {
+            "total": 180,
+            "correct_3class": 177,
+            "correct_binary": 177,
+            "passed_gate": 177,
+            "cm": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                3,
+                177
+              ]
+            ],
+            "acc_3class": 0.9833,
+            "acc_binary": 0.9833
+          },
+          "insufficient_address": {
+            "total": 120,
+            "correct_3class": 112,
+            "correct_binary": 112,
+            "passed_gate": 8,
+            "cm": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                112,
+                8
+              ],
+              [
+                0,
+                0,
+                0
+              ]
+            ],
+            "acc_3class": 0.9333,
+            "acc_binary": 0.9333
+          },
+          "garbage_and_chat": {
+            "total": 100,
+            "correct_3class": 83,
+            "correct_binary": 91,
+            "passed_gate": 9,
+            "cm": [
+              [
+                83,
+                8,
+                9
+              ],
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ]
+            ],
+            "acc_3class": 0.83,
+            "acc_binary": 0.91
+          },
+          "hard_negative": {
+            "total": 100,
+            "correct_3class": 75,
+            "correct_binary": 81,
+            "passed_gate": 19,
+            "cm": [
+              [
+                75,
+                7,
+                18
+              ],
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ]
+            ],
+            "acc_3class": 0.75,
+            "acc_binary": 0.81
+          }
+        },
+        "mistake_count": 54,
+        "mistakes_sample": [
+          {
+            "id": "H2_077",
+            "group": "short_valid_address",
+            "subgroup": "short_unaccented_lower",
+            "expected_suf": "address_sufficient",
+            "pred_suf": "address_insufficient",
+            "expected_addr": true,
+            "pred_addr": false,
+            "prob": 0.3376,
+            "tier": "Tier 2 (ONNX)",
+            "text": "vi xuyen nam dinh"
+          },
+          {
+            "id": "H2_155",
+            "group": "short_valid_address",
+            "subgroup": "short_ward_province_2tier",
+            "expected_suf": "address_sufficient",
+            "pred_suf": "address_insufficient",
+            "expected_addr": true,
+            "pred_addr": false,
+            "prob": 0.445,
+            "tier": "Tier 2 (ONNX)",
+            "text": "Ia Dreh, Gia Lai"
+          },
+          {
+            "id": "H2_175",
+            "group": "short_valid_address",
+            "subgroup": "short_ward_province_2tier",
+            "expected_suf": "address_sufficient",
+            "pred_suf": "address_insufficient",
+            "expected_addr": true,
+            "pred_addr": false,
+            "prob": 0.3429,
+            "tier": "Tier 2 (ONNX)",
+            "text": "Kiến Hưng, Hà Nội"
+          },
+          {
+            "id": "H3_062",
+            "group": "insufficient_address",
+            "subgroup": "insuf_district_only",
+            "expected_suf": "address_insufficient",
+            "pred_suf": "address_sufficient",
+            "expected_addr": false,
+            "pred_addr": true,
+            "prob": 0.7446,
+            "tier": "Tier 2 (ONNX)",
+            "text": "Buôn Hồ, Đắk Lắk"
+          },
+          {
+            "id": "H3_068",
+            "group": "insufficient_address",
+            "subgroup": "insuf_district_only",
+            "expected_suf": "address_insufficient",
+            "pred_suf": "address_sufficient",
+            "expected_addr": false,
+            "pred_addr": true,
+            "prob": 0.707,
+            "tier": "Tier 2 (ONNX)",
+            "text": "Văn Chấn, Yên Bái"
+          },
+          {
+            "id": "H3_070",
+            "group": "insufficient_address",
+            "subgroup": "insuf_district_only",
+            "expected_suf": "address_insufficient",
+            "pred_suf": "address_sufficient",
+            "expected_addr": false,
+            "pred_addr": true,
+            "prob": 0.8363,
+            "tier": "Tier 2 (ONNX)",
+            "text": "M'Đrắk, Đắk Lắk"
+          },
+          {
+            "id": "H3_074",
+            "group": "insufficient_address",
+            "subgroup": "insuf_district_only",
+            "expected_suf": "address_insufficient",
+            "pred_suf": "address_sufficient",
+            "expected_addr": false,
+            "pred_addr": true,
+            "prob": 0.9797,
+            "tier": "Tier 2 (ONNX)",
+            "text": "Đắk Song, Đắk Nông"
+          },
+          {
+            "id": "H3_078",
+            "group": "insufficient_address",
+            "subgroup": "insuf_district_only",
+            "expected_suf": "address_insufficient",
+            "pred_suf": "address_sufficient",
+            "expected_addr": false,
+            "pred_addr": true,
+            "prob": 0.5736,
+            "tier": "Tier 2 (ONNX)",
+            "text": "Hai Bà Trưng, Hà Nội"
+          },
+          {
+            "id": "H3_080",
+            "group": "insufficient_address",
+            "subgroup": "insuf_district_only",
+            "expected_suf": "address_insufficient",
+            "pred_suf": "address_sufficient",
+            "expected_addr": false,
+            "pred_addr": true,
+            "prob": 0.998,
+            "tier": "Tier 2 (ONNX)",
+            "text": "Ân Thi, Hưng Yên"
+          },
+          {
+            "id": "H3_103",
+            "group": "insufficient_address",
+            "subgroup": "insuf_fragment_only",
+            "expected_suf": "address_insufficient",
+            "pred_suf": "address_sufficient",
+            "expected_addr": false,
+            "pred_addr": true,
+            "prob": 0.9172,
+            "tier": "Tier 2 (ONNX)",
+            "text": "Tầng 15 Block A"
+          },
+          {
+            "id": "H3_116",
+            "group": "insufficient_address",
+            "subgroup": "insuf_fragment_only",
+            "expected_suf": "address_insufficient",
+            "pred_suf": "address_sufficient",
+            "expected_addr": false,
+            "pred_addr": true,
+            "prob": 0.8799,
+            "tier": "Tier 2 (ONNX)",
+            "text": "Tầng 5 Block A"
+          },
+          {
+            "id": "H4_008",
+            "group": "garbage_and_chat",
+            "subgroup": "mandatory_garbage",
+            "expected_suf": "not_address",
+            "pred_suf": "address_insufficient",
+            "expected_addr": false,
+            "pred_addr": false,
+            "prob": 0.0001,
+            "tier": "Tier 2 (ONNX)",
+            "text": "Xin giá"
+          },
+          {
+            "id": "H4_021",
+            "group": "garbage_and_chat",
+            "subgroup": "chat_garbage",
+            "expected_suf": "not_address",
+            "pred_suf": "address_insufficient",
+            "expected_addr": false,
+            "pred_addr": false,
+            "prob": 0.0,
+            "tier": "Tier 2 (ONNX)",
+            "text": "vâng ạ"
+          },
+          {
+            "id": "H4_024",
+            "group": "garbage_and_chat",
+            "subgroup": "chat_garbage",
+            "expected_suf": "not_address",
+            "pred_suf": "address_insufficient",
+            "expected_addr": false,
+            "pred_addr": false,
+            "prob": 0.0,
+            "tier": "Tier 2 (ONNX)",
+            "text": "hủy"
+          },
+          {
+            "id": "H4_026",
+            "group": "garbage_and_chat",
+            "subgroup": "chat_garbage",
+            "expected_suf": "not_address",
+            "pred_suf": "address_insufficient",
+            "expected_addr": false,
+            "pred_addr": false,
+            "prob": 0.0005,
+            "tier": "Tier 2 (ONNX)",
+            "text": "inbox giá"
+          },
+          {
+            "id": "H4_042",
+            "group": "garbage_and_chat",
+            "subgroup": "chat_garbage",
+            "expected_suf": "not_address",
+            "pred_suf": "address_sufficient",
+            "expected_addr": false,
+            "pred_addr": true,
+            "prob": 0.9804,
+            "tier": "Tier 2 (ONNX)",
+            "text": "mã giảm giá là gì"
+          },
+          {
+            "id": "H4_067",
+            "group": "garbage_and_chat",
+            "subgroup": "chat_garbage",
+            "expected_suf": "not_address",
+            "pred_suf": "address_sufficient",
+            "expected_addr": false,
+            "pred_addr": true,
+            "prob": 0.9816,
+            "tier": "Tier 2 (ONNX)",
+            "text": "bảo vệ ký nhận hộ"
+          },
+          {
+            "id": "H4_073",
+            "group": "garbage_and_chat",
+            "subgroup": "chat_garbage",
+            "expected_suf": "not_address",
+            "pred_suf": "address_insufficient",
+            "expected_addr": false,
+            "pred_addr": false,
+            "prob": 0.0001,
+            "tier": "Tier 2 (ONNX)",
+            "text": "ok luôn"
+          },
+          {
+            "id": "H4_075",
+            "group": "garbage_and_chat",
+            "subgroup": "chat_garbage",
+            "expected_suf": "not_address",
+            "pred_suf": "address_sufficient",
+            "expected_addr": false,
+            "pred_addr": true,
+            "prob": 0.9368,
+            "tier": "Tier 2 (ONNX)",
+            "text": "sai rồi bạn ơi"
+          },
+          {
+            "id": "H4_081",
+            "group": "garbage_and_chat",
+            "subgroup": "chat_garbage",
+            "expected_suf": "not_address",
+            "pred_suf": "address_sufficient",
+            "expected_addr": false,
+            "pred_addr": true,
+            "prob": 0.514,
+            "tier": "Tier 2 (ONNX)",
+            "text": "áo khoác kaki"
+          },
+          {
+            "id": "H4_088",
+            "group": "garbage_and_chat",
+            "subgroup": "chat_garbage",
+            "expected_suf": "not_address",
+            "pred_suf": "address_sufficient",
+            "expected_addr": false,
+            "pred_addr": true,
+            "prob": 0.5211,
+            "tier": "Tier 2 (ONNX)",
+            "text": "tai nghe không dây"
+          },
+          {
+            "id": "H4_089",
+            "group": "garbage_and_chat",
+            "subgroup": "chat_garbage",
+            "expected_suf": "not_address",
+            "pred_suf": "address_insufficient",
+            "expected_addr": false,
+            "pred_addr": false,
+            "prob": 0.2273,
+            "tier": "Tier 2 (ONNX)",
+            "text": "cáp sạc type c"
+          },
+          {
+            "id": "H4_092",
+            "group": "garbage_and_chat",
+            "subgroup": "chat_garbage",
+            "expected_suf": "not_address",
+            "pred_suf": "address_insufficient",
+            "expected_addr": false,
+            "pred_addr": false,
+            "prob": 0.0001,
+            "tier": "Tier 2 (ONNX)",
+            "text": "chuột gaming"
+          },
+          {
+            "id": "H4_094",
+            "group": "garbage_and_chat",
+            "subgroup": "chat_garbage",
+            "expected_suf": "not_address",
+            "pred_suf": "address_sufficient",
+            "expected_addr": false,
+            "pred_addr": true,
+            "prob": 0.8897,
+            "tier": "Tier 2 (ONNX)",
+            "text": "đèn bàn học sinh"
+          },
+          {
+            "id": "H4_096",
+            "group": "garbage_and_chat",
+            "subgroup": "chat_garbage",
+            "expected_suf": "not_address",
+            "pred_suf": "address_sufficient",
+            "expected_addr": false,
+            "pred_addr": true,
+            "prob": 0.988,
+            "tier": "Tier 2 (ONNX)",
+            "text": "ly sứ có nắp"
+          }
+        ]
+      },
+      "old_benchmark": {
+        "full_90": {
+          "total": 90,
+          "correct": 85,
+          "accuracy": 0.9444,
+          "f1": 0.9565,
+          "fp": 2,
+          "fn": 3,
+          "mistakes": [
+            {
+              "id": "D05",
+              "expected": true,
+              "pred": false,
+              "suf": "address_insufficient",
+              "prob": 0.0359,
+              "text": "hẻm cụt số 2 nguyễn trãi thanh xuân"
+            },
+            {
+              "id": "F03",
+              "expected": true,
+              "pred": false,
+              "suf": "not_address",
+              "prob": 0.0,
+              "text": "giao cho anh hùng ở 25 trần hưng đạo hoàn kiếm hà nội nhé shop"
+            },
+            {
+              "id": "F08",
+              "expected": true,
+              "pred": false,
+              "suf": "not_address",
+              "prob": 0.3058,
+              "text": "gửi về số 99 Hai Bà Trưng, Hoàn Kiếm, HN giúp em nha"
+            },
+            {
+              "id": "NV05",
+              "expected": false,
+              "pred": true,
+              "suf": "address_sufficient",
+              "prob": 0.7,
+              "text": "gần nhà bà Tám ngoài đầu ngõ"
+            },
+            {
+              "id": "NN07",
+              "expected": false,
+              "pred": true,
+              "suf": "not_address",
+              "prob": 0.5813,
+              "text": "iPhone 16 Pro Max 256GB Titan Sa Mạc chính hãng VN/A"
+            }
+          ]
+        },
+        "deleaked_85": {
+          "total": 85,
+          "correct": 80,
+          "accuracy": 0.9412,
+          "f1": 0.9558,
+          "fp": 2,
+          "fn": 3,
+          "mistakes": [
+            {
+              "id": "D05",
+              "expected": true,
+              "pred": false,
+              "suf": "address_insufficient",
+              "prob": 0.0359,
+              "text": "hẻm cụt số 2 nguyễn trãi thanh xuân"
+            },
+            {
+              "id": "F03",
+              "expected": true,
+              "pred": false,
+              "suf": "not_address",
+              "prob": 0.0,
+              "text": "giao cho anh hùng ở 25 trần hưng đạo hoàn kiếm hà nội nhé shop"
+            },
+            {
+              "id": "F08",
+              "expected": true,
+              "pred": false,
+              "suf": "not_address",
+              "prob": 0.3058,
+              "text": "gửi về số 99 Hai Bà Trưng, Hoàn Kiếm, HN giúp em nha"
+            },
+            {
+              "id": "NV05",
+              "expected": false,
+              "pred": true,
+              "suf": "address_sufficient",
+              "prob": 0.7,
+              "text": "gần nhà bà Tám ngoài đầu ngõ"
+            },
+            {
+              "id": "NN07",
+              "expected": false,
+              "pred": true,
+              "suf": "not_address",
+              "prob": 0.5813,
+              "text": "iPhone 16 Pro Max 256GB Titan Sa Mạc chính hãng VN/A"
+            }
+          ]
+        }
+      }
+    },
+    "way_a_v2_hybrid": {
+      "holdout_600": {
+        "total": 600,
+        "acc_3class": 0.9833,
+        "macro_f1_3class": 0.9791,
+        "acc_binary": 0.9967,
+        "f1_binary": 0.9964,
+        "fp_binary": 1,
+        "fn_binary": 1,
+        "ece_binary": 0.0147,
+        "ece_3class": 0.0157,
+        "confusion_matrix_3x3": [
+          [
+            191,
+            8,
+            1
+          ],
+          [
+            0,
+            120,
+            0
+          ],
+          [
+            0,
+            1,
+            279
+          ]
+        ],
+        "short_valid_pass_rate": 0.9944,
+        "short_valid_false_block_rate": 0.0056,
+        "short_styles": {
+          "short_no_prefix_comma": {
+            "total": 30,
+            "passed": 30,
+            "blocked": 0,
+            "correct_3class": 30,
+            "false_block_rate": 0.0,
+            "pass_rate": 1.0
+          },
+          "short_no_prefix_no_comma": {
+            "total": 30,
+            "passed": 30,
+            "blocked": 0,
+            "correct_3class": 30,
+            "false_block_rate": 0.0,
+            "pass_rate": 1.0
+          },
+          "short_unaccented_lower": {
+            "total": 30,
+            "passed": 30,
+            "blocked": 0,
+            "correct_3class": 30,
+            "false_block_rate": 0.0,
+            "pass_rate": 1.0
+          },
+          "short_abbreviated": {
+            "total": 30,
+            "passed": 30,
+            "blocked": 0,
+            "correct_3class": 30,
+            "false_block_rate": 0.0,
+            "pass_rate": 1.0
+          },
+          "short_ward_district_province": {
+            "total": 30,
+            "passed": 30,
+            "blocked": 0,
+            "correct_3class": 30,
+            "false_block_rate": 0.0,
+            "pass_rate": 1.0
+          },
+          "short_ward_province_2tier": {
+            "total": 30,
+            "passed": 29,
+            "blocked": 1,
+            "correct_3class": 29,
+            "false_block_rate": 0.0333,
+            "pass_rate": 0.9667
+          }
+        },
+        "insufficient_tagged_recall": 1.0,
+        "insufficient_gate_block_rate": 1.0,
+        "insufficient_subgroups": {
+          "insuf_ward_only": {
+            "total": 35,
+            "tagged_insufficient": 35,
+            "blocked_gate": 35
+          },
+          "insuf_province_only": {
+            "total": 25,
+            "tagged_insufficient": 25,
+            "blocked_gate": 25
+          },
+          "insuf_district_only": {
+            "total": 20,
+            "tagged_insufficient": 20,
+            "blocked_gate": 20
+          },
+          "insuf_fragment_only": {
+            "total": 40,
+            "tagged_insufficient": 40,
+            "blocked_gate": 40
+          }
+        },
+        "garbage_block_rate": 1.0,
+        "hard_negative_block_rate": 0.99,
+        "mandatory_garbage_checks": {
+          "73": {
+            "blocked": true,
+            "sufficiency": "not_address",
+            "probability": 0.002
+          },
+          "10": {
+            "blocked": true,
+            "sufficiency": "not_address",
+            "probability": 0.002
+          },
+          "K": {
+            "blocked": true,
+            "sufficiency": "not_address",
+            "probability": 0.002
+          },
+          "Hi": {
+            "blocked": true,
+            "sufficiency": "not_address",
+            "probability": 0.002
+          },
+          "Ok": {
+            "blocked": true,
+            "sufficiency": "not_address",
+            "probability": 0.002
+          },
+          "Jean": {
+            "blocked": true,
+            "sufficiency": "not_address",
+            "probability": 0.005
+          },
+          "Xom": {
+            "blocked": true,
+            "sufficiency": "not_address",
+            "probability": 0.005
+          },
+          "Thôn 7": {
+            "blocked": true,
+            "sufficiency": "address_insufficient",
+            "probability": 0.03
+          },
+          "Xin giá": {
+            "blocked": true,
+            "sufficiency": "not_address",
+            "probability": 0.01
+          },
+          "ngõ 12": {
+            "blocked": true,
+            "sufficiency": "address_insufficient",
+            "probability": 0.03
+          },
+          "Cho mình 3 chai nướng BBQ": {
+            "blocked": true,
+            "sufficiency": "not_address",
+            "probability": 0.01
+          }
+        },
+        "latency_ms": {
+          "mean": 0.05,
+          "p50": 0.015,
+          "p95": 0.295,
+          "p99": 0.381
+        },
+        "per_group": {
+          "full_address": {
+            "total": 100,
+            "correct_3class": 100,
+            "correct_binary": 100,
+            "passed_gate": 100,
+            "cm": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                100
+              ]
+            ],
+            "acc_3class": 1.0,
+            "acc_binary": 1.0
+          },
+          "short_valid_address": {
+            "total": 180,
+            "correct_3class": 179,
+            "correct_binary": 179,
+            "passed_gate": 179,
+            "cm": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                1,
+                179
+              ]
+            ],
+            "acc_3class": 0.9944,
+            "acc_binary": 0.9944
+          },
+          "insufficient_address": {
+            "total": 120,
+            "correct_3class": 120,
+            "correct_binary": 120,
+            "passed_gate": 0,
+            "cm": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                120,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ]
+            ],
+            "acc_3class": 1.0,
+            "acc_binary": 1.0
+          },
+          "garbage_and_chat": {
+            "total": 100,
+            "correct_3class": 95,
+            "correct_binary": 100,
+            "passed_gate": 0,
+            "cm": [
+              [
+                95,
+                5,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ]
+            ],
+            "acc_3class": 0.95,
+            "acc_binary": 1.0
+          },
+          "hard_negative": {
+            "total": 100,
+            "correct_3class": 96,
+            "correct_binary": 99,
+            "passed_gate": 1,
+            "cm": [
+              [
+                96,
+                3,
+                1
+              ],
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ]
+            ],
+            "acc_3class": 0.96,
+            "acc_binary": 0.99
+          }
+        },
+        "mistake_count": 10,
+        "mistakes_sample": [
+          {
+            "id": "H2_177",
+            "group": "short_valid_address",
+            "subgroup": "short_ward_province_2tier",
+            "expected_suf": "address_sufficient",
+            "pred_suf": "address_insufficient",
+            "expected_addr": true,
+            "pred_addr": false,
+            "prob": 0.035,
+            "tier": "Tier 1 (Gazetteer/Rule)",
+            "text": "Nà Hang, Tuyên Quang"
+          },
+          {
+            "id": "H4_046",
+            "group": "garbage_and_chat",
+            "subgroup": "chat_garbage",
+            "expected_suf": "not_address",
+            "pred_suf": "address_insufficient",
+            "expected_addr": false,
+            "pred_addr": false,
+            "prob": 0.03,
+            "tier": "Tier 1 (Gazetteer/Rule)",
+            "text": "sao lâu nhận được vậy"
+          },
+          {
+            "id": "H4_075",
+            "group": "garbage_and_chat",
+            "subgroup": "chat_garbage",
+            "expected_suf": "not_address",
+            "pred_suf": "address_insufficient",
+            "expected_addr": false,
+            "pred_addr": false,
+            "prob": 0.03,
+            "tier": "Tier 1 (Gazetteer/Rule)",
+            "text": "sai rồi bạn ơi"
+          },
+          {
+            "id": "H4_087",
+            "group": "garbage_and_chat",
+            "subgroup": "chat_garbage",
+            "expected_suf": "not_address",
+            "pred_suf": "address_insufficient",
+            "expected_addr": false,
+            "pred_addr": false,
+            "prob": 0.03,
+            "tier": "Tier 1 (Gazetteer/Rule)",
+            "text": "bàn phím cơ bluetooth"
+          },
+          {
+            "id": "H4_094",
+            "group": "garbage_and_chat",
+            "subgroup": "chat_garbage",
+            "expected_suf": "not_address",
+            "pred_suf": "address_insufficient",
+            "expected_addr": false,
+            "pred_addr": false,
+            "prob": 0.03,
+            "tier": "Tier 1 (Gazetteer/Rule)",
+            "text": "đèn bàn học sinh"
+          },
+          {
+            "id": "H4_099",
+            "group": "garbage_and_chat",
+            "subgroup": "chat_garbage",
+            "expected_suf": "not_address",
+            "pred_suf": "address_insufficient",
+            "expected_addr": false,
+            "pred_addr": false,
+            "prob": 0.03,
+            "tier": "Tier 1 (Gazetteer/Rule)",
+            "text": "máy xay sinh tố mini"
+          },
+          {
+            "id": "H5_009",
+            "group": "hard_negative",
+            "subgroup": "hard_product_place",
+            "expected_suf": "not_address",
+            "pred_suf": "address_insufficient",
+            "expected_addr": false,
+            "pred_addr": false,
+            "prob": 0.3767,
+            "tier": "Tier 2 (ONNX)",
+            "text": "chè Thái Nguyên"
+          },
+          {
+            "id": "H5_055",
+            "group": "hard_negative",
+            "subgroup": "hard_person_place",
+            "expected_suf": "not_address",
+            "pred_suf": "address_insufficient",
+            "expected_addr": false,
+            "pred_addr": false,
+            "prob": 0.03,
+            "tier": "Tier 1 (Gazetteer/Rule)",
+            "text": "Cô Bến Nghé bán tạp hóa gần nhà"
+          },
+          {
+            "id": "H5_060",
+            "group": "hard_negative",
+            "subgroup": "hard_person_place",
+            "expected_suf": "not_address",
+            "pred_suf": "address_sufficient",
+            "expected_addr": false,
+            "pred_addr": true,
+            "prob": 0.7562,
+            "tier": "Tier 2 (ONNX)",
+            "text": "Vua Quang Trung đại phá quân Thanh"
+          },
+          {
+            "id": "H5_094",
+            "group": "hard_negative",
+            "subgroup": "hard_chat_place",
+            "expected_suf": "not_address",
+            "pred_suf": "address_insufficient",
+            "expected_addr": false,
+            "pred_addr": false,
+            "prob": 0.035,
+            "tier": "Tier 1 (Gazetteer/Rule)",
+            "text": "Mình học cấp 3 ở Biên Hòa Đồng Nai"
+          }
+        ]
+      },
+      "old_benchmark": {
+        "full_90": {
+          "total": 90,
+          "correct": 89,
+          "accuracy": 0.9889,
+          "f1": 0.9913,
+          "fp": 0,
+          "fn": 1,
+          "mistakes": [
+            {
+              "id": "F04",
+              "expected": true,
+              "pred": false,
+              "suf": "address_insufficient",
+              "prob": 0.03,
+              "text": "ship tới phòng 702 chung cư HH1C Linh Đàm gọi 0988112233"
+            }
+          ]
+        },
+        "deleaked_85": {
+          "total": 85,
+          "correct": 84,
+          "accuracy": 0.9882,
+          "f1": 0.9912,
+          "fp": 0,
+          "fn": 1,
+          "mistakes": [
+            {
+              "id": "F04",
+              "expected": true,
+              "pred": false,
+              "suf": "address_insufficient",
+              "prob": 0.03,
+              "text": "ship tới phòng 702 chung cư HH1C Linh Đàm gọi 0988112233"
+            }
+          ]
+        }
+      }
+    },
+    "way_b_v2_heuristic_only": {
+      "holdout_600": {
+        "total": 600,
+        "acc_3class": 0.9967,
+        "macro_f1_3class": 0.9958,
+        "acc_binary": 0.9983,
+        "f1_binary": 0.9982,
+        "fp_binary": 0,
+        "fn_binary": 1,
+        "ece_binary": 0.0144,
+        "ece_3class": 0.0227,
+        "confusion_matrix_3x3": [
+          [
+            199,
+            1,
+            0
+          ],
+          [
+            0,
+            120,
+            0
+          ],
+          [
+            0,
+            1,
+            279
+          ]
+        ],
+        "short_valid_pass_rate": 0.9944,
+        "short_valid_false_block_rate": 0.0056,
+        "short_styles": {
+          "short_no_prefix_comma": {
+            "total": 30,
+            "passed": 30,
+            "blocked": 0,
+            "correct_3class": 30,
+            "false_block_rate": 0.0,
+            "pass_rate": 1.0
+          },
+          "short_no_prefix_no_comma": {
+            "total": 30,
+            "passed": 30,
+            "blocked": 0,
+            "correct_3class": 30,
+            "false_block_rate": 0.0,
+            "pass_rate": 1.0
+          },
+          "short_unaccented_lower": {
+            "total": 30,
+            "passed": 30,
+            "blocked": 0,
+            "correct_3class": 30,
+            "false_block_rate": 0.0,
+            "pass_rate": 1.0
+          },
+          "short_abbreviated": {
+            "total": 30,
+            "passed": 30,
+            "blocked": 0,
+            "correct_3class": 30,
+            "false_block_rate": 0.0,
+            "pass_rate": 1.0
+          },
+          "short_ward_district_province": {
+            "total": 30,
+            "passed": 30,
+            "blocked": 0,
+            "correct_3class": 30,
+            "false_block_rate": 0.0,
+            "pass_rate": 1.0
+          },
+          "short_ward_province_2tier": {
+            "total": 30,
+            "passed": 29,
+            "blocked": 1,
+            "correct_3class": 29,
+            "false_block_rate": 0.0333,
+            "pass_rate": 0.9667
+          }
+        },
+        "insufficient_tagged_recall": 1.0,
+        "insufficient_gate_block_rate": 1.0,
+        "insufficient_subgroups": {
+          "insuf_ward_only": {
+            "total": 35,
+            "tagged_insufficient": 35,
+            "blocked_gate": 35
+          },
+          "insuf_province_only": {
+            "total": 25,
+            "tagged_insufficient": 25,
+            "blocked_gate": 25
+          },
+          "insuf_district_only": {
+            "total": 20,
+            "tagged_insufficient": 20,
+            "blocked_gate": 20
+          },
+          "insuf_fragment_only": {
+            "total": 40,
+            "tagged_insufficient": 40,
+            "blocked_gate": 40
+          }
+        },
+        "garbage_block_rate": 1.0,
+        "hard_negative_block_rate": 1.0,
+        "mandatory_garbage_checks": {
+          "73": {
+            "blocked": true,
+            "sufficiency": "not_address",
+            "probability": 0.002
+          },
+          "10": {
+            "blocked": true,
+            "sufficiency": "not_address",
+            "probability": 0.002
+          },
+          "K": {
+            "blocked": true,
+            "sufficiency": "not_address",
+            "probability": 0.002
+          },
+          "Hi": {
+            "blocked": true,
+            "sufficiency": "not_address",
+            "probability": 0.002
+          },
+          "Ok": {
+            "blocked": true,
+            "sufficiency": "not_address",
+            "probability": 0.002
+          },
+          "Jean": {
+            "blocked": true,
+            "sufficiency": "not_address",
+            "probability": 0.004
+          },
+          "Xom": {
+            "blocked": true,
+            "sufficiency": "not_address",
+            "probability": 0.002
+          },
+          "Thôn 7": {
+            "blocked": true,
+            "sufficiency": "address_insufficient",
+            "probability": 0.015
+          },
+          "Xin giá": {
+            "blocked": true,
+            "sufficiency": "not_address",
+            "probability": 0.005
+          },
+          "ngõ 12": {
+            "blocked": true,
+            "sufficiency": "address_insufficient",
+            "probability": 0.015
+          },
+          "Cho mình 3 chai nướng BBQ": {
+            "blocked": true,
+            "sufficiency": "not_address",
+            "probability": 0.005
+          }
+        },
+        "latency_ms": {
+          "mean": 0.107,
+          "p50": 0.073,
+          "p95": 0.29,
+          "p99": 0.358
+        },
+        "per_group": {
+          "full_address": {
+            "total": 100,
+            "correct_3class": 100,
+            "correct_binary": 100,
+            "passed_gate": 100,
+            "cm": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                100
+              ]
+            ],
+            "acc_3class": 1.0,
+            "acc_binary": 1.0
+          },
+          "short_valid_address": {
+            "total": 180,
+            "correct_3class": 179,
+            "correct_binary": 179,
+            "passed_gate": 179,
+            "cm": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                1,
+                179
+              ]
+            ],
+            "acc_3class": 0.9944,
+            "acc_binary": 0.9944
+          },
+          "insufficient_address": {
+            "total": 120,
+            "correct_3class": 120,
+            "correct_binary": 120,
+            "passed_gate": 0,
+            "cm": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                120,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ]
+            ],
+            "acc_3class": 1.0,
+            "acc_binary": 1.0
+          },
+          "garbage_and_chat": {
+            "total": 100,
+            "correct_3class": 100,
+            "correct_binary": 100,
+            "passed_gate": 0,
+            "cm": [
+              [
+                100,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ]
+            ],
+            "acc_3class": 1.0,
+            "acc_binary": 1.0
+          },
+          "hard_negative": {
+            "total": 100,
+            "correct_3class": 99,
+            "correct_binary": 100,
+            "passed_gate": 0,
+            "cm": [
+              [
+                99,
+                1,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ]
+            ],
+            "acc_3class": 0.99,
+            "acc_binary": 1.0
+          }
+        },
+        "mistake_count": 2,
+        "mistakes_sample": [
+          {
+            "id": "H2_177",
+            "group": "short_valid_address",
+            "subgroup": "short_ward_province_2tier",
+            "expected_suf": "address_sufficient",
+            "pred_suf": "address_insufficient",
+            "expected_addr": true,
+            "pred_addr": false,
+            "prob": 0.02,
+            "tier": "heuristic_only",
+            "text": "Nà Hang, Tuyên Quang"
+          },
+          {
+            "id": "H5_060",
+            "group": "hard_negative",
+            "subgroup": "hard_person_place",
+            "expected_suf": "not_address",
+            "pred_suf": "address_insufficient",
+            "expected_addr": false,
+            "pred_addr": false,
+            "prob": 0.2,
+            "tier": "heuristic_only",
+            "text": "Vua Quang Trung đại phá quân Thanh"
+          }
+        ]
+      },
+      "old_benchmark": {
+        "full_90": {
+          "total": 90,
+          "correct": 87,
+          "accuracy": 0.9667,
+          "f1": 0.9735,
+          "fp": 0,
+          "fn": 3,
+          "mistakes": [
+            {
+              "id": "U07",
+              "expected": true,
+              "pred": false,
+              "suf": "not_address",
+              "prob": 0.3,
+              "text": "302 Cách Mạng Tháng Tám, Phường 10, Quận 3, Thành phố Hồ Chí Minh"
+            },
+            {
+              "id": "F04",
+              "expected": true,
+              "pred": false,
+              "suf": "address_insufficient",
+              "prob": 0.17,
+              "text": "ship tới phòng 702 chung cư HH1C Linh Đàm gọi 0988112233"
+            },
+            {
+              "id": "F05",
+              "expected": true,
+              "pred": false,
+              "suf": "address_insufficient",
+              "prob": 0.17,
+              "text": "cổng sau đại học bách khoa 268 lý thường kiệt q10 hcm"
+            }
+          ]
+        },
+        "deleaked_85": {
+          "total": 85,
+          "correct": 82,
+          "accuracy": 0.9647,
+          "f1": 0.973,
+          "fp": 0,
+          "fn": 3,
+          "mistakes": [
+            {
+              "id": "U07",
+              "expected": true,
+              "pred": false,
+              "suf": "not_address",
+              "prob": 0.3,
+              "text": "302 Cách Mạng Tháng Tám, Phường 10, Quận 3, Thành phố Hồ Chí Minh"
+            },
+            {
+              "id": "F04",
+              "expected": true,
+              "pred": false,
+              "suf": "address_insufficient",
+              "prob": 0.17,
+              "text": "ship tới phòng 702 chung cư HH1C Linh Đàm gọi 0988112233"
+            },
+            {
+              "id": "F05",
+              "expected": true,
+              "pred": false,
+              "suf": "address_insufficient",
+              "prob": 0.17,
+              "text": "cổng sau đại học bách khoa 268 lý thường kiệt q10 hcm"
+            }
+          ]
+        }
+      }
+    },
+    "way_b_v2_model_only": {
+      "holdout_600": {
+        "total": 600,
+        "acc_3class": 0.8933,
+        "macro_f1_3class": 0.8898,
+        "acc_binary": 0.91,
+        "f1_binary": 0.9097,
+        "fp_binary": 46,
+        "fn_binary": 8,
+        "ece_binary": 0.066,
+        "ece_3class": 0.065,
+        "confusion_matrix_3x3": [
+          [
+            152,
+            10,
+            38
+          ],
+          [
+            0,
+            112,
+            8
+          ],
+          [
+            0,
+            8,
+            272
+          ]
+        ],
+        "short_valid_pass_rate": 0.9556,
+        "short_valid_false_block_rate": 0.0444,
+        "short_styles": {
+          "short_no_prefix_comma": {
+            "total": 30,
+            "passed": 30,
+            "blocked": 0,
+            "correct_3class": 30,
+            "false_block_rate": 0.0,
+            "pass_rate": 1.0
+          },
+          "short_no_prefix_no_comma": {
+            "total": 30,
+            "passed": 28,
+            "blocked": 2,
+            "correct_3class": 28,
+            "false_block_rate": 0.0667,
+            "pass_rate": 0.9333
+          },
+          "short_unaccented_lower": {
+            "total": 30,
+            "passed": 26,
+            "blocked": 4,
+            "correct_3class": 26,
+            "false_block_rate": 0.1333,
+            "pass_rate": 0.8667
+          },
+          "short_abbreviated": {
+            "total": 30,
+            "passed": 30,
+            "blocked": 0,
+            "correct_3class": 30,
+            "false_block_rate": 0.0,
+            "pass_rate": 1.0
+          },
+          "short_ward_district_province": {
+            "total": 30,
+            "passed": 30,
+            "blocked": 0,
+            "correct_3class": 30,
+            "false_block_rate": 0.0,
+            "pass_rate": 1.0
+          },
+          "short_ward_province_2tier": {
+            "total": 30,
+            "passed": 28,
+            "blocked": 2,
+            "correct_3class": 28,
+            "false_block_rate": 0.0667,
+            "pass_rate": 0.9333
+          }
+        },
+        "insufficient_tagged_recall": 0.9333,
+        "insufficient_gate_block_rate": 0.9333,
+        "insufficient_subgroups": {
+          "insuf_ward_only": {
+            "total": 35,
+            "tagged_insufficient": 34,
+            "blocked_gate": 34
+          },
+          "insuf_province_only": {
+            "total": 25,
+            "tagged_insufficient": 25,
+            "blocked_gate": 25
+          },
+          "insuf_district_only": {
+            "total": 20,
+            "tagged_insufficient": 15,
+            "blocked_gate": 15
+          },
+          "insuf_fragment_only": {
+            "total": 40,
+            "tagged_insufficient": 38,
+            "blocked_gate": 38
+          }
+        },
+        "garbage_block_rate": 0.86,
+        "hard_negative_block_rate": 0.76,
+        "mandatory_garbage_checks": {
+          "73": {
+            "blocked": true,
+            "sufficiency": "not_address",
+            "probability": 0.0043
+          },
+          "10": {
+            "blocked": true,
+            "sufficiency": "not_address",
+            "probability": 0.0027
+          },
+          "K": {
+            "blocked": true,
+            "sufficiency": "not_address",
+            "probability": 0.0034
+          },
+          "Hi": {
+            "blocked": true,
+            "sufficiency": "not_address",
+            "probability": 0.004
+          },
+          "Ok": {
+            "blocked": true,
+            "sufficiency": "not_address",
+            "probability": 0.0009
+          },
+          "Jean": {
+            "blocked": true,
+            "sufficiency": "not_address",
+            "probability": 0.0009
+          },
+          "Xom": {
+            "blocked": true,
+            "sufficiency": "not_address",
+            "probability": 0.0009
+          },
+          "Thôn 7": {
+            "blocked": true,
+            "sufficiency": "address_insufficient",
+            "probability": 0.0022
+          },
+          "Xin giá": {
+            "blocked": true,
+            "sufficiency": "not_address",
+            "probability": 0.0099
+          },
+          "ngõ 12": {
+            "blocked": true,
+            "sufficiency": "address_insufficient",
+            "probability": 0.0026
+          },
+          "Cho mình 3 chai nướng BBQ": {
+            "blocked": true,
+            "sufficiency": "not_address",
+            "probability": 0.0012
+          }
+        },
+        "latency_ms": {
+          "mean": 0.453,
+          "p50": 0.388,
+          "p95": 0.871,
+          "p99": 1.164
+        },
+        "per_group": {
+          "full_address": {
+            "total": 100,
+            "correct_3class": 100,
+            "correct_binary": 100,
+            "passed_gate": 100,
+            "cm": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                100
+              ]
+            ],
+            "acc_3class": 1.0,
+            "acc_binary": 1.0
+          },
+          "short_valid_address": {
+            "total": 180,
+            "correct_3class": 172,
+            "correct_binary": 172,
+            "passed_gate": 172,
+            "cm": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                8,
+                172
+              ]
+            ],
+            "acc_3class": 0.9556,
+            "acc_binary": 0.9556
+          },
+          "insufficient_address": {
+            "total": 120,
+            "correct_3class": 112,
+            "correct_binary": 112,
+            "passed_gate": 8,
+            "cm": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                112,
+                8
+              ],
+              [
+                0,
+                0,
+                0
+              ]
+            ],
+            "acc_3class": 0.9333,
+            "acc_binary": 0.9333
+          },
+          "garbage_and_chat": {
+            "total": 100,
+            "correct_3class": 77,
+            "correct_binary": 86,
+            "passed_gate": 14,
+            "cm": [
+              [
+                77,
+                9,
+                14
+              ],
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ]
+            ],
+            "acc_3class": 0.77,
+            "acc_binary": 0.86
+          },
+          "hard_negative": {
+            "total": 100,
+            "correct_3class": 75,
+            "correct_binary": 76,
+            "passed_gate": 24,
+            "cm": [
+              [
+                75,
+                1,
+                24
+              ],
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ]
+            ],
+            "acc_3class": 0.75,
+            "acc_binary": 0.76
+          }
+        },
+        "mistake_count": 64,
+        "mistakes_sample": [
+          {
+            "id": "H2_031",
+            "group": "short_valid_address",
+            "subgroup": "short_no_prefix_no_comma",
+            "expected_suf": "address_sufficient",
+            "pred_suf": "address_insufficient",
+            "expected_addr": true,
+            "pred_addr": false,
+            "prob": 0.3139,
+            "tier": "onnx_int8",
+            "text": "Mộc Lỵ Mộc Châu"
+          },
+          {
+            "id": "H2_038",
+            "group": "short_valid_address",
+            "subgroup": "short_no_prefix_no_comma",
+            "expected_suf": "address_sufficient",
+            "pred_suf": "address_insufficient",
+            "expected_addr": true,
+            "pred_addr": false,
+            "prob": 0.1147,
+            "tier": "onnx_int8",
+            "text": "Kông Bơ La KBang"
+          },
+          {
+            "id": "H2_066",
+            "group": "short_valid_address",
+            "subgroup": "short_unaccented_lower",
+            "expected_suf": "address_sufficient",
+            "pred_suf": "address_insufficient",
+            "expected_addr": true,
+            "pred_addr": false,
+            "prob": 0.4172,
+            "tier": "onnx_int8",
+            "text": "bat trang gia lam"
+          },
+          {
+            "id": "H2_068",
+            "group": "short_valid_address",
+            "subgroup": "short_unaccented_lower",
+            "expected_suf": "address_sufficient",
+            "pred_suf": "address_insufficient",
+            "expected_addr": true,
+            "pred_addr": false,
+            "prob": 0.0867,
+            "tier": "onnx_int8",
+            "text": "phuong liet thanh xuan"
+          },
+          {
+            "id": "H2_077",
+            "group": "short_valid_address",
+            "subgroup": "short_unaccented_lower",
+            "expected_suf": "address_sufficient",
+            "pred_suf": "address_insufficient",
+            "expected_addr": true,
+            "pred_addr": false,
+            "prob": 0.4609,
+            "tier": "onnx_int8",
+            "text": "vi xuyen nam dinh"
+          },
+          {
+            "id": "H2_086",
+            "group": "short_valid_address",
+            "subgroup": "short_unaccented_lower",
+            "expected_suf": "address_sufficient",
+            "pred_suf": "address_insufficient",
+            "expected_addr": true,
+            "pred_addr": false,
+            "prob": 0.4752,
+            "tier": "onnx_int8",
+            "text": "quang trung hai duong"
+          },
+          {
+            "id": "H2_165",
+            "group": "short_valid_address",
+            "subgroup": "short_ward_province_2tier",
+            "expected_suf": "address_sufficient",
+            "pred_suf": "address_insufficient",
+            "expected_addr": true,
+            "pred_addr": false,
+            "prob": 0.3558,
+            "tier": "onnx_int8",
+            "text": "Luận Thành, Thanh Hóa"
+          },
+          {
+            "id": "H2_171",
+            "group": "short_valid_address",
+            "subgroup": "short_ward_province_2tier",
+            "expected_suf": "address_sufficient",
+            "pred_suf": "address_insufficient",
+            "expected_addr": true,
+            "pred_addr": false,
+            "prob": 0.4333,
+            "tier": "onnx_int8",
+            "text": "Sơn Điện, Thanh Hóa"
+          },
+          {
+            "id": "H3_027",
+            "group": "insufficient_address",
+            "subgroup": "insuf_ward_only",
+            "expected_suf": "address_insufficient",
+            "pred_suf": "address_sufficient",
+            "expected_addr": false,
+            "pred_addr": true,
+            "prob": 0.8496,
+            "tier": "onnx_int8",
+            "text": "X. Ninh Thạnh Lợi A"
+          },
+          {
+            "id": "H3_064",
+            "group": "insufficient_address",
+            "subgroup": "insuf_district_only",
+            "expected_suf": "address_insufficient",
+            "pred_suf": "address_sufficient",
+            "expected_addr": false,
+            "pred_addr": true,
+            "prob": 0.5352,
+            "tier": "onnx_int8",
+            "text": "Mường Tè, Lai Châu"
+          },
+          {
+            "id": "H3_068",
+            "group": "insufficient_address",
+            "subgroup": "insuf_district_only",
+            "expected_suf": "address_insufficient",
+            "pred_suf": "address_sufficient",
+            "expected_addr": false,
+            "pred_addr": true,
+            "prob": 0.5002,
+            "tier": "onnx_int8",
+            "text": "Văn Chấn, Yên Bái"
+          },
+          {
+            "id": "H3_074",
+            "group": "insufficient_address",
+            "subgroup": "insuf_district_only",
+            "expected_suf": "address_insufficient",
+            "pred_suf": "address_sufficient",
+            "expected_addr": false,
+            "pred_addr": true,
+            "prob": 0.687,
+            "tier": "onnx_int8",
+            "text": "Đắk Song, Đắk Nông"
+          },
+          {
+            "id": "H3_078",
+            "group": "insufficient_address",
+            "subgroup": "insuf_district_only",
+            "expected_suf": "address_insufficient",
+            "pred_suf": "address_sufficient",
+            "expected_addr": false,
+            "pred_addr": true,
+            "prob": 0.5283,
+            "tier": "onnx_int8",
+            "text": "Hai Bà Trưng, Hà Nội"
+          },
+          {
+            "id": "H3_080",
+            "group": "insufficient_address",
+            "subgroup": "insuf_district_only",
+            "expected_suf": "address_insufficient",
+            "pred_suf": "address_sufficient",
+            "expected_addr": false,
+            "pred_addr": true,
+            "prob": 0.5304,
+            "tier": "onnx_int8",
+            "text": "Ân Thi, Hưng Yên"
+          },
+          {
+            "id": "H3_103",
+            "group": "insufficient_address",
+            "subgroup": "insuf_fragment_only",
+            "expected_suf": "address_insufficient",
+            "pred_suf": "address_sufficient",
+            "expected_addr": false,
+            "pred_addr": true,
+            "prob": 0.9927,
+            "tier": "onnx_int8",
+            "text": "Tầng 15 Block A"
+          },
+          {
+            "id": "H3_116",
+            "group": "insufficient_address",
+            "subgroup": "insuf_fragment_only",
+            "expected_suf": "address_insufficient",
+            "pred_suf": "address_sufficient",
+            "expected_addr": false,
+            "pred_addr": true,
+            "prob": 0.9877,
+            "tier": "onnx_int8",
+            "text": "Tầng 5 Block A"
+          },
+          {
+            "id": "H4_012",
+            "group": "garbage_and_chat",
+            "subgroup": "chat_garbage",
+            "expected_suf": "not_address",
+            "pred_suf": "address_insufficient",
+            "expected_addr": false,
+            "pred_addr": false,
+            "prob": 0.0063,
+            "tier": "onnx_int8",
+            "text": "1"
+          },
+          {
+            "id": "H4_021",
+            "group": "garbage_and_chat",
+            "subgroup": "chat_garbage",
+            "expected_suf": "not_address",
+            "pred_suf": "address_insufficient",
+            "expected_addr": false,
+            "pred_addr": false,
+            "prob": 0.0281,
+            "tier": "onnx_int8",
+            "text": "vâng ạ"
+          },
+          {
+            "id": "H4_037",
+            "group": "garbage_and_chat",
+            "subgroup": "chat_garbage",
+            "expected_suf": "not_address",
+            "pred_suf": "address_sufficient",
+            "expected_addr": false,
+            "pred_addr": true,
+            "prob": 0.8304,
+            "tier": "onnx_int8",
+            "text": "lấy 1 hộp nha"
+          },
+          {
+            "id": "H4_042",
+            "group": "garbage_and_chat",
+            "subgroup": "chat_garbage",
+            "expected_suf": "not_address",
+            "pred_suf": "address_insufficient",
+            "expected_addr": false,
+            "pred_addr": false,
+            "prob": 0.0991,
+            "tier": "onnx_int8",
+            "text": "mã giảm giá là gì"
+          },
+          {
+            "id": "H4_044",
+            "group": "garbage_and_chat",
+            "subgroup": "chat_garbage",
+            "expected_suf": "not_address",
+            "pred_suf": "address_sufficient",
+            "expected_addr": false,
+            "pred_addr": true,
+            "prob": 0.8062,
+            "tier": "onnx_int8",
+            "text": "đã ck rồi nhé"
+          },
+          {
+            "id": "H4_046",
+            "group": "garbage_and_chat",
+            "subgroup": "chat_garbage",
+            "expected_suf": "not_address",
+            "pred_suf": "address_sufficient",
+            "expected_addr": false,
+            "pred_addr": true,
+            "prob": 0.6665,
+            "tier": "onnx_int8",
+            "text": "sao lâu nhận được vậy"
+          },
+          {
+            "id": "H4_062",
+            "group": "garbage_and_chat",
+            "subgroup": "chat_garbage",
+            "expected_suf": "not_address",
+            "pred_suf": "address_sufficient",
+            "expected_addr": false,
+            "pred_addr": true,
+            "prob": 0.9688,
+            "tier": "onnx_int8",
+            "text": "giao như tuần trước"
+          },
+          {
+            "id": "H4_064",
+            "group": "garbage_and_chat",
+            "subgroup": "chat_garbage",
+            "expected_suf": "not_address",
+            "pred_suf": "address_insufficient",
+            "expected_addr": false,
+            "pred_addr": false,
+            "prob": 0.1124,
+            "tier": "onnx_int8",
+            "text": "để ngoài cổng giùm"
+          },
+          {
+            "id": "H4_065",
+            "group": "garbage_and_chat",
+            "subgroup": "chat_garbage",
+            "expected_suf": "not_address",
+            "pred_suf": "address_sufficient",
+            "expected_addr": false,
+            "pred_addr": true,
+            "prob": 0.9773,
+            "tier": "onnx_int8",
+            "text": "gọi mình trước khi tới"
+          }
+        ]
+      },
+      "old_benchmark": {
+        "full_90": {
+          "total": 90,
+          "correct": 82,
+          "accuracy": 0.9111,
+          "f1": 0.9344,
+          "fp": 7,
+          "fn": 1,
+          "mistakes": [
+            {
+              "id": "D07",
+              "expected": true,
+              "pred": false,
+              "suf": "address_insufficient",
+              "prob": 0.0156,
+              "text": "ngõ 12a đg giải phóng hai bà trưng hn"
+            },
+            {
+              "id": "NL02",
+              "expected": false,
+              "pred": true,
+              "suf": "address_sufficient",
+              "prob": 0.9943,
+              "text": "Quận 1 giờ này kẹt xe kinh khủng luôn"
+            },
+            {
+              "id": "NL05",
+              "expected": false,
+              "pred": true,
+              "suf": "address_sufficient",
+              "prob": 0.9859,
+              "text": "Nguyễn Trãi là danh nhân văn hóa thế giới của Việt Nam"
+            },
+            {
+              "id": "NL08",
+              "expected": false,
+              "pred": true,
+              "suf": "address_sufficient",
+              "prob": 0.9591,
+              "text": "Mình mới chuyển từ Huế ra Hà Nội làm việc tháng trước"
+            },
+            {
+              "id": "NL09",
+              "expected": false,
+              "pred": true,
+              "suf": "address_sufficient",
+              "prob": 0.892,
+              "text": "Đội tuyển Việt Nam thi đấu ở sân Mỹ Đình tối nay"
+            },
+            {
+              "id": "NL10",
+              "expected": false,
+              "pred": true,
+              "suf": "address_sufficient",
+              "prob": 0.9302,
+              "text": "Công ty mình có 2 chi nhánh ở Cầu Giấy và Thanh Xuân"
+            },
+            {
+              "id": "NV02",
+              "expected": false,
+              "pred": true,
+              "suf": "address_sufficient",
+              "prob": 0.994,
+              "text": "giao như đơn lần trước nha"
+            },
+            {
+              "id": "NN07",
+              "expected": false,
+              "pred": true,
+              "suf": "address_sufficient",
+              "prob": 0.983,
+              "text": "iPhone 16 Pro Max 256GB Titan Sa Mạc chính hãng VN/A"
+            }
+          ]
+        },
+        "deleaked_85": {
+          "total": 85,
+          "correct": 77,
+          "accuracy": 0.9059,
+          "f1": 0.9333,
+          "fp": 7,
+          "fn": 1,
+          "mistakes": [
+            {
+              "id": "D07",
+              "expected": true,
+              "pred": false,
+              "suf": "address_insufficient",
+              "prob": 0.0156,
+              "text": "ngõ 12a đg giải phóng hai bà trưng hn"
+            },
+            {
+              "id": "NL02",
+              "expected": false,
+              "pred": true,
+              "suf": "address_sufficient",
+              "prob": 0.9943,
+              "text": "Quận 1 giờ này kẹt xe kinh khủng luôn"
+            },
+            {
+              "id": "NL05",
+              "expected": false,
+              "pred": true,
+              "suf": "address_sufficient",
+              "prob": 0.9859,
+              "text": "Nguyễn Trãi là danh nhân văn hóa thế giới của Việt Nam"
+            },
+            {
+              "id": "NL08",
+              "expected": false,
+              "pred": true,
+              "suf": "address_sufficient",
+              "prob": 0.9591,
+              "text": "Mình mới chuyển từ Huế ra Hà Nội làm việc tháng trước"
+            },
+            {
+              "id": "NL09",
+              "expected": false,
+              "pred": true,
+              "suf": "address_sufficient",
+              "prob": 0.892,
+              "text": "Đội tuyển Việt Nam thi đấu ở sân Mỹ Đình tối nay"
+            },
+            {
+              "id": "NL10",
+              "expected": false,
+              "pred": true,
+              "suf": "address_sufficient",
+              "prob": 0.9302,
+              "text": "Công ty mình có 2 chi nhánh ở Cầu Giấy và Thanh Xuân"
+            },
+            {
+              "id": "NV02",
+              "expected": false,
+              "pred": true,
+              "suf": "address_sufficient",
+              "prob": 0.994,
+              "text": "giao như đơn lần trước nha"
+            },
+            {
+              "id": "NN07",
+              "expected": false,
+              "pred": true,
+              "suf": "address_sufficient",
+              "prob": 0.983,
+              "text": "iPhone 16 Pro Max 256GB Titan Sa Mạc chính hãng VN/A"
+            }
+          ]
+        }
+      }
+    },
+    "way_b_v2_hybrid": {
+      "holdout_600": {
+        "total": 600,
+        "acc_3class": 0.9983,
+        "macro_f1_3class": 0.998,
+        "acc_binary": 0.9983,
+        "f1_binary": 0.9982,
+        "fp_binary": 0,
+        "fn_binary": 1,
+        "ece_binary": 0.008,
+        "ece_3class": 0.0152,
+        "confusion_matrix_3x3": [
+          [
+            200,
+            0,
+            0
+          ],
+          [
+            0,
+            120,
+            0
+          ],
+          [
+            0,
+            1,
+            279
+          ]
+        ],
+        "short_valid_pass_rate": 0.9944,
+        "short_valid_false_block_rate": 0.0056,
+        "short_styles": {
+          "short_no_prefix_comma": {
+            "total": 30,
+            "passed": 30,
+            "blocked": 0,
+            "correct_3class": 30,
+            "false_block_rate": 0.0,
+            "pass_rate": 1.0
+          },
+          "short_no_prefix_no_comma": {
+            "total": 30,
+            "passed": 30,
+            "blocked": 0,
+            "correct_3class": 30,
+            "false_block_rate": 0.0,
+            "pass_rate": 1.0
+          },
+          "short_unaccented_lower": {
+            "total": 30,
+            "passed": 30,
+            "blocked": 0,
+            "correct_3class": 30,
+            "false_block_rate": 0.0,
+            "pass_rate": 1.0
+          },
+          "short_abbreviated": {
+            "total": 30,
+            "passed": 30,
+            "blocked": 0,
+            "correct_3class": 30,
+            "false_block_rate": 0.0,
+            "pass_rate": 1.0
+          },
+          "short_ward_district_province": {
+            "total": 30,
+            "passed": 30,
+            "blocked": 0,
+            "correct_3class": 30,
+            "false_block_rate": 0.0,
+            "pass_rate": 1.0
+          },
+          "short_ward_province_2tier": {
+            "total": 30,
+            "passed": 29,
+            "blocked": 1,
+            "correct_3class": 29,
+            "false_block_rate": 0.0333,
+            "pass_rate": 0.9667
+          }
+        },
+        "insufficient_tagged_recall": 1.0,
+        "insufficient_gate_block_rate": 1.0,
+        "insufficient_subgroups": {
+          "insuf_ward_only": {
+            "total": 35,
+            "tagged_insufficient": 35,
+            "blocked_gate": 35
+          },
+          "insuf_province_only": {
+            "total": 25,
+            "tagged_insufficient": 25,
+            "blocked_gate": 25
+          },
+          "insuf_district_only": {
+            "total": 20,
+            "tagged_insufficient": 20,
+            "blocked_gate": 20
+          },
+          "insuf_fragment_only": {
+            "total": 40,
+            "tagged_insufficient": 40,
+            "blocked_gate": 40
+          }
+        },
+        "garbage_block_rate": 1.0,
+        "hard_negative_block_rate": 1.0,
+        "mandatory_garbage_checks": {
+          "73": {
+            "blocked": true,
+            "sufficiency": "not_address",
+            "probability": 0.002
+          },
+          "10": {
+            "blocked": true,
+            "sufficiency": "not_address",
+            "probability": 0.002
+          },
+          "K": {
+            "blocked": true,
+            "sufficiency": "not_address",
+            "probability": 0.002
+          },
+          "Hi": {
+            "blocked": true,
+            "sufficiency": "not_address",
+            "probability": 0.002
+          },
+          "Ok": {
+            "blocked": true,
+            "sufficiency": "not_address",
+            "probability": 0.002
+          },
+          "Jean": {
+            "blocked": true,
+            "sufficiency": "not_address",
+            "probability": 0.004
+          },
+          "Xom": {
+            "blocked": true,
+            "sufficiency": "not_address",
+            "probability": 0.002
+          },
+          "Thôn 7": {
+            "blocked": true,
+            "sufficiency": "address_insufficient",
+            "probability": 0.015
+          },
+          "Xin giá": {
+            "blocked": true,
+            "sufficiency": "not_address",
+            "probability": 0.005
+          },
+          "ngõ 12": {
+            "blocked": true,
+            "sufficiency": "address_insufficient",
+            "probability": 0.015
+          },
+          "Cho mình 3 chai nướng BBQ": {
+            "blocked": true,
+            "sufficiency": "not_address",
+            "probability": 0.005
+          }
+        },
+        "latency_ms": {
+          "mean": 0.149,
+          "p50": 0.079,
+          "p95": 0.455,
+          "p99": 1.097
+        },
+        "per_group": {
+          "full_address": {
+            "total": 100,
+            "correct_3class": 100,
+            "correct_binary": 100,
+            "passed_gate": 100,
+            "cm": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                100
+              ]
+            ],
+            "acc_3class": 1.0,
+            "acc_binary": 1.0
+          },
+          "short_valid_address": {
+            "total": 180,
+            "correct_3class": 179,
+            "correct_binary": 179,
+            "passed_gate": 179,
+            "cm": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                1,
+                179
+              ]
+            ],
+            "acc_3class": 0.9944,
+            "acc_binary": 0.9944
+          },
+          "insufficient_address": {
+            "total": 120,
+            "correct_3class": 120,
+            "correct_binary": 120,
+            "passed_gate": 0,
+            "cm": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                120,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ]
+            ],
+            "acc_3class": 1.0,
+            "acc_binary": 1.0
+          },
+          "garbage_and_chat": {
+            "total": 100,
+            "correct_3class": 100,
+            "correct_binary": 100,
+            "passed_gate": 0,
+            "cm": [
+              [
+                100,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ]
+            ],
+            "acc_3class": 1.0,
+            "acc_binary": 1.0
+          },
+          "hard_negative": {
+            "total": 100,
+            "correct_3class": 100,
+            "correct_binary": 100,
+            "passed_gate": 0,
+            "cm": [
+              [
+                100,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ]
+            ],
+            "acc_3class": 1.0,
+            "acc_binary": 1.0
+          }
+        },
+        "mistake_count": 1,
+        "mistakes_sample": [
+          {
+            "id": "H2_177",
+            "group": "short_valid_address",
+            "subgroup": "short_ward_province_2tier",
+            "expected_suf": "address_sufficient",
+            "pred_suf": "address_insufficient",
+            "expected_addr": true,
+            "pred_addr": false,
+            "prob": 0.02,
+            "tier": "heuristic_insufficient",
+            "text": "Nà Hang, Tuyên Quang"
+          }
+        ]
+      },
+      "old_benchmark": {
+        "full_90": {
+          "total": 90,
+          "correct": 89,
+          "accuracy": 0.9889,
+          "f1": 0.9915,
+          "fp": 1,
+          "fn": 0,
+          "mistakes": [
+            {
+              "id": "NL08",
+              "expected": false,
+              "pred": true,
+              "suf": "address_sufficient",
+              "prob": 0.9591,
+              "text": "Mình mới chuyển từ Huế ra Hà Nội làm việc tháng trước"
+            }
+          ]
+        },
+        "deleaked_85": {
+          "total": 85,
+          "correct": 84,
+          "accuracy": 0.9882,
+          "f1": 0.9913,
+          "fp": 1,
+          "fn": 0,
+          "mistakes": [
+            {
+              "id": "NL08",
+              "expected": false,
+              "pred": true,
+              "suf": "address_sufficient",
+              "prob": 0.9591,
+              "text": "Mình mới chuyển từ Huế ra Hà Nội làm việc tháng trước"
+            }
+          ]
+        }
+      }
+    }
+  }
+}
