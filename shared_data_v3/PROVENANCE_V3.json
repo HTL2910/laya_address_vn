@@ -1,0 +1,32 @@
+{
+  "version": "3.0.0",
+  "source_repository": "https://github.com/tranngocminhhieu/vietnamadminunits",
+  "license": "MIT License (Copyright (c) 2025 Tran Ngoc Minh Hieu)",
+  "raw_files": [
+    {
+      "filename": "convert_legacy_2025_with_location_and_default_ward.csv",
+      "url": "https://raw.githubusercontent.com/tranngocminhhieu/vietnamadminunits/main/data/processed/convert_legacy_2025_with_location_and_default_ward.csv",
+      "sha256": "e06d189c9caad0be458e25f541587dcf4db1758326ea5b5ffcbc9448a769c883",
+      "rows": 10602
+    },
+    {
+      "filename": "2025_34-province-3221-ward_with_location.csv",
+      "sha256": "cf103923c0c469201f3b22d78f5b05c90db13986994811a9fc17988de18bf678"
+    },
+    {
+      "filename": "LICENSE_vietnamadminunits.txt",
+      "sha256": "5a5366d3137d7f84b8ef9ce3a66c4dc3db2a0716b317f901b1c0542ed44ffd13"
+    }
+  ],
+  "counts": {
+    "legacy_provinces": 63,
+    "legacy_districts": 661,
+    "legacy_wards": 6433,
+    "new_provinces_2025": 34,
+    "new_wards_2025": 2745,
+    "island_special_zones": 5,
+    "total_mapping_records": 10602
+  },
+  "converter_sha256": "42201268ecfcd30b2f31bbb65d1efe6454790e42b852936450d4b52f6b0b0f46",
+  "converter_bytes": 1100790
+}

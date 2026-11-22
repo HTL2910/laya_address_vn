@@ -1,0 +1,32 @@
+{
+  "name": "@laya/address-vn-widget",
+  "version": "3.0.0",
+  "description": "Zero-CDN client-side Vietnamese address validator, Telex/1-edit fuzzy recovery, legacy-to-2025 2-tier converter, and <laya-address-input> widget.",
+  "license": "MIT",
+  "main": "./sdk/laya-address-widget.js",
+  "exports": {
+    ".": "./sdk/laya-address-widget.js",
+    "./telex-fuzzy": "./sdk/laya-telex-fuzzy.js",
+    "./heuristics": "./dist/heuristics.js"
+  },
+  "files": [
+    "sdk/",
+    "dist/",
+    "LICENSE_vietnamadminunits.txt",
+    "README.md"
+  ],
+  "scripts": {
+    "test": "node --test tests/test_widget_v3.mjs",
+    "serve": "python serve.py"
+  },
+  "keywords": [
+    "vietnam",
+    "address",
+    "validation",
+    "telex",
+    "fuzzy",
+    "2025",
+    "onnx",
+    "web-component"
+  ]
+}

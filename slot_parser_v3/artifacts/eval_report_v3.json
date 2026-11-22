@@ -1,0 +1,148 @@
+{
+  "model": "Word+Char BiGRU + Linear-CRF (ONNX INT8 + NumPy Viterbi)",
+  "train_seed": 401,
+  "holdout_seed": 20261201,
+  "splits": {
+    "train": 42000,
+    "val": 4000,
+    "test": 4000,
+    "holdout": 500
+  },
+  "vocab": {
+    "word_vocab_size": 6583,
+    "char_vocab_size": 206,
+    "max_word_len": 64,
+    "max_char_per_word": 16
+  },
+  "training_seconds": 1763.7,
+  "artifacts": {
+    "fp32_bytes": 2890881,
+    "int8_bytes": 1597217,
+    "int8_mb": 1.5232,
+    "val_pytorch_macro_f1": 0.9928,
+    "val_int8_macro_f1": 0.9929,
+    "quantization_f1_delta": 0.0001
+  },
+  "test_4k_metrics": {
+    "num_examples": 4000,
+    "token_accuracy": 0.9952,
+    "macro_entity_f1": 0.9929,
+    "micro_entity_f1": 0.9906,
+    "clean_address_match_rate": 0.9965,
+    "negative_false_positive_rate": 0.0,
+    "per_slot": {
+      "HNO": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "support": 1909
+      },
+      "STR": {
+        "precision": 0.9954,
+        "recall": 0.9958,
+        "f1": 0.9956,
+        "support": 2391
+      },
+      "WAR": {
+        "precision": 0.9734,
+        "recall": 0.9845,
+        "f1": 0.9789,
+        "support": 2904
+      },
+      "DIS": {
+        "precision": 0.9854,
+        "recall": 0.9649,
+        "f1": 0.975,
+        "support": 2652
+      },
+      "PRO": {
+        "precision": 0.992,
+        "recall": 0.9968,
+        "f1": 0.9944,
+        "support": 2474
+      },
+      "PER": {
+        "precision": 0.9992,
+        "recall": 1.0,
+        "f1": 0.9996,
+        "support": 1295
+      },
+      "PHN": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "support": 1386
+      },
+      "NOTE": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "support": 1097
+      }
+    }
+  },
+  "holdout_500_metrics": {
+    "num_examples": 500,
+    "token_accuracy": 0.9858,
+    "macro_entity_f1": 0.977,
+    "micro_entity_f1": 0.9747,
+    "clean_address_match_rate": 0.956,
+    "negative_false_positive_rate": 0.0,
+    "per_slot": {
+      "HNO": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "support": 234
+      },
+      "STR": {
+        "precision": 0.9709,
+        "recall": 0.9646,
+        "f1": 0.9677,
+        "support": 311
+      },
+      "WAR": {
+        "precision": 0.9335,
+        "recall": 0.9712,
+        "f1": 0.952,
+        "support": 347
+      },
+      "DIS": {
+        "precision": 0.9708,
+        "recall": 0.9569,
+        "f1": 0.9638,
+        "support": 348
+      },
+      "PRO": {
+        "precision": 0.9834,
+        "recall": 0.9933,
+        "f1": 0.9883,
+        "support": 298
+      },
+      "PER": {
+        "precision": 0.9734,
+        "recall": 0.9433,
+        "f1": 0.9581,
+        "support": 194
+      },
+      "PHN": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "support": 205
+      },
+      "NOTE": {
+        "precision": 0.9886,
+        "recall": 0.9831,
+        "f1": 0.9858,
+        "support": 177
+      }
+    }
+  },
+  "latency_single_item_cpu": {
+    "mean_ms": 3.199,
+    "p50_ms": 2.971,
+    "p95_ms": 3.772,
+    "p99_ms": 5.171
+  }
+}

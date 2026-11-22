@@ -1,0 +1,56 @@
+{
+  "model": "PostGoongVerifierMLP",
+  "seed_train": 301,
+  "seed_holdout": 20261199,
+  "splits": {
+    "train": 48000,
+    "val": 6000,
+    "test": 6000,
+    "independent_holdout": 600
+  },
+  "zero_overlap_verified": true,
+  "n_features": 43,
+  "n_params": 16449,
+  "onnx_opset": 14,
+  "onnx_size_kb": 68.53,
+  "onnx_pytorch_max_diff": 1.91e-06,
+  "calibration": {
+    "temperature": 0.75,
+    "t_low": 0.38,
+    "t_high": 0.66
+  },
+  "test_6k_metrics": {
+    "count": 6000,
+    "roc_auc": 0.999866,
+    "pr_auc": 0.999836,
+    "ece": 0.00518,
+    "accuracy_at_t_low": 0.991833,
+    "hard_block_precision": 0.996992,
+    "hallucination_recall": 0.999295,
+    "contradiction_recall": 1.0,
+    "spatial_outlier_recall": 1.0,
+    "chat_food_recall": 1.0,
+    "legacy_2025_false_alarm_rate": 0.001818,
+    "clean_false_alarm_rate": 0.014493
+  },
+  "holdout_600_metrics": {
+    "count": 600,
+    "roc_auc": 1.0,
+    "pr_auc": 1.0,
+    "ece": 0.004418,
+    "accuracy_at_t_low": 1.0,
+    "hard_block_precision": 1.0,
+    "hallucination_recall": 1.0,
+    "contradiction_recall": 1.0,
+    "spatial_outlier_recall": 1.0,
+    "chat_food_recall": 1.0,
+    "legacy_2025_false_alarm_rate": 0.0,
+    "clean_false_alarm_rate": 0.0
+  },
+  "cpu_latency_ms": {
+    "p50": 0.8247,
+    "p95": 1.3564,
+    "p99": 1.6431,
+    "mean": 0.845
+  }
+}
