@@ -373,3 +373,108 @@ def test_throughput_benchmark_500_strings(admin_index: VietnamAdminV3Index) -> N
 
     assert len(results) == 500
     assert avg_ms < 1.0, f"500-string parse throughput avg {avg_ms:.4f} ms/str (target < 1.0 ms)"
+
+
+def test_v32_historical_legacy_units_all_13_dac_khu_and_2026_updates(
+    admin_index: VietnamAdminV3Index,
+    converter_data: dict,
+) -> None:
+    import hashlib
+
+    root = Path(__file__).resolve().parents[2]
+    main_conv = root / "shared_data_v3" / "vn_admin_v3_converter.json"
+    assert main_conv.stat().st_size < 1_800_000
+    expected_sha = hashlib.sha256(main_conv.read_bytes()).hexdigest()
+    for copy_path in (
+        root / "way_c_post_goong_v3" / "artifacts" / "vn_admin_v3_converter.json",
+        root / "way_a_widget_v3" / "dist" / "model" / "vn_admin_v3_converter.json",
+    ):
+        assert hashlib.sha256(copy_path.read_bytes()).hexdigest() == expected_sha
+
+    # Additive v3.2.0 metadata keys preserved alongside 100% backward-compatible schema
+    full_by_code = dict(zip(converter_data["pn_code"], converter_data["pn_full_disp"]))
+    assert full_by_code[22] == "Thành phố Quảng Ninh"
+    assert full_by_code[24] == "Thành phố Bắc Ninh"
+    assert full_by_code[75] == "Thành phố Đồng Nai"
+    assert len(converter_data["p_postal"]) == 34
+    assert len(converter_data["w_postal"]) == 3321
+    assert len(converter_data["wn_code_disp"]) == 127
+    assert converter_data["wn_code_disp"]["31108"] == "Kiên Hải"
+
+    # Historical pre-2025 districts and wards
+    hist_cases = [
+        ("Phường 6", "Quận 3", "Hồ Chí Minh", "Phường Xuân Hòa", 27139, "Hồ Chí Minh"),
+        ("Phường An Phú", "Quận 2", "Hồ Chí Minh", "Phường Bình Trưng", 27097, "Hồ Chí Minh"),
+        ("Phường Long Thạnh Mỹ", "Quận 9", "Hồ Chí Minh", "Phường Long Bình", 26833, "Hồ Chí Minh"),
+        ("Thị trấn Cầu Diễn", "Huyện Từ Liêm", "Hà Nội", "Phường Từ Liêm", 592, "Hà Nội"),
+        ("Thị trấn Phú Mỹ", "Huyện Tân Thành", "Bà Rịa - Vũng Tàu", "Phường Phú Mỹ", 26704, "Hồ Chí Minh"),
+        ("Xã Thạch Kim", "Huyện Lộc Hà", "Hà Tĩnh", "Xã Lộc Hà", 18568, "Hà Tĩnh"),
+    ]
+    for w, d, p, exp_w, exp_code, exp_p in hist_cases:
+        res = admin_index.convert_legacy_to_2025(w, d, p)
+        assert res["status"] == "converted", (w, d, p, res)
+        assert res["new_ward"] == exp_w
+        assert res["new_ward_code"] == exp_code
+        assert res["new_province"] == exp_p
+
+    p_q3 = admin_index.parse_and_normalize_v3("123 Hai Bà Trưng, Phường 6, Quận 3, TP.HCM")
+    assert p_q3["sufficiency"] == "address_sufficient"
+    assert p_q3["new_ward"] == "Phường Xuân Hòa"
+    assert p_q3["new_province"] == "Hồ Chí Minh"
+
+    # All 13 đặc khu (12 island districts + Xã Thổ Châu under TP Phú Quốc -> Đặc khu Thổ Châu)
+    dac_khu_cases = [
+        ("Huyện Phú Quốc", "", "Kiên Giang", "Đặc khu Phú Quốc", 31078, "An Giang"),
+        ("Xã Thổ Châu", "TP Phú Quốc", "Kiên Giang", "Đặc khu Thổ Châu", 31105, "An Giang"),
+        ("Huyện Côn Đảo", "", "Bà Rịa - Vũng Tàu", "Đặc khu Côn Đảo", 26732, "Hồ Chí Minh"),
+        ("Huyện Bạch Long Vĩ", "", "Hải Phòng", "Đặc khu Bạch Long Vĩ", 11948, "Hải Phòng"),
+        ("Huyện Cồn Cỏ", "", "Quảng Trị", "Đặc khu Cồn Cỏ", 19742, "Quảng Trị"),
+        ("Huyện Hoàng Sa", "", "Đà Nẵng", "Đặc khu Hoàng Sa", 20333, "Đà Nẵng"),
+        ("Huyện Trường Sa", "", "Khánh Hòa", "Đặc khu Trường Sa", 22736, "Khánh Hòa"),
+        ("Huyện Lý Sơn", "", "Quảng Ngãi", "Đặc khu Lý Sơn", 21548, "Quảng Ngãi"),
+        ("Huyện Cô Tô", "", "Quảng Ninh", "Đặc khu Cô Tô", 7192, "Quảng Ninh"),
+        ("Huyện Vân Đồn", "", "Quảng Ninh", "Đặc khu Vân Đồn", 6994, "Quảng Ninh"),
+        ("Huyện Cát Hải", "", "Hải Phòng", "Đặc khu Cát Hải", 11914, "Hải Phòng"),
+        ("Huyện Phú Quý", "", "Bình Thuận", "Đặc khu Phú Quý", 23272, "Lâm Đồng"),
+        ("Huyện Phú Quí", "", "Bình Thuận", "Đặc khu Phú Quý", 23272, "Lâm Đồng"),
+        ("Huyện Kiên Hải", "", "Kiên Giang", "Đặc khu Kiên Hải", 31108, "An Giang"),
+    ]
+    for w, d, p, exp_w, exp_code, exp_p in dac_khu_cases:
+        res = admin_index.convert_legacy_to_2025(w, d, p)
+        assert res["status"] == "converted", (w, d, p, res)
+        assert res["new_ward"] == exp_w
+        assert res["new_ward_code"] == exp_code
+        assert res["new_province"] == exp_p
+
+    # Xã Thổ Châu must not be shadowed by district-level Phú Quốc in parse/equiv/spatial checks
+    p_tc = admin_index.parse_and_normalize_v3("Ấp Bãi Ngự, Xã Thổ Châu, TP Phú Quốc, Kiên Giang")
+    assert p_tc["sufficiency"] == "address_sufficient"
+    assert p_tc["new_ward"] == "Đặc khu Thổ Châu"
+    assert p_tc["new_ward_code"] == 31105
+    assert admin_index.is_legacy_2025_equivalent(
+        "Xã Thổ Châu", "TP Phú Quốc", "Kiên Giang", "Đặc khu Thổ Châu", "", "An Giang"
+    )
+    assert not admin_index.is_legacy_2025_equivalent(
+        "Xã Thổ Châu", "TP Phú Quốc", "Kiên Giang", "Đặc khu Phú Quốc", "", "An Giang"
+    )
+    sp_tc = admin_index.spatial_plausibility("Xã Thổ Châu", "TP Phú Quốc", "Kiên Giang", 9.306, 103.4857)
+    assert sp_tc["status"] == "ok" and sp_tc["matched_ward"] == "Đặc khu Thổ Châu" and not sp_tc["is_outlier"]
+
+    # Unprovinced explicit Đặc khu + accent collision via wn_code_disp + 2026 WardType updates
+    dk_unprov = admin_index.convert_legacy_to_2025("Đặc khu Cô Tô", "", "")
+    assert dk_unprov["status"] == "already_2025"
+    assert dk_unprov["new_ward"] == "Đặc khu Cô Tô"
+    assert dk_unprov["new_province"] == "Quảng Ninh"
+
+    assert admin_index.convert_legacy_to_2025("Đặc khu Kiên Hải", "", "An Giang")["new_ward"] == "Đặc khu Kiên Hải"
+    assert admin_index.convert_legacy_to_2025("Xã Kiến Hải", "", "Hải Phòng")["new_ward"] == "Xã Kiến Hải"
+
+    for w_26, p_26, exp_26, code_26 in (
+        ("Lộc Ninh", "Đồng Nai", "Phường Lộc Ninh", 25270),
+        ("Bố Hạ", "Bắc Ninh", "Phường Bố Hạ", 7294),
+        ("Việt Hòa", "Hải Phòng", "Phường Việt Hòa", 10543),
+        ("Vĩnh Hòa", "Hải Phòng", "Xã Vĩnh Hòa", 11848),
+    ):
+        r26 = admin_index.convert_legacy_to_2025(w_26, "", p_26)
+        assert r26["new_ward"] == exp_26
+        assert r26["new_ward_code"] == code_26

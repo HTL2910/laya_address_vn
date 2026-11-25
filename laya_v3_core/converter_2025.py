@@ -248,6 +248,7 @@ class VietnamAdminV3Index:
         self.pn_code: List[int] = data["pn_code"]
         self.wn: List[str] = data["wn"]
         self.wn_disp: List[str] = data["wn_disp"]
+        self.wn_code_disp: Dict[str, str] = data.get("wn_code_disp", {})
         self.pm: List[int] = data["pm"]
         self.dp: List[List[int]] = data["dp"]
         self.eo: List[List[List[int]]] = data["eo"]
@@ -446,7 +447,7 @@ class VietnamAdminV3Index:
         cands, wt_hint, _ = _extract_ward_candidates(raw_ward)
         for stem in cands:
             wid_n = self.wn_by_name.get(stem)
-            if wid_n is not None and self._wn_matches_province(wid_n, pid_n):
+            if wid_n is not None and self._wn_matches_province(wid_n, pid_n, wt_hint=wt_hint):
                 return wid_n, wt_hint
 
         if allow_fuzzy:
@@ -456,14 +457,32 @@ class VietnamAdminV3Index:
                     fuzzy = self.gazetteer.lookup(stem, level="wn", parent_context=ctx)
                     if fuzzy:
                         wid_n = self.wn_by_name.get(fuzzy)
-                        if wid_n is not None and self._wn_matches_province(wid_n, pid_n):
+                        if wid_n is not None and self._wn_matches_province(wid_n, pid_n, wt_hint=wt_hint):
                             return wid_n, wt_hint
         return None, wt_hint
 
-    def _wn_matches_province(self, wid_n: int, pid_n: Optional[int]) -> bool:
+    def _wn_matches_province(
+        self, wid_n: int, pid_n: Optional[int], wt_hint: Optional[int] = None
+    ) -> bool:
         if pid_n is None:
-            return len(self.en[wid_n]) == 1
+            if len(self.en[wid_n]) == 1:
+                return True
+            if wt_hint is not None:
+                return sum(1 for r in self.en[wid_n] if int(r[5]) == wt_hint) == 1
+            return False
         return any(int(r[0]) == pid_n for r in self.en[wid_n])
+
+    def _pick_default_pn(self, wid_n: int, wt_hint: Optional[int] = None) -> int:
+        if wt_hint is not None:
+            typed = [r for r in self.en[wid_n] if int(r[5]) == wt_hint]
+            if typed:
+                return int(typed[0][0])
+        return int(self.en[wid_n][0][0])
+
+    def _format_ward_from_row(self, wid_n: int, row: List[Any]) -> str:
+        wt_label = self.wt[int(row[5])]
+        disp = self.wn_code_disp.get(str(int(row[4])), self.wn_disp[wid_n])
+        return f"{wt_label} {disp}" if wt_label else disp
 
     def _pick_en_row(
         self,
@@ -508,9 +527,8 @@ class VietnamAdminV3Index:
                 "area_km2": None,
                 "is_default": is_default,
             }
-        wt_idx = int(row[5])
         return {
-            "new_ward": f"{self.wt[wt_idx]} {self.wn_disp[wid_n]}",
+            "new_ward": self._format_ward_from_row(wid_n, row),
             "new_province": self.pn_disp[pid_n],
             "new_ward_code": int(row[4]),
             "new_province_code": self.pn_code[pid_n],
@@ -585,30 +603,65 @@ class VietnamAdminV3Index:
 
         _pid_o, pid_n, pid_o_set = self._resolve_province(p_rep) if p_rep else (None, None, set())
 
-        # 1. Check island special zones (Huyen Con Dao, Hoang Sa, Ly Son, Bach Long Vi, Con Co)
+        # 0. Explicit 2025 'Đặc khu ...' when district is omitted -> already_2025
+        if not d_rep and w_rep:
+            _, wt_hint_dk, exp_dk = _extract_ward_candidates(w_rep)
+            if exp_dk and wt_hint_dk == 3:
+                wid_n, wt_hint = self._resolve_wn(w_rep, pid_n=pid_n)
+                if wid_n is not None:
+                    target_pn = pid_n if pid_n is not None else self._pick_default_pn(wid_n, wt_hint=wt_hint)
+                    cand = self._format_candidate(wid_n, target_pn, is_default=True, wt_hint=wt_hint)
+                    return self._build_conversion_result("already_2025", False, [cand])
+
+        # 1. Explicit legacy (ward, district) sub-ward match (e.g. 'Xã Thổ Châu, TP Phú Quốc')
+        #    must run before district-only island special zone fallback.
+        did_o = self._resolve_district(d_rep, pid_o_filter=pid_o_set or None) if d_rep else None
+        if not pid_o_set and did_o is not None and len(self.dp[did_o]) == 1:
+            pid_o_set = {self.dp[did_o][0]}
+            pid_n = self.pm[self.dp[did_o][0]]
+
+        if d_rep and w_rep and did_o is not None:
+            wid_o_sub = self._resolve_wo(w_rep, did_o=did_o, pid_o_filter=pid_o_set or None)
+            if wid_o_sub is not None:
+                sub_rows = [
+                    r
+                    for r in self.eo[wid_o_sub]
+                    if r[0] == did_o and (not pid_o_set or r[1] in pid_o_set)
+                ]
+                if sub_rows:
+                    rows_sorted = sorted(sub_rows, key=lambda r: (-r[5], r[2]))
+                    is_divided = any(r[4] == 1 for r in rows_sorted)
+                    cands_sub: List[Dict[str, Any]] = []
+                    for r_did, r_pid, r_wn, r_pn, _is_div, is_def in rows_sorted:
+                        ogeo_pt = self.ogeo.get(f"{wid_o_sub}:{r_did}:{r_pid}")
+                        ref = (float(ogeo_pt[0]), float(ogeo_pt[1])) if ogeo_pt else None
+                        cands_sub.append(
+                            self._format_candidate(
+                                r_wn,
+                                r_pn,
+                                is_default=(bool(is_def) if is_divided else True),
+                                ref_coords=ref,
+                            )
+                        )
+                    return self._build_conversion_result("converted", is_divided, cands_sub)
+
+        # 2. Check island special zones (Huyen Con Dao, Hoang Sa, Ly Son, Bach Long Vi, Con Co, Phu Quoc, etc.)
         isle_hit = self._check_isle_match(w_rep, d_rep, pid_o_set, pid_n)
         if isle_hit is not None:
             _, _, i_wid_n, i_pid_n = isle_hit
             cand = self._format_candidate(i_wid_n, i_pid_n, is_default=True, wt_hint=3)
             return self._build_conversion_result("converted", False, [cand])
 
-        # 2. If district is omitted, check 2025 (wn, pn) first to avoid misconverting new 2025 wards
+        # 3. If district is omitted, check 2025 (wn, pn) first to avoid misconverting new 2025 wards
         #    whose names overlap old rural wards (e.g. 'Phuong Hong Ha, Ha Noi').
         if not d_rep and w_rep:
             wid_n, wt_hint = self._resolve_wn(w_rep, pid_n=pid_n)
             if wid_n is not None:
-                target_pn = pid_n if pid_n is not None else int(self.en[wid_n][0][0])
+                target_pn = pid_n if pid_n is not None else self._pick_default_pn(wid_n, wt_hint=wt_hint)
                 cand = self._format_candidate(wid_n, target_pn, is_default=True, wt_hint=wt_hint)
                 return self._build_conversion_result("already_2025", False, [cand])
 
-        # 3. Legacy (wo, do, po) resolution
-        did_o = self._resolve_district(d_rep, pid_o_filter=pid_o_set or None) if d_rep else None
-
-        # Infer province from unique district if province was omitted or unrecognized
-        if not pid_o_set and did_o is not None and len(self.dp[did_o]) == 1:
-            pid_o_set = {self.dp[did_o][0]}
-            pid_n = self.pm[self.dp[did_o][0]]
-
+        # 4. Legacy (wo, do, po) resolution
         if w_rep:
             wid_o = self._resolve_wo(w_rep, did_o=did_o, pid_o_filter=pid_o_set or None)
             if wid_o is not None:
@@ -660,7 +713,7 @@ class VietnamAdminV3Index:
         if w_rep:
             wid_n, wt_hint = self._resolve_wn(w_rep, pid_n=pid_n)
             if wid_n is not None:
-                target_pn = pid_n if pid_n is not None else int(self.en[wid_n][0][0])
+                target_pn = pid_n if pid_n is not None else self._pick_default_pn(wid_n, wt_hint=wt_hint)
                 cand = self._format_candidate(wid_n, target_pn, is_default=True, wt_hint=wt_hint)
                 return self._build_conversion_result("already_2025", False, [cand])
 
@@ -684,24 +737,44 @@ class VietnamAdminV3Index:
         legacy_to_2025: Set[Tuple[int, int]] = set()
         direct_2025: Set[Tuple[int, int]] = set()
 
-        isle_hit = self._check_isle_match(w_rep, d_rep, pid_o_set, pid_n)
-        if isle_hit is not None:
-            i_did_o, i_pid_o, i_wid_n, i_pid_n = isle_hit
-            legacy_keys.add(("isle", i_did_o, i_pid_o))
-            legacy_to_2025.add((i_wid_n, i_pid_n))
-            direct_2025.add((i_wid_n, i_pid_n))
-            return legacy_keys, legacy_to_2025, direct_2025, i_pid_n
-
-        if w_rep:
+        matched_subward_in_eo = False
+        if d_rep and w_rep and did_o is not None:
             wid_o = self._resolve_wo(w_rep, did_o=did_o, pid_o_filter=pid_o_set or None)
             if wid_o is not None:
                 for r_did, r_pid, r_wn, r_pn, _is_div, _is_def in self.eo[wid_o]:
-                    if did_o is not None and r_did != did_o:
+                    if r_did != did_o:
                         continue
                     if pid_o_set and r_pid not in pid_o_set:
                         continue
                     legacy_keys.add((wid_o, r_did, r_pid))
                     legacy_to_2025.add((r_wn, r_pn))
+                    matched_subward_in_eo = True
+
+        if not matched_subward_in_eo:
+            is_explicit_dk = False
+            if not d_rep and w_rep:
+                _, wt_hint_dk, exp_dk = _extract_ward_candidates(w_rep)
+                is_explicit_dk = bool(exp_dk and wt_hint_dk == 3)
+            if not is_explicit_dk:
+                isle_hit = self._check_isle_match(w_rep, d_rep, pid_o_set, pid_n)
+                if isle_hit is not None:
+                    i_did_o, i_pid_o, i_wid_n, i_pid_n = isle_hit
+                    legacy_keys.add(("isle", i_did_o, i_pid_o))
+                    legacy_to_2025.add((i_wid_n, i_pid_n))
+                    direct_2025.add((i_wid_n, i_pid_n))
+                    return legacy_keys, legacy_to_2025, direct_2025, i_pid_n
+
+        if w_rep:
+            if not matched_subward_in_eo:
+                wid_o = self._resolve_wo(w_rep, did_o=did_o, pid_o_filter=pid_o_set or None)
+                if wid_o is not None:
+                    for r_did, r_pid, r_wn, r_pn, _is_div, _is_def in self.eo[wid_o]:
+                        if did_o is not None and r_did != did_o:
+                            continue
+                        if pid_o_set and r_pid not in pid_o_set:
+                            continue
+                        legacy_keys.add((wid_o, r_did, r_pid))
+                        legacy_to_2025.add((r_wn, r_pn))
 
             wid_n, wt_hint = self._resolve_wn(w_rep, pid_n=pid_n)
             if wid_n is not None:
@@ -788,7 +861,69 @@ class VietnamAdminV3Index:
             pid_o_set = {self.dp[did_o][0]}
             pid_n = self.pm[self.dp[did_o][0]]
 
-        # Check island first
+        # Check explicit 2025 'Đặc khu ...' when district omitted
+        if not d_rep and w_rep:
+            _, wt_hint_dk, exp_dk = _extract_ward_candidates(w_rep)
+            if exp_dk and wt_hint_dk == 3:
+                wid_n, wt_hint = self._resolve_wn(w_rep, pid_n=pid_n)
+                if wid_n is not None:
+                    target_pn = pid_n if pid_n is not None else self._pick_default_pn(wid_n, wt_hint=wt_hint)
+                    row = self._pick_en_row(wid_n, target_pn, wt_hint=wt_hint, ref_coords=(lat, lon))
+                    if row is not None:
+                        clat, clon, area_km2 = float(row[1]), float(row[2]), float(row[3])
+                        dist_km = haversine_km(lat, lon, clat, clon)
+                        max_km = max(15.0, min(60.0, 2.5 * math.sqrt(area_km2) + 8.0))
+                        return {
+                            "status": "ok",
+                            "dist_km": round(dist_km, 3),
+                            "max_expected_km": round(max_km, 3),
+                            "is_outlier": dist_km > max_km,
+                            "centroid_lat": clat,
+                            "centroid_lon": clon,
+                            "area_km2": area_km2,
+                            "matched_ward": self._format_ward_from_row(wid_n, row),
+                            "matched_province": self.pn_disp[target_pn],
+                        }
+
+        # Check explicit legacy (ward, district) sub-ward before island district fallback
+        if d_rep and w_rep and did_o is not None:
+            wid_o_sub = self._resolve_wo(w_rep, did_o=did_o, pid_o_filter=pid_o_set or None)
+            if wid_o_sub is not None:
+                sub_rows = [
+                    r
+                    for r in self.eo[wid_o_sub]
+                    if r[0] == did_o and (not pid_o_set or r[1] in pid_o_set)
+                ]
+                if sub_rows:
+                    rows_sorted = sorted(sub_rows, key=lambda r: (-r[5], r[2]))
+                    r_did, r_pid, r_wn, r_pn, _is_div, _is_def = rows_sorted[0]
+                    ogeo_pt = self.ogeo.get(f"{wid_o_sub}:{r_did}:{r_pid}")
+                    ref = (float(ogeo_pt[0]), float(ogeo_pt[1])) if ogeo_pt else (lat, lon)
+                    en_row = self._pick_en_row(r_wn, r_pn, ref_coords=ref)
+                    area_km2 = float(en_row[3]) if en_row is not None else 25.0
+                    clat = float(ogeo_pt[0]) if ogeo_pt is not None else (float(en_row[1]) if en_row is not None else None)
+                    clon = float(ogeo_pt[1]) if ogeo_pt is not None else (float(en_row[2]) if en_row is not None else None)
+                    if clat is not None and clon is not None:
+                        dist_km = haversine_km(lat, lon, clat, clon)
+                        max_km = max(15.0, min(60.0, 2.5 * math.sqrt(area_km2) + 8.0))
+                        matched_w = (
+                            self._format_ward_from_row(r_wn, en_row)
+                            if en_row is not None
+                            else self.wn_disp[r_wn]
+                        )
+                        return {
+                            "status": "ok",
+                            "dist_km": round(dist_km, 3),
+                            "max_expected_km": round(max_km, 3),
+                            "is_outlier": dist_km > max_km,
+                            "centroid_lat": clat,
+                            "centroid_lon": clon,
+                            "area_km2": area_km2,
+                            "matched_ward": matched_w,
+                            "matched_province": self.pn_disp[r_pn],
+                        }
+
+        # Check island fallback
         isle_hit = self._check_isle_match(w_rep, d_rep, pid_o_set, pid_n)
         if isle_hit is not None:
             _, _, i_wid_n, i_pid_n = isle_hit
@@ -805,7 +940,7 @@ class VietnamAdminV3Index:
                     "centroid_lat": clat,
                     "centroid_lon": clon,
                     "area_km2": area_km2,
-                    "matched_ward": f"{self.wt[int(row[5])]} {self.wn_disp[i_wid_n]}",
+                    "matched_ward": self._format_ward_from_row(i_wid_n, row),
                     "matched_province": self.pn_disp[i_pid_n],
                 }
 
@@ -813,7 +948,7 @@ class VietnamAdminV3Index:
         if not d_rep and w_rep:
             wid_n, wt_hint = self._resolve_wn(w_rep, pid_n=pid_n)
             if wid_n is not None:
-                target_pn = pid_n if pid_n is not None else int(self.en[wid_n][0][0])
+                target_pn = pid_n if pid_n is not None else self._pick_default_pn(wid_n, wt_hint=wt_hint)
                 # If multiple en rows exist in the same province, pick closest to query (lat, lon)
                 row = self._pick_en_row(
                     wid_n, target_pn, wt_hint=wt_hint, ref_coords=(lat, lon)
@@ -830,7 +965,7 @@ class VietnamAdminV3Index:
                         "centroid_lat": clat,
                         "centroid_lon": clon,
                         "area_km2": area_km2,
-                        "matched_ward": f"{self.wt[int(row[5])]} {self.wn_disp[wid_n]}",
+                        "matched_ward": self._format_ward_from_row(wid_n, row),
                         "matched_province": self.pn_disp[target_pn],
                     }
 
@@ -860,9 +995,10 @@ class VietnamAdminV3Index:
                     if clat is not None and clon is not None:
                         dist_km = haversine_km(lat, lon, clat, clon)
                         max_km = max(15.0, min(60.0, 2.5 * math.sqrt(area_km2) + 8.0))
-                        wt_label = self.wt[int(en_row[5])] if en_row is not None else ""
                         matched_w = (
-                            f"{wt_label} {self.wn_disp[r_wn]}" if wt_label else self.wn_disp[r_wn]
+                            self._format_ward_from_row(r_wn, en_row)
+                            if en_row is not None
+                            else self.wn_disp[r_wn]
                         )
                         return {
                             "status": "ok",
@@ -880,7 +1016,7 @@ class VietnamAdminV3Index:
         if w_rep:
             wid_n, wt_hint = self._resolve_wn(w_rep, pid_n=pid_n)
             if wid_n is not None:
-                target_pn = pid_n if pid_n is not None else int(self.en[wid_n][0][0])
+                target_pn = pid_n if pid_n is not None else self._pick_default_pn(wid_n, wt_hint=wt_hint)
                 row = self._pick_en_row(wid_n, target_pn, wt_hint=wt_hint, ref_coords=(lat, lon))
                 if row is not None:
                     clat, clon, area_km2 = float(row[1]), float(row[2]), float(row[3])
@@ -894,7 +1030,7 @@ class VietnamAdminV3Index:
                         "centroid_lat": clat,
                         "centroid_lon": clon,
                         "area_km2": area_km2,
-                        "matched_ward": f"{self.wt[int(row[5])]} {self.wn_disp[wid_n]}",
+                        "matched_ward": self._format_ward_from_row(wid_n, row),
                         "matched_province": self.pn_disp[target_pn],
                     }
 
@@ -1193,26 +1329,39 @@ class VietnamAdminV3Index:
         ward_has_explicit_prefix = False
         dist_has_explicit_prefix = False
 
-        # Step 2: Check island special zone first
+        # Step 2: Check island special zone (unless rem[-2] is an explicit sub-ward inside that
+        # island district or rem[-1] has explicit 2025 'Đặc khu' prefix)
         if rem:
+            _, w_hint_last, w_exp_last = _extract_ward_candidates(rem[-1])
             isle_tup = self._check_isle_match(rem[-1], "", pid_o_set, pid_n)
             if isle_tup is not None:
-                parsed_district = rem[-1]
-                street_segs = rem[:-1]
-                _, _, i_wid_n, i_pid_n = isle_tup
-                cand = self._format_candidate(i_wid_n, i_pid_n, is_default=True, wt_hint=3)
-                conv = self._build_conversion_result("converted", False, [cand])
-                return {
-                    "raw_text": raw_text,
-                    "repaired_text": repaired,
-                    "street": ", ".join(street_segs),
-                    "parsed_ward": None,
-                    "parsed_district": parsed_district,
-                    "parsed_province": parsed_province,
-                    **conv,
-                    "sufficiency": "address_sufficient",
-                    "suggested_wards": [],
-                }
+                i_did_o, i_pid_o, i_wid_n, i_pid_n = isle_tup
+                has_subward = len(rem) >= 2 and (
+                    self._resolve_wo(rem[-2], did_o=i_did_o, pid_o_filter={i_pid_o}) is not None
+                    or self._extract_suffix_span(
+                        rem[-2],
+                        lambda s, allow_fuzzy: self._resolve_wo(
+                            s, did_o=i_did_o, pid_o_filter={i_pid_o}, allow_fuzzy=allow_fuzzy
+                        ),
+                    )[2]
+                    is not None
+                )
+                if not has_subward and not (w_exp_last and w_hint_last == 3):
+                    parsed_district = rem[-1]
+                    street_segs = rem[:-1]
+                    cand = self._format_candidate(i_wid_n, i_pid_n, is_default=True, wt_hint=3)
+                    conv = self._build_conversion_result("converted", False, [cand])
+                    return {
+                        "raw_text": raw_text,
+                        "repaired_text": repaired,
+                        "street": ", ".join(street_segs),
+                        "parsed_ward": None,
+                        "parsed_district": parsed_district,
+                        "parsed_province": parsed_province,
+                        **conv,
+                        "sufficiency": "address_sufficient",
+                        "suggested_wards": [],
+                    }
 
         # Step 3: Extract District and/or Ward strictly left of Province
         if rem:

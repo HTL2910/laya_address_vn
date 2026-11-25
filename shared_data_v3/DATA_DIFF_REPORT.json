@@ -1,0 +1,361 @@
+{
+  "version": "3.2.0",
+  "baseline": {
+    "version": "3.0.0",
+    "converter_sha256": "42201268ecfcd30b2f31bbb65d1efe6454790e42b852936450d4b52f6b0b0f46",
+    "converter_bytes": 1100790,
+    "counts": {
+      "legacy_provinces": 63,
+      "legacy_districts": 661,
+      "legacy_province_district_pairs": 690,
+      "legacy_wards": 6433,
+      "new_provinces_2025": 34,
+      "new_wards_2025": 2745,
+      "new_ward_entries_2025": 3321,
+      "island_special_zones": 5,
+      "total_mapping_records": 10602
+    }
+  },
+  "updated": {
+    "version": "3.2.0",
+    "converter_sha256": "3a79dcb6c1cb91a24c200af57ac678c08c5ea100b6ea12fcdaef5381ff0c4b15",
+    "converter_bytes": 1315189,
+    "under_1_8_mb_budget": true,
+    "counts": {
+      "legacy_provinces": 63,
+      "legacy_districts": 684,
+      "legacy_province_district_pairs": 715,
+      "legacy_wards": 7237,
+      "new_provinces_2025": 34,
+      "new_wards_2025": 2745,
+      "new_ward_entries_2025": 3321,
+      "island_special_zones": 12,
+      "dac_khu_total_2025": 13,
+      "wn_code_disp_collision_fixes": 127,
+      "postal_wards_covered": 3321,
+      "total_mapping_records": 12822
+    }
+  },
+  "deltas": {
+    "legacy_provinces_delta": 0,
+    "legacy_districts_delta": 23,
+    "legacy_province_district_pairs_delta": 25,
+    "legacy_wards_delta": 804,
+    "new_provinces_delta": 0,
+    "new_wards_delta": 0,
+    "island_special_zones_delta": 7,
+    "total_mapping_records_delta": 2220,
+    "base_to_updated_do": "661 -> 684",
+    "base_to_updated_dp_pairs": "690 -> 715",
+    "base_to_updated_wo": "6433 -> 7237",
+    "base_to_updated_records": "10602 -> 12822"
+  },
+  "2026_national_assembly_updates": {
+    "province_city_promotions": [
+      {
+        "code": 22,
+        "short": "Quảng Ninh",
+        "full_2026": "Thành phố Quảng Ninh",
+        "decree": "36/2026/QH16"
+      },
+      {
+        "code": 24,
+        "short": "Bắc Ninh",
+        "full_2026": "Thành phố Bắc Ninh",
+        "decree": "39/2026/QH16"
+      },
+      {
+        "code": 75,
+        "short": "Đồng Nai",
+        "full_2026": "Thành phố Đồng Nai",
+        "decree": "30/2026/QH16"
+      }
+    ],
+    "ward_type_updates_applied_count": 26,
+    "ward_type_updates_applied": [
+      {
+        "ward_code": "07294",
+        "province": "Bắc Ninh",
+        "ward_short": "Bố Hạ",
+        "old_wt": "Xã",
+        "new_wt": "Phường"
+      },
+      {
+        "ward_code": "07375",
+        "province": "Bắc Ninh",
+        "ward_short": "Lạng Giang",
+        "old_wt": "Xã",
+        "new_wt": "Phường"
+      },
+      {
+        "ward_code": "07399",
+        "province": "Bắc Ninh",
+        "ward_short": "Kép",
+        "old_wt": "Xã",
+        "new_wt": "Phường"
+      },
+      {
+        "ward_code": "07444",
+        "province": "Bắc Ninh",
+        "ward_short": "Lục Nam",
+        "old_wt": "Xã",
+        "new_wt": "Phường"
+      },
+      {
+        "ward_code": "07840",
+        "province": "Bắc Ninh",
+        "ward_short": "Hiệp Hòa",
+        "old_wt": "Xã",
+        "new_wt": "Phường"
+      },
+      {
+        "ward_code": "09193",
+        "province": "Bắc Ninh",
+        "ward_short": "Yên Phong",
+        "old_wt": "Xã",
+        "new_wt": "Phường"
+      },
+      {
+        "ward_code": "09292",
+        "province": "Bắc Ninh",
+        "ward_short": "Phù Lãng",
+        "old_wt": "Xã",
+        "new_wt": "Phường"
+      },
+      {
+        "ward_code": "09313",
+        "province": "Bắc Ninh",
+        "ward_short": "Chi Lăng",
+        "old_wt": "Xã",
+        "new_wt": "Phường"
+      },
+      {
+        "ward_code": "09319",
+        "province": "Bắc Ninh",
+        "ward_short": "Tiên Du",
+        "old_wt": "Xã",
+        "new_wt": "Phường"
+      },
+      {
+        "ward_code": "09454",
+        "province": "Bắc Ninh",
+        "ward_short": "Gia Bình",
+        "old_wt": "Xã",
+        "new_wt": "Phường"
+      },
+      {
+        "ward_code": "09475",
+        "province": "Bắc Ninh",
+        "ward_short": "Nhân Thắng",
+        "old_wt": "Xã",
+        "new_wt": "Phường"
+      },
+      {
+        "ward_code": "09496",
+        "province": "Bắc Ninh",
+        "ward_short": "Lương Tài",
+        "old_wt": "Xã",
+        "new_wt": "Phường"
+      },
+      {
+        "ward_code": "10543",
+        "province": "Hải Phòng",
+        "ward_short": "Việt Hòa",
+        "old_wt": "Xã",
+        "new_wt": "Phường"
+      },
+      {
+        "ward_code": "11848",
+        "province": "Hải Phòng",
+        "ward_short": "Vĩnh Hòa",
+        "old_wt": "Phường",
+        "new_wt": "Xã"
+      },
+      {
+        "ward_code": "25270",
+        "province": "Đồng Nai",
+        "ward_short": "Lộc Ninh",
+        "old_wt": "Xã",
+        "new_wt": "Phường"
+      },
+      {
+        "ward_code": "25357",
+        "province": "Đồng Nai",
+        "ward_short": "Tân Khai",
+        "old_wt": "Xã",
+        "new_wt": "Phường"
+      },
+      {
+        "ward_code": "25363",
+        "province": "Đồng Nai",
+        "ward_short": "Đồng Phú",
+        "old_wt": "Xã",
+        "new_wt": "Phường"
+      },
+      {
+        "ward_code": "26116",
+        "province": "Đồng Nai",
+        "ward_short": "Tân Phú",
+        "old_wt": "Xã",
+        "new_wt": "Phường"
+      },
+      {
+        "ward_code": "26170",
+        "province": "Đồng Nai",
+        "ward_short": "Trị An",
+        "old_wt": "Xã",
+        "new_wt": "Phường"
+      },
+      {
+        "ward_code": "26248",
+        "province": "Đồng Nai",
+        "ward_short": "Trảng Bom",
+        "old_wt": "Xã",
+        "new_wt": "Phường"
+      },
+      {
+        "ward_code": "26326",
+        "province": "Đồng Nai",
+        "ward_short": "Dầu Giây",
+        "old_wt": "Xã",
+        "new_wt": "Phường"
+      },
+      {
+        "ward_code": "26368",
+        "province": "Đồng Nai",
+        "ward_short": "Long Thành",
+        "old_wt": "Xã",
+        "new_wt": "Phường"
+      },
+      {
+        "ward_code": "26425",
+        "province": "Đồng Nai",
+        "ward_short": "Xuân Lộc",
+        "old_wt": "Xã",
+        "new_wt": "Phường"
+      },
+      {
+        "ward_code": "26485",
+        "province": "Đồng Nai",
+        "ward_short": "Nhơn Trạch",
+        "old_wt": "Xã",
+        "new_wt": "Phường"
+      },
+      {
+        "ward_code": "31213",
+        "province": "Cần Thơ",
+        "ward_short": "Tân Lộc",
+        "old_wt": "Xã",
+        "new_wt": "Phường"
+      },
+      {
+        "ward_code": "31299",
+        "province": "Cần Thơ",
+        "ward_short": "Phong Điền",
+        "old_wt": "Phường",
+        "new_wt": "Xã"
+      }
+    ]
+  },
+  "historical_integration": {
+    "extraction_stats": {
+      "method_counts": {
+        "gso_2025_07_18": 75,
+        "madnh_v1_6_0": 1025,
+        "madnh_v1_2": 962,
+        "pre2014_tu_liem": 16
+      },
+      "alias_ward_hygiene_cleaned_rows": 24
+    },
+    "historical_districts_added_count": 23,
+    "historical_districts_added": [
+      "Huyện Cát Tiên",
+      "Huyện Hoành Bồ",
+      "Huyện Long Điền",
+      "Huyện Lộc Hà",
+      "Huyện Mỹ Lộc",
+      "Huyện Nam Đông",
+      "Huyện Nông Sơn",
+      "Huyện Phục Hoà",
+      "Huyện Quảng Uyên",
+      "Huyện Thông Nông",
+      "Huyện Trà Lĩnh",
+      "Huyện Tây Trà",
+      "Huyện Tĩnh Gia",
+      "Huyện Từ Liêm",
+      "Huyện Yên Dũng",
+      "Huyện Đông Sơn",
+      "Huyện Đạ Tẻh",
+      "Huyện Đất Đỏ",
+      "Quận 2",
+      "Quận 9",
+      "Thành phố Huế",
+      "Thành phố Ninh Bình",
+      "Thị xã Cửa Lò"
+    ]
+  },
+  "dac_khu_13_coverage": {
+    "district_level_isle_entries": 12,
+    "xa_tho_chau_via_eo_and_wn": true,
+    "all_13_dac_khu_names": [
+      "Đặc khu Phú Quốc",
+      "Đặc khu Côn Đảo",
+      "Đặc khu Bạch Long Vĩ",
+      "Đặc khu Cồn Cỏ",
+      "Đặc khu Hoàng Sa",
+      "Đặc khu Trường Sa",
+      "Đặc khu Lý Sơn",
+      "Đặc khu Cô Tô",
+      "Đặc khu Vân Đồn",
+      "Đặc khu Cát Hải",
+      "Đặc khu Phú Quý",
+      "Đặc khu Kiên Hải",
+      "Đặc khu Thổ Châu"
+    ]
+  },
+  "hygiene_and_accuracy_fixes": {
+    "wn_code_disp_collision_fixes": 127,
+    "dangling_da_aliases_resolved": [
+      "q2 -> quan 2",
+      "q 2 -> quan 2",
+      "q9 -> quan 9",
+      "q 9 -> quan 9"
+    ],
+    "new_da_aliases": [
+      "phu quy -> phu qui",
+      "qui nhon -> quy nhon",
+      "phan rang-thap cham -> phan rang - thap cham",
+      "ia h' drai -> ia h'drai"
+    ],
+    "postal_codes_decision_2334": {
+      "provinces": 34,
+      "wards": 3321
+    }
+  },
+  "license_audit": {
+    "ingested": [
+      "vietnamadminunits (MIT)",
+      "thanglequoc/vietnamese-provinces-database (MIT)",
+      "madnh/hanhchinhvn (MIT)"
+    ],
+    "cross_verified_only_excluded": [
+      "daohoangson/dvhcvn (GPL-3.0)",
+      "vietmap (custom clause)",
+      "vn-geo (no LICENSE)",
+      "thanhtrungit97/dvhcvn (no LICENSE)"
+    ]
+  },
+  "propagated_targets": {
+    "way_c_post_goong_v3/artifacts/vn_admin_v3_converter.json": "3a79dcb6c1cb91a24c200af57ac678c08c5ea100b6ea12fcdaef5381ff0c4b15",
+    "way_a_widget_v3/dist/model/vn_admin_v3_converter.json": "3a79dcb6c1cb91a24c200af57ac678c08c5ea100b6ea12fcdaef5381ff0c4b15"
+  },
+  "v2_gazetteer_sync": {
+    "shared_data_modified": false,
+    "widget_dist_parity": true,
+    "shared_data_gazetteer_bytes": 221796,
+    "shared_data_gazetteer_sha256": "11096369768889e62dc9b11f7065d9a414452207511ad4c87ad29c406732cc79",
+    "widget_dist_gazetteer_sha256": "11096369768889e62dc9b11f7065d9a414452207511ad4c87ad29c406732cc79",
+    "frozen_v2_untouched": true,
+    "reason": "Kept shared_data/vn_admin_gazetteer.json untouched at frozen v2 MIT baseline (63 provinces, 656 districts, 7044 wards) because expanding v2 gazetteer edges alters ceiling_audit synthetic calibration curves (post_goong_consistency pr_auc drops below pre_goong_struct 0.3883) and risks feature drift for frozen v2 ONNX models. All v3.2.0 expansions ship in vn_admin_v3_converter.json."
+  }
+}

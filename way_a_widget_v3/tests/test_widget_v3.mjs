@@ -214,3 +214,54 @@ test("Average evaluation latency < 1.0 ms across 500 mixed evaluations", () => {
   console.log(`  [perf] 500 evaluations: total=${totalMs.toFixed(2)} ms, avg=${avgMs.toFixed(4)} ms`);
   assert.ok(avgMs < 1.0, `Expected average latency < 1.0 ms, got ${avgMs.toFixed(4)} ms`);
 });
+
+test("v3.2 historical districts, all 13 dac khu, wn_code_disp, and 2026 updates", () => {
+  // Historical pre-2025 wards & districts
+  const histCases = [
+    ["123 Hai Bà Trưng, Phường 6, Quận 3, TP.HCM", "Phường Xuân Hòa", "Hồ Chí Minh"],
+    ["Phường An Phú, Quận 2, TP.HCM", "Phường Bình Trưng", "Hồ Chí Minh"],
+    ["Phường Long Thạnh Mỹ, Quận 9, TP.HCM", "Phường Long Bình", "Hồ Chí Minh"],
+    ["Thị trấn Cầu Diễn, Huyện Từ Liêm, Hà Nội", "Phường Từ Liêm", "Hà Nội"],
+    ["Thị trấn Phú Mỹ, Huyện Tân Thành, Bà Rịa - Vũng Tàu", "Phường Phú Mỹ", "Hồ Chí Minh"],
+  ];
+  for (const [inp, expW, expP] of histCases) {
+    const ev = LayaAddressSDK.evaluate(inp);
+    assert.equal(ev.sufficiency, "address_sufficient", inp);
+    assert.equal(ev.conversion_2025.new_ward, expW, inp);
+    assert.equal(ev.conversion_2025.new_province, expP, inp);
+  }
+
+  // All 13 đặc khu + Phú Quý alias + Thổ Châu non-shadowing + unprovinced Đặc khu Cô Tô
+  const dacKhuCases = [
+    ["TP Phú Quốc, Kiên Giang", "Đặc khu Phú Quốc", "An Giang"],
+    ["Xã Thổ Châu, TP Phú Quốc, Kiên Giang", "Đặc khu Thổ Châu", "An Giang"],
+    ["Huyện Côn Đảo, Bà Rịa - Vũng Tàu", "Đặc khu Côn Đảo", "Hồ Chí Minh"],
+    ["Huyện Bạch Long Vĩ, Hải Phòng", "Đặc khu Bạch Long Vĩ", "Hải Phòng"],
+    ["Huyện Cồn Cỏ, Quảng Trị", "Đặc khu Cồn Cỏ", "Quảng Trị"],
+    ["Huyện Hoàng Sa, Đà Nẵng", "Đặc khu Hoàng Sa", "Đà Nẵng"],
+    ["Huyện Trường Sa, Khánh Hòa", "Đặc khu Trường Sa", "Khánh Hòa"],
+    ["Huyện Lý Sơn, Quảng Ngãi", "Đặc khu Lý Sơn", "Quảng Ngãi"],
+    ["Huyện Cô Tô, Quảng Ninh", "Đặc khu Cô Tô", "Quảng Ninh"],
+    ["Huyện Vân Đồn, Quảng Ninh", "Đặc khu Vân Đồn", "Quảng Ninh"],
+    ["Huyện Cát Hải, Hải Phòng", "Đặc khu Cát Hải", "Hải Phòng"],
+    ["Huyện Phú Quý, Bình Thuận", "Đặc khu Phú Quý", "Lâm Đồng"],
+    ["Huyện Phú Quí, Bình Thuận", "Đặc khu Phú Quý", "Lâm Đồng"],
+    ["Huyện Kiên Hải, Kiên Giang", "Đặc khu Kiên Hải", "An Giang"],
+    ["12 Lê Lợi, Đặc khu Cô Tô", "Đặc khu Cô Tô", "Quảng Ninh"],
+  ];
+  for (const [inp, expW, expP] of dacKhuCases) {
+    const ev = LayaAddressSDK.evaluate(inp);
+    assert.equal(ev.sufficiency, "address_sufficient", inp);
+    assert.equal(ev.conversion_2025.new_ward, expW, inp);
+    assert.equal(ev.conversion_2025.new_province, expP, inp);
+  }
+
+  // Accent collision via wn_code_disp & 2026 Xã -> Phường updates
+  const kh1 = LayaAddressSDK.evaluate("Đặc khu Kiên Hải, An Giang");
+  assert.equal(kh1.conversion_2025.new_ward, "Đặc khu Kiên Hải");
+  const kh2 = LayaAddressSDK.evaluate("Xã Kiến Hải, Hải Phòng");
+  assert.equal(kh2.conversion_2025.new_ward, "Xã Kiến Hải");
+  const ln26 = LayaAddressSDK.evaluate("Phường Lộc Ninh, Đồng Nai");
+  assert.equal(ln26.conversion_2025.new_ward, "Phường Lộc Ninh");
+  assert.equal(ln26.conversion_2025.candidates[0].ward_code, 25270);
+});

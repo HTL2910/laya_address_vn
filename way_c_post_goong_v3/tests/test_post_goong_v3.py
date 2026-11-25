@@ -421,3 +421,65 @@ def test_server_env_override_loads_v31_2a_schema(tmp_path: Path, monkeypatch: py
         assert r.status_code == 200
         assert r.json()["action"] == "auto_approve"
     monkeypatch.setattr(srv, "_VERIFIER", None)
+
+
+def test_v32_historical_legacy_13_dac_khu_and_2026_updates(verifier: PostGoongVerifier) -> None:
+    cases = [
+        # Historical pre-2025 ward+district (Phường 6, Quận 3 -> Phường Xuân Hòa)
+        (
+            "123 Hai Bà Trưng, Phường 6, Quận 3, TP.HCM",
+            "Phường Xuân Hòa",
+            "",
+            "Thành phố Hồ Chí Minh",
+            10.7818,
+            106.69,
+        ),
+        # Thổ Châu must resolve to Đặc khu Thổ Châu (distinct from Đặc khu Phú Quốc)
+        (
+            "Ấp Bãi Ngự, Xã Thổ Châu, TP Phú Quốc, Kiên Giang",
+            "Đặc khu Thổ Châu",
+            "",
+            "Tỉnh An Giang",
+            9.306,
+            103.4857,
+        ),
+        # District-level island zones including Phú Quốc and Phú Quý
+        (
+            "TP Phú Quốc, Kiên Giang",
+            "Đặc khu Phú Quốc",
+            "",
+            "Tỉnh An Giang",
+            10.2751,
+            103.991,
+        ),
+        (
+            "Huyện Phú Quý, Bình Thuận",
+            "Đặc khu Phú Quý",
+            "",
+            "Tỉnh Lâm Đồng",
+            10.5283,
+            108.9453,
+        ),
+        # 2026 Xã->Phường promotion + legacy Thị trấn equivalence
+        (
+            "Thị trấn Lộc Ninh, Huyện Lộc Ninh, Bình Phước",
+            "Phường Lộc Ninh",
+            "",
+            "Tỉnh Đồng Nai",
+            11.8389,
+            106.635,
+        ),
+    ]
+    for raw_text, gw, gd, gp, glat, glng in cases:
+        res = verifier.verify(
+            raw_text=raw_text,
+            goong_ward=gw,
+            goong_district=gd,
+            goong_province=gp,
+            goong_score=0.92,
+            goong_lat=glat,
+            goong_lng=glng,
+        )
+        assert res["action"] == "auto_approve", (raw_text, res)
+        assert res["is_valid_fill"] is True, (raw_text, res)
+        assert res["is_legacy_2025_equiv"] is True, (raw_text, res)

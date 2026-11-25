@@ -17,8 +17,8 @@ from pathlib import Path
 from typing import Dict, List, Tuple
 import zipfile
 
-VERSION = "3.1.0"
-ZIP_TIMESTAMP = (2026, 11, 22, 20, 50, 0)
+VERSION = "3.2.0"
+ZIP_TIMESTAMP = (2026, 11, 25, 10, 5, 0)
 
 ROOT = Path(__file__).resolve().parent.parent
 DIST_DIR = ROOT / "release_dist"
@@ -80,7 +80,13 @@ def build_widget_web_zip() -> Path:
                     _add_file(zf, src, f"{prefix}/{rel}")
         for fname in ("package.json", "serve.py", "README.md", "LICENSE_vietnamadminunits.txt"):
             _add_file(zf, WIDGET_DIR / fname, f"{prefix}/{fname}")
-        _add_file(zf, SHARED_V3_DIR / "PROVENANCE_V3.json", f"{prefix}/PROVENANCE_V3.json")
+        for fname in (
+            "PROVENANCE_V3.json",
+            "DATA_DIFF_REPORT.json",
+            "LICENSE_thanglequoc_vietnamese_provinces_database.txt",
+            "LICENSE_madnh_hanhchinhvn.txt",
+        ):
+            _add_file(zf, SHARED_V3_DIR / fname, f"{prefix}/{fname}")
 
     _verify_zip(out_path)
     return out_path
@@ -158,8 +164,18 @@ cd way_c_post_goong_v3 && ..\\.venv\\Scripts\\uvicorn.exe server:app --port 8085
         _add_file(zf, WAY_B_DIR / "requirements.txt", f"{prefix}/way_b_backend_api_v2/requirements.txt")
         _add_file(zf, WAY_B_DIR / "MODEL_CARD.md", f"{prefix}/way_b_backend_api_v2/MODEL_CARD.md")
 
-        # 5. shared_data_v3 converter & attribution
-        for fname in ("vn_admin_v3_converter.json", "PROVENANCE_V3.json", "LICENSE_vietnamadminunits.txt"):
+        # 5. shared_data_v3 converter, sync CLI & MIT attribution
+        for fname in (
+            "vn_admin_v3_converter.json",
+            "PROVENANCE_V3.json",
+            "DATA_DIFF_REPORT.json",
+            "crawl_and_sync_admin_data.py",
+            "build_v3_assets.py",
+            "mit_supplement_v32.json",
+            "LICENSE_vietnamadminunits.txt",
+            "LICENSE_thanglequoc_vietnamese_provinces_database.txt",
+            "LICENSE_madnh_hanhchinhvn.txt",
+        ):
             _add_file(zf, SHARED_V3_DIR / fname, f"{prefix}/shared_data_v3/{fname}")
         _add_bytes(zf, f"{prefix}/QUICKSTART_SUITE_V3.md", quickstart)
 
@@ -344,6 +360,18 @@ Tag: py3-none-any
         _add_bytes(zf, f"{dist_info}/METADATA", metadata, records)
         _add_bytes(zf, f"{dist_info}/WHEEL", wheel_meta, records)
         _add_file(zf, SHARED_V3_DIR / "LICENSE_vietnamadminunits.txt", f"{dist_info}/LICENSE", records)
+        _add_file(
+            zf,
+            SHARED_V3_DIR / "LICENSE_thanglequoc_vietnamese_provinces_database.txt",
+            f"{dist_info}/LICENSE_thanglequoc_vietnamese_provinces_database.txt",
+            records,
+        )
+        _add_file(
+            zf,
+            SHARED_V3_DIR / "LICENSE_madnh_hanhchinhvn.txt",
+            f"{dist_info}/LICENSE_madnh_hanhchinhvn.txt",
+            records,
+        )
 
         record_lines = [f"{p},{h},{sz}" for p, h, sz in records]
         record_lines.append(f"{dist_info}/RECORD,,")
@@ -409,18 +437,24 @@ def main() -> int:
 
     (DIST_DIR / "SHA256SUMS.txt").write_text("\n".join(sum_lines) + "\n", encoding="utf-8")
 
-    notes = f"""# Laya Address VN v{VERSION} — Real-Order 2A Trainer + Robust SlotParser Fallback
+    notes = f"""# Laya Address VN v{VERSION} — MIT Admin Catalog Expansion, All 13 Đặc Khu & Sync CLI
 
-Bản nâng cấp `v{VERSION}` trực tiếp khắc phục hai điểm nghẽn phát hiện khi đánh giá trên **18.371 đơn thật** (giữ nguyên toàn bộ `v2.0` và các ONNX `v3.0`):
+Bản nâng cấp `v{VERSION}` cập nhật toàn diện bộ chuyển đổi hành chính `vn_admin_v3_converter.json` (`1.254 MB`, giữ nguyên toàn bộ `v2.0` và các mô hình ONNX `v3.0`/`v3.1`) và bổ sung CLI đồng bộ tự động thuần stdlib:
 
-1. **`SlotParser v3.1` (`slot_parser_v3/parser.py`):**
-   - Bổ sung **phone-guard tất định** (chặt 100% số điện thoại nằm cạnh số nhà không lọt vào `HNO` / `clean_address_for_goong`).
-   - Bổ sung **subtractive + right-to-left 2025 gazetteer fallback** khi chuỗi không có dấu phẩy / không tiền tố / không dấu khiến CRF gắn toàn nhãn `O` (`used_fallback=True`), vẫn giữ chặn cứng cụm chat/món ăn & chuỗi quá ngắn.
-2. **Local Real-Order `2A` Trainer & Pure-Stdlib ONNX Exporter (`way_c_post_goong_v3/`):**
-   - `features_2a.py`: trích xuất `24` (`1B`) / `51` (`2A`) / `56` (`2A + 2025 equiv + Haversine`) đặc trưng phi khu vực, `0` mã tỉnh, `0` từ vựng PII.
-   - `onnx_export_pure.py`: xuất thẳng ensemble `LogisticRegression + HistGradientBoostingClassifier` sang ONNX chuẩn (`ir_version=8`, `ai.onnx.ml` `TreeEnsembleRegressor`) **chỉ bằng Python stdlib** — hoàn toàn không cần `torch`, `onnx`, hay `skl2onnx` (`parity max_abs_diff < 1e-4`).
-   - `train_local_2a.py`: 1 lệnh chạy offline trên dữ liệu DEV thật (`0` PII rời máy), đánh giá kiểm chéo thời gian + kiểm chứng đóng băng ngưỡng tương lai (`calib -> future`), xuất `post_goong_verifier_2a_local.onnx` + `calibration.json` (bật `allow_missing_ward` tự động nếu DB thiếu tên xã).
-   - `verifier.py` + `server.py`: tự nhận diện schema `v3_43` lẫn `v31_2a_*` và biến môi trường `LAYA_POST_GOONG_ARTIFACTS_DIR`.
+## Điểm mới trong `v{VERSION}`
+1. **Mở rộng danh mục lịch sử & 2025/2026 từ các nguồn MIT (`shared_data_v3/`):**
+   - Tích hợp `tranngocminhhieu/vietnamadminunits` + `thanglequoc/vietnamese-provinces-database` (`v5.2.0` MIT) + `madnh/hanhchinhvn` (`v1.2`/`v1.6.0` MIT); loại bỏ hoàn toàn nguồn GPL/bản quyền tùy biến.
+   - Mở rộng từ `661 -> 684` quận/huyện cũ (`690 -> 715` cặp tỉnh-huyện, bổ sung `Quận 2`, `Quận 9`, `Huyện Từ Liêm`, `Huyện Tân Thành`, `Huyện Lộc Hà`, v.v.), `6,433 -> 7,237` xã/phường cũ (kèm `Phường 6/7/8/10/13 Quận 3`...), và `10,602 -> 12,822` cạnh ánh xạ cũ <-> mới (`+2,220` cạnh).
+   - Bổ sung tên đầy đủ cấp TP `2026` (`pn_full_disp` cho `Thành phố Đồng Nai`, `Thành phố Bắc Ninh`, `Thành phố Quảng Ninh`), `26` bản vá `Xã <-> Phường`, `127` mã phân biệt dấu `wn_code_disp` (ví dụ `Đặc khu Kiên Hải` vs `Xã Kiến Hải`), và `3,321` mã bưu chính Quyết định `2334/QĐ-BKHCN`.
+2. **Đủ 13 Đặc khu 2025 & sửa thứ tự ưu tiên phân giải (`converter_2025.py` + `laya-telex-fuzzy.js`):**
+   - Hỗ trợ đủ **13 đặc khu** (`Phú Quốc`, `Côn Đảo`, `Bạch Long Vĩ`, `Cồn Cỏ`, `Hoàng Sa`, `Trường Sa`, `Lý Sơn`, `Cô Tô`, `Vân Đồn`, `Cát Hải`, `Phú Quý`/`Phú Quí`, `Kiên Hải`, và `Thổ Châu`).
+   - Khớp xã con (`Xã Thổ Châu, TP Phú Quốc`) trước lớp fallback huyện đảo để không bị bóng đè bởi `Đặc khu Phú Quốc`, hỗ trợ `Đặc khu <tên>` không kèm tỉnh và bí danh `Phú Quý <-> Phú Quí`.
+3. **CLI đồng bộ & kiểm tra toàn vẹn thuần stdlib (`shared_data_v3/crawl_and_sync_admin_data.py`):**
+   - Tải nguồn MIT, kiểm tra giấy phép + SHA-256, chạy `build_v3_assets.py`, đồng bộ `vn_admin_v3_converter.json` sang `way_c_post_goong_v3/artifacts/` và `way_a_widget_v3/dist/model/`, và xuất `shared_data_v3/DATA_DIFF_REPORT.json`.
+
+## Kế thừa đầy đủ từ `v3.1.0`
+- **`SlotParser v3.1` (`slot_parser_v3/parser.py`):** phone-guard tất định + subtractive & right-to-left 2025 gazetteer fallback (`used_fallback`).
+- **Local Real-Order `2A` Trainer & Pure-Stdlib ONNX Exporter (`way_c_post_goong_v3/`):** `features_2a.py`, `onnx_export_pure.py`, `train_local_2a.py`, `LAYA_POST_GOONG_ARTIFACTS_DIR`.
 
 ## Tệp phát hành đính kèm
 

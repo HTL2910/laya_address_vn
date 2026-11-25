@@ -898,10 +898,24 @@
         if (slice.includes(",")) continue;
         const phrase = slice.join(" ");
 
-        // Exact match
+        // Exact match (plus independent da/pa alias lookup in case phrase also matches a ward name, e.g. 'phu quy' -> 'phu qui')
         const exact = lookupExactRec(phrase);
         if (exact) {
           pushRec(exact.rec, exact.canonical, 0, i, len, pfx);
+        }
+        const daCanon = state.daMap.get(phrase);
+        if (daCanon && (!exact || daCanon !== exact.canonical)) {
+          const daRec = state.exactMap.get(daCanon);
+          if (daRec && daRec.do !== -1) {
+            pushRec({ s: daRec.s, po: -1, do: daRec.do, wo: -1, pn: -1, wn: -1 }, daCanon, 0, i, len, pfx);
+          }
+        }
+        const paCanon = state.paMap.get(phrase);
+        if (paCanon && (!exact || paCanon !== exact.canonical)) {
+          const paRec = state.exactMap.get(paCanon);
+          if (paRec && (paRec.po !== -1 || paRec.pn !== -1)) {
+            pushRec({ s: paRec.s, po: paRec.po, do: -1, wo: -1, pn: paRec.pn, wn: -1 }, paCanon, 0, i, len, pfx);
+          }
         }
 
         // Numeric prefixed ward ("p 12" -> "phuong 12") or district ("q 7" -> "quan 7")
@@ -943,10 +957,11 @@
 
   function formatWard2025(widN, pidN) {
     const c = state.c;
-    const bare = c.wn_disp[widN];
-    if (/^(?:Phường|Xã|Thị trấn|Đặc khu)\s+/i.test(bare)) return bare;
     const entries = c.en[widN] || [];
     const match = entries.find((x) => x[0] === pidN) || entries[0];
+    const codeDisp = match && c.wn_code_disp ? c.wn_code_disp[String(match[4])] : null;
+    const bare = codeDisp || c.wn_disp[widN];
+    if (/^(?:Phường|Xã|Thị trấn|Đặc khu)\s+/i.test(bare)) return bare;
     const wt = match ? c.wt[match[5]] : "Xã";
     return `${wt} ${bare}`;
   }
@@ -1232,6 +1247,54 @@
       return bestDP;
     }
 
+    // 5b. Unprovinced explicit 'Đặc khu <name>' -> resolve unique 2025 wt === 3 ("Đặc khu") entry
+    let bestUnprovDacKhu = null;
+    for (const wn of wardsNew) {
+      if (!wn.prefixed || (wn.rawPrefix !== "dac khu" && wn.rawPrefix !== "dk")) continue;
+      const entries = c.en[wn.id] || [];
+      const dkRows = entries.filter((x) => x[5] === 3);
+      if (dkRows.length !== 1) continue;
+      const score = (wn.end - wn.start) * 4 + 6 - wn.editCost * 12;
+      if (!bestUnprovDacKhu || score > bestUnprovDacKhu.score) {
+        bestUnprovDacKhu = {
+          type: "ward_province_2025",
+          ward: wn,
+          province: null,
+          widN: wn.id,
+          pidN: dkRows[0][0],
+          totalEdits: wn.editCost,
+          score,
+        };
+      }
+    }
+    if (bestUnprovDacKhu) return bestUnprovDacKhu;
+
+    // 5c. Unprovinced island district (e.g. 'Huyện Lý Sơn', 'Huyện Côn Đảo', 'Huyện Phú Quý')
+    let bestUnprovIsle = null;
+    for (const d of districts) {
+      if (!d.prefixed && d.wordCount < 2) continue;
+      const isleHits = (c.isle || []).filter((x) => x[0] === d.id);
+      if (isleHits.length !== 1) continue;
+      const hasSameWard = !d.prefixed && wardsOld.some((w) => w.start === d.start && w.end === d.end);
+      if (hasSameWard) continue;
+      const hit = isleHits[0];
+      const score = (d.end - d.start) * 4 + (d.prefixed ? 4 : 0) - d.editCost * 12;
+      if (!bestUnprovIsle || score > bestUnprovIsle.score) {
+        bestUnprovIsle = {
+          type: "island_special",
+          district: d,
+          province: null,
+          didO: hit[0],
+          pidO: hit[1],
+          widN: hit[2],
+          pidN: hit[3],
+          totalEdits: d.editCost,
+          score,
+        };
+      }
+    }
+    if (bestUnprovIsle) return bestUnprovIsle;
+
     // 6. Single-level fallback (for suggestions / partial recovery)
     let bestSingleW = null;
     for (const w of wardsOld) {
@@ -1431,9 +1494,10 @@
       const nw = formatWard2025(best.widN, best.pidN);
       const np = state.c.pn_disp[best.pidN];
       distDisp = formatOldDistrict(best.didO, best.district.rawPrefix);
-      provDisp = state.c.po_disp[best.pidO];
-      formattedLegacy = `${distDisp}, ${provDisp}`;
+      provDisp = best.pidO !== undefined && best.pidO !== null ? state.c.po_disp[best.pidO] : null;
+      formattedLegacy = provDisp ? `${distDisp}, ${provDisp}` : distDisp;
       formatted2025 = `${nw}, ${np}`;
+      const enEntry = (state.c.en[best.widN] || []).find((x) => x[0] === best.pidN) || (state.c.en[best.widN] || [])[0];
       conv = {
         converted: true,
         already_2025: false,
@@ -1449,6 +1513,10 @@
           new_formatted: streetPrefix ? `${streetPrefix}, ${formatted2025}` : formatted2025,
           new_admin_formatted: formatted2025,
           is_default: true,
+          lat: enEntry ? enEntry[1] : null,
+          lon: enEntry ? enEntry[2] : null,
+          area_km2: enEntry ? enEntry[3] : null,
+          ward_code: enEntry ? enEntry[4] : null,
         }],
       };
       legacyIds = { wid_o: null, did_o: best.didO, pid_o: best.pidO };

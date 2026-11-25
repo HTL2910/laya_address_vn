@@ -1,7 +1,53 @@
 {
-  "version": "3.0.0",
-  "source_repository": "https://github.com/tranngocminhhieu/vietnamadminunits",
-  "license": "MIT License (Copyright (c) 2025 Tran Ngoc Minh Hieu)",
+  "version": "3.2.0",
+  "license": "MIT Only (strictly permissive; zero GPL or custom-clause data ingested)",
+  "ingested_mit_repositories": [
+    {
+      "name": "tranngocminhhieu/vietnamadminunits",
+      "url": "https://github.com/tranngocminhhieu/vietnamadminunits",
+      "license": "MIT License (Copyright (c) 2025 Tran Ngoc Minh Hieu)",
+      "license_file": "LICENSE_vietnamadminunits.txt"
+    },
+    {
+      "name": "thanglequoc/vietnamese-provinces-database",
+      "url": "https://github.com/thanglequoc/vietnamese-provinces-database",
+      "version": "5.2.0",
+      "license": "MIT License (Copyright (c) 2021 Thang Le Quoc)",
+      "license_file": "LICENSE_thanglequoc_vietnamese_provinces_database.txt"
+    },
+    {
+      "name": "madnh/hanhchinhvn",
+      "url": "https://github.com/madnh/hanhchinhvn",
+      "versions": [
+        "v1.2",
+        "v1.6.0"
+      ],
+      "license": "MIT License (Copyright (c) Danh Manh)",
+      "license_file": "LICENSE_madnh_hanhchinhvn.txt"
+    }
+  ],
+  "cross_verified_only_excluded_from_ingested_assets": [
+    {
+      "repository": "daohoangson/dvhcvn",
+      "license": "GPL-3.0",
+      "status": "cross_verified_only"
+    },
+    {
+      "repository": "vietmap-company/vietnam_administrative_address",
+      "license": "VietMap Custom Open-Source Derivative License",
+      "status": "cross_verified_only"
+    },
+    {
+      "repository": "zuydd/vn-geo",
+      "license": "No LICENSE file",
+      "status": "cross_verified_only"
+    },
+    {
+      "repository": "thanhtrungit97/dvhcvn",
+      "license": "No LICENSE file",
+      "status": "cross_verified_only"
+    }
+  ],
   "raw_files": [
     {
       "filename": "convert_legacy_2025_with_location_and_default_ward.csv",
@@ -11,22 +57,93 @@
     },
     {
       "filename": "2025_34-province-3221-ward_with_location.csv",
+      "url": "https://raw.githubusercontent.com/tranngocminhhieu/vietnamadminunits/main/data/processed/2025_34-province-3221-ward_with_location.csv",
       "sha256": "cf103923c0c469201f3b22d78f5b05c90db13986994811a9fc17988de18bf678"
+    },
+    {
+      "filename": "danhmuchanhchinh.gso.gov.vn_ward_2025-07-18.csv",
+      "url": "https://raw.githubusercontent.com/tranngocminhhieu/vietnamadminunits/main/data/raw/danhmuchanhchinh.gso.gov.vn_ward_2025-07-18.csv",
+      "sha256": "bad8474f99dd8476f07a11117154f1e587741a210f20e33c4b50d9d3fe6954a9"
+    },
+    {
+      "filename": "mit_supplement_v32.json",
+      "sha256": "e73faa6000272e191b1c6299d69880b5b230820207da3b67bc15f3dccbe239d2"
     },
     {
       "filename": "LICENSE_vietnamadminunits.txt",
       "sha256": "5a5366d3137d7f84b8ef9ce3a66c4dc3db2a0716b317f901b1c0542ed44ffd13"
+    },
+    {
+      "filename": "LICENSE_thanglequoc_vietnamese_provinces_database.txt",
+      "sha256": "0173d3551f805ee7fabad1948b1219e79dca42f5f93a1b07d4f9a12f9cbfb8da"
+    },
+    {
+      "filename": "LICENSE_madnh_hanhchinhvn.txt",
+      "sha256": "5f64c8fb3ac12258d596b9e703f20a1e14f66e0e4e7b25714036cca5f435d118"
+    },
+    {
+      "id": "thanglequoc_full_2026_json",
+      "filename": "full_json_generated_data_vn_units.json",
+      "url": "https://raw.githubusercontent.com/thanglequoc/vietnamese-provinces-database/master/json/full_json_generated_data_vn_units.json",
+      "sha256": "965c9a2ad85481e18ed2464fd87666eda311856b86a72a87f1130c27376b8d2f"
+    },
+    {
+      "id": "thanglequoc_license",
+      "filename": "LICENSE",
+      "url": "https://raw.githubusercontent.com/thanglequoc/vietnamese-provinces-database/master/LICENSE",
+      "sha256": "0173d3551f805ee7fabad1948b1219e79dca42f5f93a1b07d4f9a12f9cbfb8da"
+    },
+    {
+      "id": "vau_alias_district_csv",
+      "filename": "alias_district.csv",
+      "url": "https://raw.githubusercontent.com/tranngocminhhieu/vietnamadminunits/main/data/alias_keywords/legacy/alias_district.csv",
+      "sha256": "5e70ce91d7fef52618992be3bd07a55ffb8206d28ab96e269e037593b4336c51"
+    },
+    {
+      "id": "vau_alias_ward_csv",
+      "filename": "alias_ward.csv",
+      "url": "https://raw.githubusercontent.com/tranngocminhhieu/vietnamadminunits/main/data/alias_keywords/legacy/alias_ward.csv",
+      "sha256": "4b26996dc869e9fab175d77ec44f3e9a2dfb18a5b70cac8abf675227f6bd58f0"
+    },
+    {
+      "id": "madnh_v1_2_districts",
+      "filename": "v1.2_quan_huyen.json",
+      "url": "https://raw.githubusercontent.com/madnh/hanhchinhvn/v1.2/dist/quan_huyen.json",
+      "sha256": "4b50324177766c56887fc25909b2fe673afed67b7a96236d071d0f2920df75ca"
+    },
+    {
+      "id": "madnh_v1_2_wards",
+      "filename": "v1.2_xa_phuong.json",
+      "url": "https://raw.githubusercontent.com/madnh/hanhchinhvn/v1.2/dist/xa_phuong.json",
+      "sha256": "80877ffb7316690ebf2be420d1df686c7d6e18c7eddd6391912ef393d6fd978a"
+    },
+    {
+      "id": "madnh_v1_6_0_districts",
+      "filename": "master_quan_huyen.json",
+      "url": "https://raw.githubusercontent.com/madnh/hanhchinhvn/master/dist/quan_huyen.json",
+      "sha256": "3232c060fb15168dcad20af06abbb666ce2e6d0089f3ed2b8ebdca3768412029"
+    },
+    {
+      "id": "madnh_v1_6_0_wards",
+      "filename": "master_xa_phuong.json",
+      "url": "https://raw.githubusercontent.com/madnh/hanhchinhvn/master/dist/xa_phuong.json",
+      "sha256": "6930a86197e60db20fff1d66e472b04e1ae4390bd8def5fb9db145a748bb4182"
     }
   ],
   "counts": {
     "legacy_provinces": 63,
-    "legacy_districts": 661,
-    "legacy_wards": 6433,
+    "legacy_districts": 684,
+    "legacy_province_district_pairs": 715,
+    "legacy_wards": 7237,
     "new_provinces_2025": 34,
     "new_wards_2025": 2745,
-    "island_special_zones": 5,
-    "total_mapping_records": 10602
+    "new_ward_entries_2025": 3321,
+    "island_special_zones": 12,
+    "dac_khu_total_2025": 13,
+    "wn_code_disp_collision_fixes": 127,
+    "postal_wards_covered": 3321,
+    "total_mapping_records": 12822
   },
-  "converter_sha256": "42201268ecfcd30b2f31bbb65d1efe6454790e42b852936450d4b52f6b0b0f46",
-  "converter_bytes": 1100790
+  "converter_sha256": "3a79dcb6c1cb91a24c200af57ac678c08c5ea100b6ea12fcdaef5381ff0c4b15",
+  "converter_bytes": 1315189
 }

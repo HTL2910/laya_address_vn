@@ -1,4 +1,4 @@
-# Laya Address VN (`v2.0` + `v3.1 Suite`)
+# Laya Address VN (`v2.0` + `v3.2 Suite`)
 
 Hệ thống xử lý, chuẩn hóa & kiểm chứng địa chỉ giao hàng Việt Nam theo **cả 2 hệ hành chính (63 tỉnh cũ <-> 34 tỉnh 2 cấp 2025)** — từ **Widget trình duyệt 0đ server** (`way_a_widget_v3`, `way_a_browser_onnx_v2`) đến **Backend CPU ONNX Suite** (`laya_v3_core`, `slot_parser_v3`, `way_b_backend_api_v2`, `way_c_post_goong_v3`) và bộ công cụ **đo trần đơn thật offline 100%** ([`ceiling_audit/`](ceiling_audit/README.md)).
 
@@ -60,10 +60,10 @@ flowchart LR
 
 | Mô-đun `v3.0` | Nhiệm vụ | Dung lượng / Runtime | Bộ kiểm chuẩn độc lập | Kết quả kiểm chứng & Độ trễ CPU |
 |---|---|---|---|---|
-| **`way_a_widget_v3`** (`@laya/address-vn-widget`) | SDK nhúng Webcake `<laya-address-input>`, sửa Telex, SymSpell 1-edit, Top-3 gợi ý xã, đổi 2025 ngay tại trình duyệt | JS UMD (`0` CDN) + `1.283 MB` ONNX + `1.075 MB` Converter JSON | `tests/test_widget_v3.mjs` (`13/13` PASS) | Init `5.25 ms` • **Trung bình `0.0825 ms`/chuỗi** (500 mẫu) |
-| **`laya_v3_core`** (`telex_fuzzy` + `converter_2025`) | Sửa Telex/VNI, SymSpell 1-edit, chuẩn hóa 63 tỉnh cũ <-> 34 tỉnh 2025 (+ 5 đặc khu), Haversine tâm xã | Pure Python stdlib (`0` dep) + `1.075 MB` `vn_admin_v3_converter.json` | `tests/test_v3_core.py` (`36/36` PASS) | Build `32.45 ms` • **Trung bình `0.1847 ms`/chuỗi** (500 mẫu) |
-| **`slot_parser_v3`** (BIO-NER 17 nhãn) | Bóc tách 8 thực thể (`HNO, STR, WAR, DIS, PRO, PER, PHN, NOTE`), tự tạo chuỗi sạch gửi Goong | **ONNX INT8 `1.523 MB`** (`-44.7%` vs FP32) + NumPy Viterbi CRF (`0` `.pt`) | Hold-out độc lập `500` ca (`seed=20261201`) + `10/10` pytest PASS | Token Acc **`98.58%`** • Macro Entity F1 **`0.9770`** • Negative FP `0.0%` • **`p99 = 5.171 ms`** |
-| **`way_c_post_goong_v3`** (Xác minh Hậu-Goong) | Bắt Goong bịa cấp cha, mâu thuẫn tỉnh/huyện, lệch tọa độ Haversine; bỏ qua khác biệt cũ <-> 2025; trả 3 hành động | **ONNX FP32 `68.53 KB`** (`16,449` params, `0` `.pt`) + `43` đặc trưng sạch | Test `6,000` ca (`seed=301`) & Hold-out `600` ca (`seed=20261199`) + `12/12` pytest PASS | Test `PR-AUC=0.9998`, Hold-out `PR-AUC=1.000`, `ECE=0.0044`, `legacy_2025_false_alarm=0.0–0.18%` • **`p99 = 1.643 ms`** |
+| **`way_a_widget_v3`** (`@laya/address-vn-widget`) | SDK nhúng Webcake `<laya-address-input>`, sửa Telex, SymSpell 1-edit, Top-3 gợi ý xã, đổi 2025 ngay tại trình duyệt | JS UMD (`0` CDN) + `1.283 MB` ONNX + `1.254 MB` Converter JSON | `tests/test_widget_v3.mjs` (`14/14` PASS) | Init `8.16 ms` • **Trung bình `0.0903 ms`/chuỗi** (500 mẫu) |
+| **`laya_v3_core`** (`telex_fuzzy` + `converter_2025`) | Sửa Telex/VNI, SymSpell 1-edit, chuẩn hóa 63 tỉnh cũ <-> 34 tỉnh 2025 (đủ `13` đặc khu), Haversine tâm xã | Pure Python stdlib (`0` dep) + `1.254 MB` `vn_admin_v3_converter.json` | `tests/test_v3_core.py` (`37/37` PASS) | Build `26.05 ms` • **Trung bình `0.1120 ms`/chuỗi** (500 mẫu) |
+| **`slot_parser_v3`** (BIO-NER 17 nhãn) | Bóc tách 8 thực thể (`HNO, STR, WAR, DIS, PRO, PER, PHN, NOTE`), tự tạo chuỗi sạch gửi Goong | **ONNX INT8 `1.523 MB`** (`-44.7%` vs FP32) + NumPy Viterbi CRF (`0` `.pt`) | Hold-out độc lập `500` ca (`seed=20261201`) + `11/11` pytest PASS | Token Acc **`98.58%`** • Macro Entity F1 **`0.9770`** • Negative FP `0.0%` • **`p99 = 5.171 ms`** |
+| **`way_c_post_goong_v3`** (Xác minh Hậu-Goong) | Bắt Goong bịa cấp cha, mâu thuẫn tỉnh/huyện, lệch tọa độ Haversine; bỏ qua khác biệt cũ <-> 2025; trả 3 hành động | **ONNX FP32 `68.53 KB`** (`16,449` params, `0` `.pt`) + `43` đặc trưng sạch | Test `6,000` ca (`seed=301`) & Hold-out `600` ca (`seed=20261199`) + `14/14` pytest (`+ 3/3` 2A) PASS | Test `PR-AUC=0.9998`, Hold-out `PR-AUC=1.000`, `ECE=0.0044`, `legacy_2025_false_alarm=0.0–0.18%` • **`p99 = 1.643 ms`** |
 
 ### Chi tiết F1 từng thực thể trên Hold-Out 500 ca — `slot_parser_v3` (ONNX INT8 + NumPy Viterbi)
 
@@ -110,22 +110,30 @@ flowchart LR
 
 | Thư mục | Phiên bản | Vai trò | Tài liệu / Kiểm thử |
 |---|---|---|---|
-| `way_a_widget_v3/` | **v3.0** | Drop-in Webcake SDK (`<laya-address-input>`), Telex/SymSpell, Top-3 gợi ý xã, 2025 converter (`0` CDN) | [`README.md`](way_a_widget_v3/README.md) |
-| `laya_v3_core/` | **v3.0** | Bộ sửa Telex/VNI + SymSpell 1-edit + Converter 2025 (`63 <-> 34` + `5` đặc khu) + Haversine | [`tests/test_v3_core.py`](laya_v3_core/tests/test_v3_core.py) |
-| `slot_parser_v3/` | **v3.0** | BiGRU + NumPy Viterbi CRF ONNX INT8 bóc tách 8 thực thể địa chỉ & ghi chú | [`MODEL_CARD.md`](slot_parser_v3/MODEL_CARD.md) |
-| `way_c_post_goong_v3/` | **v3.0** | Post-Goong Verifier ONNX (`68.5 KB`) + FastAPI port `8085` (3 hành động + ZNS) | [`MODEL_CARD.md`](way_c_post_goong_v3/MODEL_CARD.md) |
-| `shared_data_v3/` | **v3.0** | Dữ liệu ánh xạ MIT 2025 (`10,602` cạnh cũ<->mới, `2,745`/`3,321` xã 2025 + lat/lon) | [`PROVENANCE_V3.json`](shared_data_v3/PROVENANCE_V3.json) |
+| `way_a_widget_v3/` | **v3.2** | Drop-in Webcake SDK (`<laya-address-input>`), Telex/SymSpell, Top-3 gợi ý xã, 2025 converter (`0` CDN) | [`README.md`](way_a_widget_v3/README.md) |
+| `laya_v3_core/` | **v3.2** | Bộ sửa Telex/VNI + SymSpell 1-edit + Converter 2025 (`63 <-> 34` + đủ `13` đặc khu) + Haversine | [`tests/test_v3_core.py`](laya_v3_core/tests/test_v3_core.py) |
+| `slot_parser_v3/` | **v3.1** | BiGRU + NumPy Viterbi CRF ONNX INT8 bóc tách 8 thực thể địa chỉ & ghi chú | [`MODEL_CARD.md`](slot_parser_v3/MODEL_CARD.md) |
+| `way_c_post_goong_v3/` | **v3.1** | Post-Goong Verifier ONNX (`68.5 KB`) + FastAPI port `8085` (3 hành động + ZNS) | [`MODEL_CARD.md`](way_c_post_goong_v3/MODEL_CARD.md) |
+| `shared_data_v3/` | **v3.2** | Dữ liệu ánh xạ MIT 2025/2026 (`12,822` cạnh cũ<->mới, `684` huyện, `7,237` xã cũ -> `2,745`/`3,321` xã 2025, `12` đảo `isle` / `13` đặc khu) + sync CLI | [`PROVENANCE_V3.json`](shared_data_v3/PROVENANCE_V3.json) • [`DATA_DIFF_REPORT.json`](shared_data_v3/DATA_DIFF_REPORT.json) |
 | `ceiling_audit/` | **Audit** | Bước 1 đo trần Pre/Post-Goong + Bước 2 lấy 300 mẫu mù IPW trên đơn thật | [`README.md`](ceiling_audit/README.md) |
 | `way_a_browser_onnx_v2/` | **v2.0** | Browser Char-CNN ONNX WASM (`1.283 MB`, port `8083`) | [`MODEL_CARD.md`](way_a_browser_onnx_v2/MODEL_CARD.md) |
 | `way_b_backend_api_v2/` | **v2.0** | FastAPI Dual-Granularity Transformer + CNN INT8 (`1.789 MB`, port `8084`) | [`MODEL_CARD.md`](way_b_backend_api_v2/MODEL_CARD.md) |
 | `benchmark_v2/` | **v2.0** | Hold-out 600 ca, kiểm tra rò rỉ n-gram & acceptance tests | [`eval_report_v2.json`](benchmark_v2/eval_report_v2.json) |
-| `way_a_browser_onnx/`, `way_b_backend_api/`, `shared_data/`, `benchmark/` | **v1.0** | Phiên bản gốc được giữ nguyên để đối chiếu | — |
+| `way_a_browser_onnx/`, `way_b_backend_api/`, `shared_data/`, `benchmark/` | **v1.0** | Phiên bản gốc được giữ nguyên để đối chiếu (`vn_admin_gazetteer.json` `221,796 B`) | — |
 
-- **Nguồn danh mục hành chính (MIT License):** [`tranngocminhhieu/vietnamadminunits`](https://github.com/tranngocminhhieu/vietnamadminunits) (xem [`LICENSE_vietnamadminunits.txt`](shared_data_v3/LICENSE_vietnamadminunits.txt)).
+- **Nguồn danh mục hành chính (100% MIT License):** [`tranngocminhhieu/vietnamadminunits`](https://github.com/tranngocminhhieu/vietnamadminunits) ([`LICENSE_vietnamadminunits.txt`](shared_data_v3/LICENSE_vietnamadminunits.txt)), [`thanglequoc/vietnamese-provinces-database`](https://github.com/thanglequoc/vietnamese-provinces-database) ([`LICENSE_thanglequoc_vietnamese_provinces_database.txt`](shared_data_v3/LICENSE_thanglequoc_vietnamese_provinces_database.txt)), và [`madnh/hanhchinhvn`](https://github.com/madnh/hanhchinhvn) ([`LICENSE_madnh_hanhchinhvn.txt`](shared_data_v3/LICENSE_madnh_hanhchinhvn.txt)). Nguồn GPL/tùy biến bị loại trừ khỏi build, chỉ dùng đối chiếu kiểm tra (`DATA_DIFF_REPORT.json`).
 
 ---
 
-## 5. Nâng cấp `v3.1.0` (Huấn luyện cục bộ `2A` + Vá `SlotParser`)
+## 5. Nâng cấp `v3.1.0` & `v3.2.0`
+
+### Mới trong `v3.2.0` (Danh mục MIT mở rộng + Đủ 13 Đặc khu + Sync CLI thuần Stdlib)
+- **Mở rộng dữ liệu lịch sử & 2025/2026 (`shared_data_v3/`):** tăng từ `661 -> 684` quận/huyện cũ (`690 -> 715` cặp tỉnh-huyện: `Quận 2`, `Quận 9`, `Huyện Từ Liêm`, `Huyện Tân Thành`, `Huyện Lộc Hà`, v.v.), `6,433 -> 7,237` xã/phường cũ (gồm `Phường 6/7/8/10/13 Quận 3`...), và `10,602 -> 12,822` cạnh ánh xạ (`+2,220` cạnh, `vn_admin_v3_converter.json` = `1,315,189 B` / `1.254 MB` < `1.8 MB`).
+- **Cập nhật 2026 & phân biệt dấu:** bổ sung `pn_full_disp` (`Thành phố Đồng Nai`, `Thành phố Bắc Ninh`, `Thành phố Quảng Ninh`), `26` bản sửa loại `Xã <-> Phường`, `127` mã phân biệt dấu `wn_code_disp` (ví dụ `Đặc khu Kiên Hải` vs `Xã Kiến Hải`), và `3,321` mã bưu chính Quyết định `2334/QĐ-BKHCN` (`p_postal`, `w_postal`).
+- **Đủ 13 Đặc khu & sửa bóng đè (`converter_2025.py` + `laya-telex-fuzzy.js`):** phân giải đúng cả **13 đặc khu** (`Phú Quốc`, `Côn Đảo`, `Bạch Long Vĩ`, `Cồn Cỏ`, `Hoàng Sa`, `Trường Sa`, `Lý Sơn`, `Cô Tô`, `Vân Đồn`, `Cát Hải`, `Phú Quý`/`Phú Quí`, `Kiên Hải`, và `Thổ Châu`); ưu tiên khớp `Xã Thổ Châu, TP Phú Quốc` trước fallback huyện đảo để không bị gộp nhầm sang `Đặc khu Phú Quốc`.
+- **CLI đồng bộ thuần stdlib (`shared_data_v3/crawl_and_sync_admin_data.py`):** tự động tải nguồn MIT, kiểm tra giấy phép + SHA-256, build lại `vn_admin_v3_converter.json`, đồng bộ sang `way_c_post_goong_v3/artifacts/` + `way_a_widget_v3/dist/model/`, và xuất [`DATA_DIFF_REPORT.json`](shared_data_v3/DATA_DIFF_REPORT.json).
+
+### Kế thừa từ `v3.1.0` (Huấn luyện cục bộ `2A` + Vá `SlotParser`)
 
 1. **`SlotParser v3.1` (`slot_parser_v3/parser.py`):**
    - **Phone-guard tất định:** tách sạch 100% số điện thoại đứng liền sát số nhà khỏi `HNO` / `clean_address_for_goong`.
@@ -140,26 +148,31 @@ flowchart LR
 ## 6. Lệnh chạy nhanh & Đóng gói phát hành
 
 ```powershell
-# 1. Cài Python SDK hợp nhất v3.1.0 (từ GitHub Releases)
-pip install laya_address_vn-3.1.0-py3-none-any.whl
+# 1. Cài Python SDK hợp nhất v3.2.0 (từ GitHub Releases)
+pip install laya_address_vn-3.2.0-py3-none-any.whl
 # Hoặc kèm FastAPI server / trainer offline:
-pip install "laya_address_vn-3.1.0-py3-none-any.whl[server]"
-pip install "laya_address_vn-3.1.0-py3-none-any.whl[train]"
+pip install "laya_address_vn-3.2.0-py3-none-any.whl[server]"
+pip install "laya_address_vn-3.2.0-py3-none-any.whl[train]"
 
-# 2. Train mô hình Post-Goong 2A cục bộ trên dữ liệu thật (0 PII rời máy)
+# 2. Đồng bộ & kiểm tra dữ liệu hành chính MIT v3.2.0 (thuần stdlib)
+.\way_b_backend_api_v2\.venv\Scripts\python.exe shared_data_v3\crawl_and_sync_admin_data.py --dry-run --offline
+.\way_b_backend_api_v2\.venv\Scripts\python.exe shared_data_v3\crawl_and_sync_admin_data.py --offline
+# (Tùy chọn online tải mới nguồn MIT upstream: bỏ --offline)
+
+# 3. Train mô hình Post-Goong 2A cục bộ trên dữ liệu thật (0 PII rời máy)
 .\ceiling_audit\.venv\Scripts\python.exe way_c_post_goong_v3\train_local_2a.py `
   --data path\to\dev_orders.csv `
   --output-dir local_2a_artifacts
 
-# 3. Nạp mô hình 2A vừa train vào API server (port 8085)
+# 4. Nạp mô hình 2A vừa train vào API server (port 8085)
 $env:LAYA_POST_GOONG_ARTIFACTS_DIR = "local_2a_artifacts"
 .\way_b_backend_api_v2\.venv\Scripts\python.exe -m uvicorn way_c_post_goong_v3.server:app --port 8085
 
-# 4. Chạy toàn bộ test Python, Local 2A & Node Widget
+# 5. Chạy toàn bộ test Python, Local 2A, Ceiling Audit & Node Widget
 .\way_b_backend_api_v2\.venv\Scripts\pytest.exe -v --basetemp=".pytest_tmp_all" laya_v3_core\tests way_c_post_goong_v3\tests\test_post_goong_v3.py slot_parser_v3\tests benchmark_v2\test_v2_acceptance.py
 .\ceiling_audit\.venv\Scripts\pytest.exe -v --basetemp=".pytest_tmp_2a" way_c_post_goong_v3\tests\test_local_2a_v31.py ceiling_audit\tests
 cd way_a_widget_v3 && node --test tests\test_widget_v3.mjs
 
-# 5. Đóng gói lại toàn bộ bản Release v3.1.0
+# 6. Đóng gói lại toàn bộ bản Release v3.2.0
 .\way_b_backend_api_v2\.venv\Scripts\python.exe release\build_release_v3.py
 ```
